@@ -35,6 +35,10 @@ public class PlayerAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        HaveWeaponAxe = false;
+        HaveWeaponKnife = false;
+        HaveWeaponSword = false;
+        HaveWeaponSpear = false;
         anim = GetComponent<Animator>();
     }
 
@@ -144,9 +148,9 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider coll) {
-        if (coll.CompareTag(DamageCollider1)) {
-            ca.AttackSuccess(0);
-        }
-    }
+    //void OnTriggerEnter(Collider coll) {
+    //    if (coll.CompareTag(DamageCollider1)) {
+    //        ca.AttackSuccess(0);
+    //    }
+    //}
 }

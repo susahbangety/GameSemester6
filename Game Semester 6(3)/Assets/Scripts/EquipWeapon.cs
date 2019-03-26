@@ -14,8 +14,8 @@ public class EquipWeapon : MonoBehaviour
     public Transform dropArea;
     //public GameObject Weapon3;
     //public GameObject throwDirection;
-
     //public Spawner spawn;
+    public PlayerAttack patt;
     public dropWeapon dropWeap;
     //public pickupItem pickUp;
 
@@ -31,7 +31,8 @@ public class EquipWeapon : MonoBehaviour
         //currWeapon = playerHand;
         //playerHand.SetActive(false);
         Weapon1.SetActive(false);
-        Weapon2.SetActive(false);
+        Weapon2.SetActive(false);    
+        //patt = GameObject.find("Anim").GetComponent<Animator>();
         //rgbWeapon = GetComponents<Rigidbody>();
         //Weapon3.SetActive(false);
     }
@@ -47,12 +48,17 @@ public class EquipWeapon : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "Short" && weaponActive == false && currWeapon == playerHand)
+        if (collider.gameObject.tag == "Axe" && weaponActive == false && currWeapon == playerHand)
         {
             Debug.Log("You Use " + collider.gameObject.name);
             Destroy(collider.gameObject);
             weaponActive = true;
             currWeapon = Weapon1;
+            patt.HaveWeapon = true;
+            patt.HaveWeaponAxe = true;
+            patt.HaveWeaponKnife = false;
+            patt.HaveWeaponSpear = false;
+            patt.HaveWeaponSword = false;
             //currWeapon = playerHand;
             Weapon1.SetActive(true);
             Weapon2.SetActive(false);
@@ -60,12 +66,17 @@ public class EquipWeapon : MonoBehaviour
             //weaponActive = true;
             //Debug.Log("You Use " + collider.gameObject.name);
         }
-        if (collider.gameObject.tag == "Medium" && weaponActive == false && currWeapon == playerHand)
+        if (collider.gameObject.tag == "Sword" && weaponActive == false && currWeapon == playerHand)
         {
             Debug.Log("You Use " + collider.gameObject.name);
             Destroy(collider.gameObject);
             weaponActive = true;
             currWeapon = Weapon2;
+            patt.HaveWeapon = true;
+            patt.HaveWeaponAxe = false;
+            patt.HaveWeaponKnife = false;
+            patt.HaveWeaponSpear = false;
+            patt.HaveWeaponSword = true;
             //currWeapon = playerHand;
             Weapon1.SetActive(false);
             Weapon2.SetActive(true);

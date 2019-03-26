@@ -13,6 +13,7 @@ public class pickupItem : MonoBehaviour
 
     public InputManager im;
     public EquipWeapon eqw;
+    public PlayerAttack patt;
     //public dropWeapon drop;
 
     void Start()
@@ -47,9 +48,9 @@ public class pickupItem : MonoBehaviour
 
     public void throwWeapon()
     {
-        if (eqw.weaponActive == true && eqw.currWeapon == true)
+        if (eqw.weaponActive == true && eqw.currWeapon == true && patt.AttackState == false)
         {
-            if (Input.GetKeyDown(KeyCode.G)) /*(Input.GetKeyDown(im.TriangleButton[ControlNumber]))*/
+            if /*(Input.GetKeyDown(KeyCode.G))*/ (Input.GetKeyDown(im.TriangleButton[ControlNumber]))
             {
                 //transform.Translate(Vector3.forward * Time.deltaTime);
                 //Vector3 weaponPosition = transform.position;
