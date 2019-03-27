@@ -6,11 +6,15 @@ public class EquipWeapon : MonoBehaviour
 {
     public bool weaponActive;
 
-    public GameObject playerHand;
+    public GameObject playerHandRight;
+    public GameObject playerHandLeft;
     public GameObject currWeapon;
-    public GameObject Weapon1;
-    public GameObject Weapon2;
-   // public Rigidbody[] rgbWeapon;
+    public GameObject Axe;
+    public GameObject Sword;
+    public GameObject Spear;
+    public GameObject Hammer;
+    public GameObject Knife;
+    // public Rigidbody[] rgbWeapon;
     public Transform dropArea;
     //public GameObject Weapon3;
     //public GameObject throwDirection;
@@ -27,14 +31,11 @@ public class EquipWeapon : MonoBehaviour
     {
         //Instantiate(katana, new Vector3(0,0,0),Quaternion.Euler(0,0,0),katanaHand.transform);
         weaponActive = false;
-        currWeapon = playerHand;
-        //currWeapon = playerHand;
-        //playerHand.SetActive(false);
-        Weapon1.SetActive(false);
-        Weapon2.SetActive(false);    
-        //patt = GameObject.find("Anim").GetComponent<Animator>();
-        //rgbWeapon = GetComponents<Rigidbody>();
-        //Weapon3.SetActive(false);
+        Axe.SetActive(false);
+        Sword.SetActive(false);
+        Spear.SetActive(false);
+        Knife.SetActive(false);
+        Hammer.SetActive(false);
     }
 
     void Update()
@@ -48,52 +49,96 @@ public class EquipWeapon : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "Axe" && weaponActive == false && currWeapon == playerHand)
+        if (collider.gameObject.tag == "Axe" && weaponActive == false && currWeapon == null)
         {
             Debug.Log("You Use " + collider.gameObject.name);
-            Destroy(collider.gameObject);
+            //Destroy(collider.gameObject);
             weaponActive = true;
-            currWeapon = Weapon1;
+            currWeapon = Axe;
             patt.HaveWeapon = true;
             patt.HaveWeaponAxe = true;
-            patt.HaveWeaponKnife = false;
-            patt.HaveWeaponSpear = false;
-            patt.HaveWeaponSword = false;
-            //currWeapon = playerHand;
-            Weapon1.SetActive(true);
-            Weapon2.SetActive(false);
-            //Weapon3.SetActive(false);
-            //weaponActive = true;
-            //Debug.Log("You Use " + collider.gameObject.name);
+            //patt.HaveWeaponKnife = false;
+            //patt.HaveWeaponSpear = false;
+            //patt.HaveWeaponSword = false;
+            //patt.HaveWeaponHammer = false;
+            Axe.SetActive(true);
+            Spear.SetActive(false);
+            Sword.SetActive(false);
+            Knife.SetActive(false);
+            Hammer.SetActive(false);
         }
-        if (collider.gameObject.tag == "Sword" && weaponActive == false && currWeapon == playerHand)
+        if (collider.gameObject.tag == "Sword" && weaponActive == false && currWeapon == null)
         {
             Debug.Log("You Use " + collider.gameObject.name);
-            Destroy(collider.gameObject);
+            //Destroy(collider.gameObject);
             weaponActive = true;
-            currWeapon = Weapon2;
+            currWeapon = Sword;
             patt.HaveWeapon = true;
-            patt.HaveWeaponAxe = false;
-            patt.HaveWeaponKnife = false;
-            patt.HaveWeaponSpear = false;
+            //patt.HaveWeaponAxe = false;
+            //patt.HaveWeaponKnife = false;
+            //patt.HaveWeaponSpear = false;
             patt.HaveWeaponSword = true;
-            //currWeapon = playerHand;
-            Weapon1.SetActive(false);
-            Weapon2.SetActive(true);
-            //Weapon3.SetActive(false);
-            //weaponActive = true;
-            //Debug.Log("You Use " + collider.gameObject.name);
+            //patt.HaveWeaponHammer = false;
+            Axe.SetActive(false);
+            Sword.SetActive(true);
+            Spear.SetActive(false);
+            Knife.SetActive(false);
+            Hammer.SetActive(false);
         }
-        //if (collider.gameObject.tag == "Weapon 3" && weaponActive == false)
-        //{
-        //    playerHand = Weapon3;
-        //    //currWeapon = playerHand;
-        //    Weapon1.SetActive(false);
-        //    Weapon2.SetActive(false);
-        //    Weapon3.SetActive(true);
-        //    weaponActive = true;
-        //    Debug.Log("You Use " + collider.gameObject.tag);
-        //}
+        if (collider.gameObject.tag == "Spear" && weaponActive == false && currWeapon == null)
+        {
+            Debug.Log("You Use " + collider.gameObject.name);
+            //Destroy(collider.gameObject);
+            weaponActive = true;
+            currWeapon = Spear;
+            patt.HaveWeapon = true;
+            //patt.HaveWeaponAxe = false;
+            //patt.HaveWeaponKnife = false;
+            patt.HaveWeaponSpear = true;
+            //patt.HaveWeaponSword = false;
+            //patt.HaveWeaponHammer = false;
+            Axe.SetActive(false);
+            Sword.SetActive(false);
+            Spear.SetActive(true);
+            Knife.SetActive(false);
+            Hammer.SetActive(false);
+        }
+        if (collider.gameObject.tag == "Knife" && weaponActive == false && currWeapon == null)
+        {
+            Debug.Log("You Use " + collider.gameObject.name);
+            //Destroy(collider.gameObject);
+            weaponActive = true;
+            currWeapon = Knife;
+            patt.HaveWeapon = true;
+            //patt.HaveWeaponAxe = false;
+            patt.HaveWeaponKnife = true;
+            //patt.HaveWeaponSpear = false;
+            //patt.HaveWeaponSword = false;
+            //patt.HaveWeaponHammer = false;
+            Axe.SetActive(false);
+            Sword.SetActive(false);
+            Spear.SetActive(false);
+            Knife.SetActive(true);
+            Hammer.SetActive(false);
+        }
+        if (collider.gameObject.tag == "Hammer" && weaponActive == false && currWeapon == null)
+        {
+            Debug.Log("You Use " + collider.gameObject.name);
+            //Destroy(collider.gameObject);
+            weaponActive = true;
+            currWeapon = Hammer;
+            patt.HaveWeapon = true;
+            //patt.HaveWeaponAxe = false;
+            //patt.HaveWeaponKnife = false;
+            //patt.HaveWeaponSpear = false;
+            //patt.HaveWeaponSword = false;
+            patt.HaveWeaponHammer = true;
+            Axe.SetActive(false);
+            Sword.SetActive(false);
+            Spear.SetActive(false);
+            Knife.SetActive(false);
+            Hammer.SetActive(true);
+        }
     }
 
     //public void throwWeapon()

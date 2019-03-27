@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour {
 
     }
 
-    void GetWalkInput()
+    public void GetWalkInput()
     {
         InputJoystick.x = Input.GetAxis(IM.HorizontalAxis[ControlNumber]);
         InputJoystick.z = Input.GetAxis(IM.VerticalAxis[ControlNumber]);

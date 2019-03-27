@@ -28,6 +28,7 @@ public class PlayerAttack : MonoBehaviour
     public bool HaveWeaponKnife;
     public bool HaveWeaponSword;
     public bool HaveWeaponSpear;
+    public bool HaveWeaponHammer;
 
     public float AttackTime;
     public float setAttackTime;
@@ -39,6 +40,7 @@ public class PlayerAttack : MonoBehaviour
         HaveWeaponKnife = false;
         HaveWeaponSword = false;
         HaveWeaponSpear = false;
+        HaveWeaponHammer = false;
         anim = GetComponent<Animator>();
     }
 
@@ -86,6 +88,14 @@ public class PlayerAttack : MonoBehaviour
                 AttackTime = setAttackTime;
             }
         }
+        if (AttackState == false && HaveWeaponHammer == true)
+        {
+            if (Input.GetKeyDown(IM.XButton[ControlNumber]))
+            {
+                AttackState = true;
+                AttackTime = setAttackTime;
+            }
+        }
     }
 
     void CalculateAttack() {
@@ -114,6 +124,11 @@ public class PlayerAttack : MonoBehaviour
                 AttackTime -= Time.deltaTime;
                 anim.SetBool("AttackSpear", true);
             }
+            if (HaveWeaponHammer == true)
+            {
+                AttackTime -= Time.deltaTime;
+                anim.SetBool("AttackHammer", true);
+            }
         }
 
         if (AttackTime < 0) {
@@ -133,6 +148,7 @@ public class PlayerAttack : MonoBehaviour
                 //Senjata.GetComponent<BoxCollider>().enabled = false;
                 AttackState = false;
                 anim.SetBool("AttackKnife", false);
+             
             }
             if (HaveWeaponSword == true)
             {
@@ -144,6 +160,11 @@ public class PlayerAttack : MonoBehaviour
             {
                 AttackState = false;
                 anim.SetBool("AttackSpear", false);
+            }
+            if (HaveWeaponHammer == true)
+            {
+                AttackState = false;
+                anim.SetBool("AttackHammer", false);
             }
         }
     }

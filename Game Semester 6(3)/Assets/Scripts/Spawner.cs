@@ -17,18 +17,21 @@ public class Spawner : MonoBehaviour
         //InvokeRepeating("spawnRandom", startSpawning, spawnDelay);
         //Instantiate(Weapon[randomInt], spawnPos[randomInt].position, spawnPos[randomInt].rotation);
         //spawnRandom();
-        
-        
+
+
         for (int i = 0; i < spawnPos.Length; i++)
         {
             possibleSpawns.Add(spawnPos[i]);
             //Debug.Log(" in Spawn Point " + spawnPos[i]);
             //Debug.Log(" "+Weapon[randomInt]);
         }
-        
-        InvokeRepeating("spawnRandom", Spawning, Spawning);
+
+        InvokeRepeating("randomSpawn", Spawning, Spawning);
     }
-    void spawnRandom()
+
+    
+
+    void randomSpawn()
     {
         if (possibleSpawns.Count > 0)
         {
@@ -36,7 +39,7 @@ public class Spawner : MonoBehaviour
             randomInt = Random.Range(0, Weapon.Length);
             GameObject NewWeapon = Instantiate(Weapon[randomInt], possibleSpawns[spawnIndex].position, possibleSpawns[spawnIndex].rotation) as GameObject;
             //GameObject NewWeapon = Instantiate(Weapon[randomInt], possibleSpawns[randomInt].position, possibleSpawns[randomInt].rotation) as GameObject;
-            //NewWeapon.GetComponent<weaponSpawn>().mySpawnPoint = possibleSpawns[spawnIndex];
+            NewWeapon.GetComponent<spawnerWeapon>().mySpawnPoint = possibleSpawns[spawnIndex];
 
             possibleSpawns.RemoveAt(spawnIndex);
         }
