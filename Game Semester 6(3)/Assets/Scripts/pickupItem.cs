@@ -9,6 +9,8 @@ public class pickupItem : MonoBehaviour
     //public Transform mySpawnPoint;
     public Rigidbody rgb;
     public int ControlNumber;
+    public float rotateSpeed;
+    public Transform areaDrop;
     //public Transform dropArea;
 
     public PlayerMovement pm;
@@ -29,8 +31,20 @@ public class pickupItem : MonoBehaviour
 
     void Update()
     {
-        
-        throwWeapon();
+            if(gameObject.tag == "Axe" && eqw.weaponActive == false)
+            {
+                transform.Rotate(Vector3.right * Time.deltaTime * rotateSpeed);
+                throwWeapon();
+            }
+            if (gameObject.tag == "Hammer" && eqw.weaponActive == false)
+            {
+            transform.Rotate(Vector3.right * Time.deltaTime * rotateSpeed);
+            throwWeapon();
+            }
+            else
+            {
+                throwWeapon();
+            }
         
     }
 
@@ -55,8 +69,8 @@ public class pickupItem : MonoBehaviour
             {
                 
                 rgb.AddForce(eqw.dropArea.forward * 100);
+                //transform.rotation = new Quaternion(areaDrop.rotation.x, areaDrop.rotation.y, areaDrop.rotation.z, 1);
                 StartCoroutine(weaponThrow());
-                
                 eqw.weaponActive = false;
                 Debug.Log("You Drop some " + eqw.currWeapon);
                
@@ -67,11 +81,11 @@ public class pickupItem : MonoBehaviour
     IEnumerator weaponThrow()
     {
         yield return new WaitForSeconds(2);
-        
+
         rgb.velocity = new Vector3(0, 0, 0);
         gameObject.transform.eulerAngles = gameObject.transform.parent.transform.eulerAngles;
         gameObject.transform.position = gameObject.transform.parent.transform.position;
-        
+
         gameObject.SetActive(false);
         patt.HaveWeapon = false;
         patt.HaveWeaponAxe = false;

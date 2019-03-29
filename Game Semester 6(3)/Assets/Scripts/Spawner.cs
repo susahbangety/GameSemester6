@@ -21,15 +21,16 @@ public class Spawner : MonoBehaviour
 
         for (int i = 0; i < spawnPos.Length; i++)
         {
-            possibleSpawns.Add(spawnPos[i]);
+           
+                possibleSpawns.Add(spawnPos[i]);
+            
+            
             //Debug.Log(" in Spawn Point " + spawnPos[i]);
             //Debug.Log(" "+Weapon[randomInt]);
         }
 
         InvokeRepeating("randomSpawn", Spawning, Spawning);
     }
-
-    
 
     void randomSpawn()
     {

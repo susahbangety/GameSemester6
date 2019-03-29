@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mySpawnPoint: {fileID: 0}
+  rotate: 100
   eqw: {fileID: 0}
 --- !u!65 &1343120682323997871
 BoxCollider:

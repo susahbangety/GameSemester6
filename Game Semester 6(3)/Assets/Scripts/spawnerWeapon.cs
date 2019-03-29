@@ -6,6 +6,7 @@ public class spawnerWeapon : MonoBehaviour
 {
     private Spawner sp;
     public Transform mySpawnPoint;
+    public float rotate;
 
     public EquipWeapon eqw;
 
@@ -13,6 +14,21 @@ public class spawnerWeapon : MonoBehaviour
     {
         sp = GameObject.Find("WeaponSpawn").GetComponent<Spawner>();
         eqw = GameObject.FindGameObjectWithTag("Player").GetComponent<EquipWeapon>();
+    }
+
+    void Update()
+    {
+        transform.Rotate(Vector3.forward * Time.deltaTime * rotate);
+
+        if (gameObject.tag == "Spear")
+        {
+            transform.position = new Vector3(transform.position.x, 2.6f, transform.position.z);
+        }
+        //if (gameObject.tag == "Sword")
+        //{
+        //    transform.rotation = Quaternion.Euler(0, transform.rotation.y, transform.rotation.z);
+        //}
+        
     }
 
     void OnTriggerEnter(Collider col)

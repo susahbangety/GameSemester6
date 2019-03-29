@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public Vector3 PlayerPos;
     public Vector3 InputJoystick;
+    private Rigidbody rb;
 
     public float Angle;
     public float TurnSpeed;
@@ -33,6 +34,7 @@ public class PlayerMovement : MonoBehaviour {
         SpeedMultiplier = 1.0f;
         PlayerNumber = PlayerNumber - 1;
         IM = GameObject.FindGameObjectWithTag("InputManager").GetComponent<InputManager>();
+        rb = GetComponent<Rigidbody>();
         Player = GameObject.FindGameObjectWithTag(PlayerTag);
 
         CharacterAttributesObject = GameObject.FindGameObjectWithTag("CharacterAttributes");
