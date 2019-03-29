@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 259050234}
   - component: {fileID: 259050233}
   m_Layer: 5
-  m_Name: ControlSelected
+  m_Name: CreditSelected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,7 +251,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 2e7ebd05f82f2bd4d982c5ce4657a0ad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8e70f74a5ec9ce042bcb11ad1ff7fdda, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -881,7 +881,7 @@ GameObject:
   - component: {fileID: 1613082845}
   - component: {fileID: 1613082844}
   m_Layer: 5
-  m_Name: ControlNotSelected
+  m_Name: CreditNotSelected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -926,7 +926,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 042f7e92aeb88af489b214dd24e438a5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a3f62c4ce8086d4083917091a3fec12, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

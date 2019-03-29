@@ -84,23 +84,19 @@ public class MainMenuHandler : MonoBehaviour
     {
         if (index == 0 && Input.GetKeyDown(IM.XButton[ControlNumber]))
         {
-            Debug.Log("Berhasil masuk ke game");
-            //SceneManager.LoadScene("InGame");
+            SceneManager.LoadScene("PlayerSelection");
         }
         if (index == 1 && Input.GetKeyDown(IM.XButton[ControlNumber]))
-        {
-            Debug.Log("Berhasil masuk ke option");
-            //SceneManager.LoadScene("Option");
+        { 
+            SceneManager.LoadScene("Credit");
         }
         if (index == 2 && Input.GetKeyDown(IM.XButton[ControlNumber]))
         {
-            Debug.Log("Berhasil masuk ke credit");
-            //SceneManager.LoadScene("Credit");
+            SceneManager.LoadScene("Option");
         }
         if (index == 3 && Input.GetKeyDown(IM.XButton[ControlNumber]))
         {
-            Debug.Log("Berhasil keluar");
-            //Application.Quit();
+            Application.Quit();
         }
     }
 }
