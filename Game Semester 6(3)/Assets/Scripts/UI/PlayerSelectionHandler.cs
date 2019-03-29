@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerSelectionHandler : MonoBehaviour
 {
@@ -111,7 +112,7 @@ public class PlayerSelectionHandler : MonoBehaviour
             IsSelected = true;
             Checklist[index].enabled = true;
             NextSelected.enabled = true;
-            //SceneManager.LoadScene("InGame");
+            SceneManager.LoadScene("MapSelection");
         }
         if (index == 1 && Input.GetKeyDown(IM.StartButton[ControlNumber]))
         {
@@ -119,8 +120,8 @@ public class PlayerSelectionHandler : MonoBehaviour
             BanyakPlayer = 3;
             IsSelected = true;
             Checklist[index].enabled = true;
-            NextSelected.enabled = true;
-            //SceneManager.LoadScene("Option");
+            SceneManager.LoadScene("MapSelection");
+
         }
         if (index == 2 && Input.GetKeyDown(IM.StartButton[ControlNumber]))
         {
@@ -129,7 +130,7 @@ public class PlayerSelectionHandler : MonoBehaviour
             IsSelected = true;
             Checklist[index].enabled = true;
             NextSelected.enabled = true;
-            //SceneManager.LoadScene("Credit");
+            SceneManager.LoadScene("MapSelection");
         }
     }
 

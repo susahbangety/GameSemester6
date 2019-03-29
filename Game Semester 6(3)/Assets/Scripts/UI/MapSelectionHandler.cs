@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MapSelectionHandler : MonoBehaviour
 {
@@ -97,7 +98,7 @@ public class MapSelectionHandler : MonoBehaviour
             IsSelected = true;
             StartSelected.enabled = true;
             pilihanMap = 1;
-            //SceneManager.LoadScene("InGame");
+         
         }
         if (index == 1 && Input.GetKeyDown(IM.StartButton[ControlNumber]))
         {
@@ -105,7 +106,6 @@ public class MapSelectionHandler : MonoBehaviour
             IsSelected = true;
             StartSelected.enabled = true;
             pilihanMap = 2;
-            //SceneManager.LoadScene("Option");
         }
         if (index == 2 && Input.GetKeyDown(IM.StartButton[ControlNumber]))
         {
@@ -113,7 +113,7 @@ public class MapSelectionHandler : MonoBehaviour
             IsSelected = true;
             StartSelected.enabled = true;
             pilihanMap = 3;
-            //SceneManager.LoadScene("Credit");
+
         }
         if (index == 3 && Input.GetKeyDown(IM.StartButton[ControlNumber]))
         {
@@ -121,7 +121,6 @@ public class MapSelectionHandler : MonoBehaviour
             IsSelected = true;
             StartSelected.enabled = true;
             pilihanMap = 4;
-            //SceneManager.LoadScene("Credit");
         }
     }
 
@@ -129,19 +128,19 @@ public class MapSelectionHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(IM.StartButton[ControlNumber]) && pilihanMap == 1)
         {
-            Debug.Log("Berhasil masuk ke scene japan");
+            SceneManager.LoadScene("InGame");
         }
         else if (Input.GetKeyDown(IM.StartButton[ControlNumber]) && pilihanMap == 2)
         {
-            Debug.Log("Berhasil masuk ke scene medieval");
+            SceneManager.LoadScene("InGame");
         }
         else if (Input.GetKeyDown(IM.StartButton[ControlNumber]) && pilihanMap == 3)
         {
-            Debug.Log("Berhasil masuk ke scene pirate");
+            SceneManager.LoadScene("InGame");
         }
         else if (Input.GetKeyDown(IM.StartButton[ControlNumber]) && pilihanMap == 4)
         {
-            Debug.Log("Berhasil masuk ke scene random");
+            SceneManager.LoadScene("InGame");
         }
     }
 }

@@ -771,7 +771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IM: {fileID: 1754035935}
-  ControlNumber: 1
+  ControlNumber: 0
   ImageSelected:
   - {fileID: 1994933426}
   - {fileID: 259050233}
