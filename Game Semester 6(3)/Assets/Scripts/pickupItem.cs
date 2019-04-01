@@ -38,8 +38,13 @@ public class pickupItem : MonoBehaviour
             }
             if (gameObject.tag == "Hammer" && eqw.weaponActive == false)
             {
-            transform.Rotate(Vector3.right * Time.deltaTime * rotateSpeed);
-            throwWeapon();
+                transform.Rotate(Vector3.right * Time.deltaTime * rotateSpeed);
+                throwWeapon();
+            }
+            if (gameObject.tag == "Spear" && eqw.weaponActive == false)
+            {
+                transform.rotation = Quaternion.Euler(0,90,0);
+                throwWeapon();
             }
             else
             {

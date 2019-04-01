@@ -1,0 +1,194 @@
+fileFormatVersion: 2
+guid: af9fe69f078bd3d40b7b0cd52b8ab9d2
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Camera
+    100002: Cube.012
+    100004: jembatan
+    100006: //RootNode
+    100008: Lamp
+    100010: pager
+    100012: pager2
+    100014: pager3
+    100016: pager4
+    100018: pager5
+    100020: pager6
+    100022: pegangan
+    100024: pegangan.001
+    100026: pilar
+    100028: pilar2
+    100030: tebing
+    100032: tebing.001
+    400000: Camera
+    400002: Cube.012
+    400004: jembatan
+    400006: //RootNode
+    400008: Lamp
+    400010: pager
+    400012: pager2
+    400014: pager3
+    400016: pager4
+    400018: pager5
+    400020: pager6
+    400022: pegangan
+    400024: pegangan.001
+    400026: pilar
+    400028: pilar2
+    400030: tebing
+    400032: tebing.001
+    2000000: Camera
+    2100000: gagang
+    2100002: UJUNG
+    2100004: Material.003
+    2100006: batu
+    2100008: No Name
+    2100010: GAGANG
+    2100012: pagar
+    2100014: Material.002
+    2100016: torii
+    2100018: BRIDGE
+    2100020: Material
+    2300000: Cube.012
+    2300002: jembatan
+    2300004: pager
+    2300006: pager2
+    2300008: pager3
+    2300010: pager4
+    2300012: pager5
+    2300014: pager6
+    2300016: pegangan
+    2300018: pegangan.001
+    2300020: pilar
+    2300022: pilar2
+    2300024: tebing
+    2300026: tebing.001
+    3300000: Cube.012
+    3300002: jembatan
+    3300004: pager
+    3300006: pager2
+    3300008: pager3
+    3300010: pager4
+    3300012: pager5
+    3300014: pager6
+    3300016: pegangan
+    3300018: pegangan.001
+    3300020: pilar
+    3300022: pilar2
+    3300024: tebing
+    3300026: tebing.001
+    4300000: pegangan.001
+    4300002: pegangan
+    4300004: tebing.001
+    4300006: Cube.012
+    4300008: pager6
+    4300010: pager4
+    4300012: pager3
+    4300014: pager5
+    4300016: tebing
+    4300018: pager2
+    4300020: pager
+    4300022: pilar2
+    4300024: pilar
+    4300026: jembatan
+    6400000: Cube.012
+    6400002: jembatan
+    6400004: pager
+    6400006: pager2
+    6400008: pager3
+    6400010: pager4
+    6400012: pager5
+    6400014: pager6
+    6400016: pegangan
+    6400018: pegangan.001
+    6400020: pilar
+    6400022: pilar2
+    6400024: tebing
+    6400026: tebing.001
+    10800000: Lamp
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

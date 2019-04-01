@@ -112,7 +112,7 @@ public class PlayerSelectionHandler : MonoBehaviour
             IsSelected = true;
             Checklist[index].enabled = true;
             NextSelected.enabled = true;
-            SceneManager.LoadScene("MapSelection");
+    
         }
         if (index == 1 && Input.GetKeyDown(IM.StartButton[ControlNumber]))
         {
@@ -120,7 +120,7 @@ public class PlayerSelectionHandler : MonoBehaviour
             BanyakPlayer = 3;
             IsSelected = true;
             Checklist[index].enabled = true;
-            SceneManager.LoadScene("MapSelection");
+
 
         }
         if (index == 2 && Input.GetKeyDown(IM.StartButton[ControlNumber]))
@@ -130,21 +130,20 @@ public class PlayerSelectionHandler : MonoBehaviour
             IsSelected = true;
             Checklist[index].enabled = true;
             NextSelected.enabled = true;
-            SceneManager.LoadScene("MapSelection");
         }
     }
 
     void VerifyPlayer() {
         if (Input.GetKeyDown(IM.StartButton[ControlNumber]) && BanyakPlayer == 2) {
-            Debug.Log("Berhasil masuk ke scene 2 player");
+            SceneManager.LoadScene("MapSelection");
         }
         else if (Input.GetKeyDown(IM.StartButton[ControlNumber]) && BanyakPlayer == 3)
         {
-            Debug.Log("Berhasil masuk ke scene 3 player");
+            SceneManager.LoadScene("MapSelection");
         }
         else if (Input.GetKeyDown(IM.StartButton[ControlNumber]) && BanyakPlayer == 4)
         {
-            Debug.Log("Berhasil masuk ke scene 4 player");
+            SceneManager.LoadScene("MapSelection");
         }
     }
 }
