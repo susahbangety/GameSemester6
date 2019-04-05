@@ -9,13 +9,8 @@ public class PlayerMovement : MonoBehaviour {
     public int ControlNumber;
     public InputManager IM;
 
-    [Header("ISI PLAYER TAG")]
-    public string PlayerTag;
-    public GameObject Player;
-
     [Header("ISI PLAYERNUMBER --> 1/2/3/4")]
     public int PlayerNumber;
-    public GameObject CharacterAttributesObject;
     public CharacterAttributes CharacterAttributes;
 
     public float MovementSpeed;
@@ -23,7 +18,6 @@ public class PlayerMovement : MonoBehaviour {
 
     public Vector3 PlayerPos;
     public Vector3 InputJoystick;
-    private Rigidbody rb;
 
     public float Angle;
     public float TurnSpeed;
@@ -34,11 +28,6 @@ public class PlayerMovement : MonoBehaviour {
         SpeedMultiplier = 1.0f;
         PlayerNumber = PlayerNumber - 1;
         IM = GameObject.FindGameObjectWithTag("InputManager").GetComponent<InputManager>();
-        rb = GetComponent<Rigidbody>();
-        Player = GameObject.FindGameObjectWithTag(PlayerTag);
-
-        CharacterAttributesObject = GameObject.FindGameObjectWithTag("CharacterAttributes");
-        CharacterAttributes = CharacterAttributesObject.GetComponent<CharacterAttributes>();
     }
 	
 	// Update is called once per frame
@@ -46,7 +35,7 @@ public class PlayerMovement : MonoBehaviour {
         GetWalkInput();
         if (Mathf.Abs(InputJoystick.x) > 0.1 || Mathf.Abs(InputJoystick.z) > 0.1)
         {
-            Player.GetComponent<Animator>().SetBool("Running", true);
+            gameObject.GetComponent<Animator>().SetBool("Running", true);
             CalculateDirection();
             Rotate();
             CheckPlayerPosition();
@@ -54,10 +43,8 @@ public class PlayerMovement : MonoBehaviour {
         }
         else
         {
-            Player.GetComponent<Animator>().SetBool("Running", false);
+            gameObject.GetComponent<Animator>().SetBool("Running", false);
         }
-
-
     }
 
     public void GetWalkInput()
@@ -75,12 +62,12 @@ public class PlayerMovement : MonoBehaviour {
     void Rotate()
     {
         TargetRotation = Quaternion.Euler(0, Angle, 0);
-        Player.transform.rotation = Quaternion.Lerp(transform.rotation, TargetRotation, TurnSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, TargetRotation, TurnSpeed * Time.deltaTime);
     }
 
     void CheckPlayerPosition()
     {
-        PlayerPos = Player.transform.position;
+        PlayerPos = transform.position;
     }
 
     void PlayerMove()
@@ -91,6 +78,6 @@ public class PlayerMovement : MonoBehaviour {
         LeftJoystickInputDirection.x = Input.GetAxis(IM.HorizontalAxis[ControlNumber]) * MovementSpeed * SpeedMultiplier;
         LeftJoystickInputDirection.z = Input.GetAxis(IM.VerticalAxis[ControlNumber]) * MovementSpeed * SpeedMultiplier;
 
-        Player.transform.position = PlayerPos + LeftJoystickInputDirection;
+        transform.position = PlayerPos + LeftJoystickInputDirection;
     }
 }

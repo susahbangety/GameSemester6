@@ -112,7 +112,6 @@ public class PlayerSelectionHandler : MonoBehaviour
             IsSelected = true;
             Checklist[index].enabled = true;
             NextSelected.enabled = true;
-    
         }
         if (index == 1 && Input.GetKeyDown(IM.StartButton[ControlNumber]))
         {
@@ -120,8 +119,7 @@ public class PlayerSelectionHandler : MonoBehaviour
             BanyakPlayer = 3;
             IsSelected = true;
             Checklist[index].enabled = true;
-
-
+            NextSelected.enabled = true;
         }
         if (index == 2 && Input.GetKeyDown(IM.StartButton[ControlNumber]))
         {

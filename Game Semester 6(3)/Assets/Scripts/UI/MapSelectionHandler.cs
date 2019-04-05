@@ -94,30 +94,24 @@ public class MapSelectionHandler : MonoBehaviour
     {
         if (index == 0 && Input.GetKeyDown(IM.StartButton[ControlNumber]))
         {
-            Debug.Log("Berhasil memilih japan");
             IsSelected = true;
             StartSelected.enabled = true;
             pilihanMap = 1;
-         
         }
         if (index == 1 && Input.GetKeyDown(IM.StartButton[ControlNumber]))
         {
-            Debug.Log("Berhasil memilih medieval");
             IsSelected = true;
             StartSelected.enabled = true;
             pilihanMap = 2;
         }
         if (index == 2 && Input.GetKeyDown(IM.StartButton[ControlNumber]))
         {
-            Debug.Log("Berhasil memilih pirate");
             IsSelected = true;
             StartSelected.enabled = true;
             pilihanMap = 3;
-
         }
         if (index == 3 && Input.GetKeyDown(IM.StartButton[ControlNumber]))
         {
-            Debug.Log("Berhasil memilih random");
             IsSelected = true;
             StartSelected.enabled = true;
             pilihanMap = 4;

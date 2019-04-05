@@ -185,7 +185,37 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'Armature|Attack_Hammer' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation DOF
+      on avatar to improve retargeting quality.\n\t'hip' has scale animation that
+      will be discarded.\n\nClip 'Armature|Flinch_1' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'middle1.L' has translation animation that
+      will be discarded.\n\t'index1.L' has translation animation that will be discarded.\n\t'ring1.L'
+      has translation animation that will be discarded.\n\t'pingky1.L' has translation
+      animation that will be discarded.\n\nClip 'Armature|Knockback Fall' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'middle1.L' has translation
+      animation that will be discarded.\n\t'index1.L' has translation animation that
+      will be discarded.\n\t'ring1.L' has translation animation that will be discarded.\n\t'pingky1.L'
+      has translation animation that will be discarded.\n\t'index1.R' has translation
+      animation that will be discarded.\n\t'ring1.R' has translation animation that
+      will be discarded.\n\t'pingky1.R' has translation animation that will be discarded.\n\nClip
+      'Armature|Punch' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'middle1.L'
+      has translation animation that will be discarded.\n\t'index1.L' has translation
+      animation that will be discarded.\n\t'ring1.L' has translation animation that
+      will be discarded.\n\t'pingky1.L' has translation animation that will be discarded.\n\t'index1.R'
+      has translation animation that will be discarded.\n\nClip 'Armature|Throw_Knife'
+      has import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'middle1.L' has
+      translation animation that will be discarded.\n\t'ring1.L' has translation animation
+      that will be discarded.\n\t'pingky1.L' has translation animation that will be
+      discarded.\n\nClip 'Armature|Throw_Weapons' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
+      improve retargeting quality.\n\t'middle1.R' has translation animation that will
+      be discarded.\n\t'ring1.R' has translation animation that will be discarded.\n\t'pingky1.R'
+      has translation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0

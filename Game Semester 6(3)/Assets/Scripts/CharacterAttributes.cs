@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class CharacterAttributes : MonoBehaviour {
 
     public GameObject[] Player;
-    public GameObject[] PlayerDamageCollider;
 
     public float[] CurrHealth;
     public float[] MaxHealth;
@@ -18,7 +17,6 @@ public class CharacterAttributes : MonoBehaviour {
     public float[] InvicibilityCounter;
     public float[] FlashCounter;
     public float[] FlashLength;
-
 
     public float amount;
     public SkinnedMeshRenderer[] PlayerRenderer;
@@ -33,7 +31,6 @@ public class CharacterAttributes : MonoBehaviour {
     public float[] RespawnLength;
     public bool[] isRespawning;
     public Vector3[] RespawnPoint;
-    //public PlayerHealth thePlayer;
 
 
     // Use this for initialization
@@ -64,7 +61,6 @@ public class CharacterAttributes : MonoBehaviour {
         for (int i = 0; i < Player.Length; i++) {
             if (IsDamaged[i] == true) {
                 CalculateHealth(i);
-                AttackSuccess(i);
             }
             if (InvicibilityCounter[i] > 0)
             {
@@ -93,6 +89,7 @@ public class CharacterAttributes : MonoBehaviour {
     }
     
     void CalculateHealth(int i) {
+        CurrHealth[i] -= amount;
         HealthBar[i].fillAmount = CurrHealth[i] / MaxHealth[i];
         IsDamaged[i] = false;
         if (CurrHealth[i] <= 0) {
@@ -113,8 +110,6 @@ public class CharacterAttributes : MonoBehaviour {
         CurrHealth[(int)info.x] -= info.y;
         IsDamaged[(int)info.x] = true;
         //Debug.Log(IsDamaged[(int)info.x]);
-
-        PlayerDamageCollider[(int)info.x].GetComponent<Collider>().enabled = false;
     }
 
     public IEnumerator RespawningCo(int i)

@@ -9,19 +9,13 @@ public class PlayerAttack : MonoBehaviour
     public InputManager IM;
     public int ControlNumber;
 
-    [Header("Senjatanya")]
-    public GameObject Senjata;
-
-    [Header("DIISI TAG DAMAGECOLLIDER TAG")]
-    public string DamageCollider1;
-    public string DamageCollider2;
-    public string DamageCollider3;
+    [Header("Senjata")]
+    public GameObject Axe, Hammer, Sword, Spear, Knife;
 
     public CharacterAttributes ca;
 
     public bool AttackState;
     private Animator anim;
-
 
     public bool HaveWeapon;
     public bool HaveWeaponAxe;
@@ -36,6 +30,10 @@ public class PlayerAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Axe.GetComponent<BoxCollider>().enabled = false;
+        Sword.GetComponent<BoxCollider>().enabled = false;
+        Hammer.GetComponent<BoxCollider>().enabled = false;
+        Spear.GetComponent<BoxCollider>().enabled = false;
         HaveWeaponAxe = false;
         HaveWeaponKnife = false;
         HaveWeaponSword = false;
@@ -105,27 +103,29 @@ public class PlayerAttack : MonoBehaviour
                 anim.SetBool("AttackPunch", true);
             }
             if (HaveWeaponAxe == true) {
-                //Senjata.GetComponent<BoxCollider>().enabled = true;
+                Axe.GetComponent<BoxCollider>().enabled = true;
                 AttackTime -= Time.deltaTime;
                 anim.SetBool("AttackAxe", true);
             }
             if (HaveWeaponKnife == true)
             {
-                //Senjata.GetComponent<BoxCollider>().enabled = true;
+                Knife.GetComponent<BoxCollider>().enabled = true;
                 AttackTime -= Time.deltaTime;
                 anim.SetBool("AttackKnife", true);
             }
             if (HaveWeaponSword == true) {
-                //Senjata.GetComponent<BoxCollider>().enabled = true;
+                Sword.GetComponent<BoxCollider>().enabled = true;
                 AttackTime -= Time.deltaTime;
                 anim.SetBool("AttackSword", true);
             }
             if (HaveWeaponSpear == true) {
+                Spear.GetComponent<BoxCollider>().enabled = true;
                 AttackTime -= Time.deltaTime;
                 anim.SetBool("AttackSpear", true);
             }
             if (HaveWeaponHammer == true)
             {
+                Hammer.GetComponent<BoxCollider>().enabled = true;
                 AttackTime -= Time.deltaTime;
                 anim.SetBool("AttackHammer", true);
             }
@@ -139,30 +139,32 @@ public class PlayerAttack : MonoBehaviour
             }
             if (HaveWeaponAxe == true)
             {
-                //Senjata.GetComponent<BoxCollider>().enabled = false;
+                Axe.GetComponent<BoxCollider>().enabled = false;
                 AttackState = false;
                 anim.SetBool("AttackAxe", false);
             }
             if (HaveWeaponKnife == true)
             {
-                //Senjata.GetComponent<BoxCollider>().enabled = false;
+                Knife.GetComponent<BoxCollider>().enabled = false;
                 AttackState = false;
                 anim.SetBool("AttackKnife", false);
              
             }
             if (HaveWeaponSword == true)
             {
-                //Senjata.GetComponent<BoxCollider>().enabled = false;
+                Sword.GetComponent<BoxCollider>().enabled = false;
                 AttackState = false;
                 anim.SetBool("AttackSword", false);
             }
             if (HaveWeaponSpear == true)
             {
+                Spear.GetComponent<BoxCollider>().enabled = false;
                 AttackState = false;
                 anim.SetBool("AttackSpear", false);
             }
             if (HaveWeaponHammer == true)
             {
+                Hammer.GetComponent<BoxCollider>().enabled = false;
                 AttackState = false;
                 anim.SetBool("AttackHammer", false);
             }
