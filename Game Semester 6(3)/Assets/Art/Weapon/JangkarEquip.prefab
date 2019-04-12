@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6606078058301261932}
   m_Layer: 0
   m_Name: JangkarEquip
-  m_TagString: Hammer
+  m_TagString: WeaponPlayer1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,6 +109,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rgb: {fileID: 6606078058301261932}
   ControlNumber: 0
+  rotateSpeed: 0
+  areaDrop: {fileID: 0}
+  pm: {fileID: 0}
   im: {fileID: 0}
   eqw: {fileID: 0}
   patt: {fileID: 0}

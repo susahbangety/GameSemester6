@@ -9,19 +9,35 @@ public class EquipWeapon : MonoBehaviour
     public GameObject playerHandRight;
     public GameObject playerHandLeft;
     public GameObject currWeapon;
+
+    [Header("EQUIP AXE")]
     public GameObject Axe;
+    public GameObject handAxe;
+
+    [Header("EQUIP SWORD")]
     public GameObject Sword;
+    public GameObject handSword;
+
+    [Header("EQUIP SPEAR")]
     public GameObject Spear;
+    public GameObject handSpear;
+
+    [Header("EQUIP HAMMER")]
     public GameObject Hammer;
+    public GameObject handHammer;
+
+    [Header("EQUIP KNIFE")]
     public GameObject Knife;
-    // public Rigidbody[] rgbWeapon;
+    public GameObject handKnife;
+    private Rigidbody rgbWeapon;
     public Transform dropArea;
+    //private ParticleSystem particle;
     //public GameObject Weapon3;
     //public GameObject throwDirection;
     //public Spawner spawn;
     public PlayerAttack patt;
     public dropWeapon dropWeap;
-    //public pickupItem pickUp;
+    private pickupItem pickUp;
 
 
     //public GameObject katana;
@@ -30,6 +46,8 @@ public class EquipWeapon : MonoBehaviour
     void Start()
     {
         //Instantiate(katana, new Vector3(0,0,0),Quaternion.Euler(0,0,0),katanaHand.transform);
+        //particle = GetComponent<ParticleSystem>();
+        rgbWeapon = GetComponent<Rigidbody>();
         weaponActive = false;
         Axe.SetActive(false);
         Sword.SetActive(false);
@@ -53,14 +71,12 @@ public class EquipWeapon : MonoBehaviour
         {
             Debug.Log("You Use " + collider.gameObject.name);
             //Destroy(collider.gameObject);
+            rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
+            //Axe.GetComponent<ParticleSystem>().Stop();
             weaponActive = true;
             currWeapon = Axe;
             patt.HaveWeapon = true;
             patt.HaveWeaponAxe = true;
-            //patt.HaveWeaponKnife = false;
-            //patt.HaveWeaponSpear = false;
-            //patt.HaveWeaponSword = false;
-            //patt.HaveWeaponHammer = false;
             Axe.SetActive(true);
             Spear.SetActive(false);
             Sword.SetActive(false);
@@ -70,15 +86,12 @@ public class EquipWeapon : MonoBehaviour
         if (collider.gameObject.tag == "Sword" && weaponActive == false && currWeapon == null)
         {
             Debug.Log("You Use " + collider.gameObject.name);
+            rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
             //Destroy(collider.gameObject);
             weaponActive = true;
             currWeapon = Sword;
             patt.HaveWeapon = true;
-            //patt.HaveWeaponAxe = false;
-            //patt.HaveWeaponKnife = false;
-            //patt.HaveWeaponSpear = false;
             patt.HaveWeaponSword = true;
-            //patt.HaveWeaponHammer = false;
             Axe.SetActive(false);
             Sword.SetActive(true);
             Spear.SetActive(false);
@@ -88,15 +101,12 @@ public class EquipWeapon : MonoBehaviour
         if (collider.gameObject.tag == "Spear" && weaponActive == false && currWeapon == null)
         {
             Debug.Log("You Use " + collider.gameObject.name);
+            rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
             //Destroy(collider.gameObject);
             weaponActive = true;
             currWeapon = Spear;
             patt.HaveWeapon = true;
-            //patt.HaveWeaponAxe = false;
-            //patt.HaveWeaponKnife = false;
             patt.HaveWeaponSpear = true;
-            //patt.HaveWeaponSword = false;
-            //patt.HaveWeaponHammer = false;
             Axe.SetActive(false);
             Sword.SetActive(false);
             Spear.SetActive(true);
@@ -106,15 +116,12 @@ public class EquipWeapon : MonoBehaviour
         if (collider.gameObject.tag == "Knife" && weaponActive == false && currWeapon == null)
         {
             Debug.Log("You Use " + collider.gameObject.name);
+            rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
             //Destroy(collider.gameObject);
             weaponActive = true;
             currWeapon = Knife;
             patt.HaveWeapon = true;
-            //patt.HaveWeaponAxe = false;
             patt.HaveWeaponKnife = true;
-            //patt.HaveWeaponSpear = false;
-            //patt.HaveWeaponSword = false;
-            //patt.HaveWeaponHammer = false;
             Axe.SetActive(false);
             Sword.SetActive(false);
             Spear.SetActive(false);
@@ -124,14 +131,11 @@ public class EquipWeapon : MonoBehaviour
         if (collider.gameObject.tag == "Hammer" && weaponActive == false && currWeapon == null)
         {
             Debug.Log("You Use " + collider.gameObject.name);
+            rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
             //Destroy(collider.gameObject);
             weaponActive = true;
             currWeapon = Hammer;
             patt.HaveWeapon = true;
-            //patt.HaveWeaponAxe = false;
-            //patt.HaveWeaponKnife = false;
-            //patt.HaveWeaponSpear = false;
-            //patt.HaveWeaponSword = false;
             patt.HaveWeaponHammer = true;
             Axe.SetActive(false);
             Sword.SetActive(false);

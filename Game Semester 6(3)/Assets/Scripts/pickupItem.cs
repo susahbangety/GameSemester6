@@ -11,12 +11,14 @@ public class pickupItem : MonoBehaviour
     public int ControlNumber;
     public float rotateSpeed;
     public Transform areaDrop;
+    public GameObject weaponsArea;
     //public Transform dropArea;
 
     public PlayerMovement pm;
     public InputManager im;
     public EquipWeapon eqw;
     public PlayerAttack patt;
+    public Animator _anim;
     //public dropWeapon drop;
 
     void Start()
@@ -25,25 +27,37 @@ public class pickupItem : MonoBehaviour
         //eqw = GameObject.FindGameObjectWithTag("Player").GetComponent<EquipWeapon>();
         //drop = GameObject.Find("DropArea").GetComponent<dropWeapon>();
         //StartCoroutine(pickupWeapon());
+        
         rgb = GetComponent<Rigidbody>();
         
     }
 
     void Update()
     {
-            if(gameObject.tag == "Axe" && eqw.weaponActive == false)
+            if(gameObject.name == "AxeEquip" && eqw.weaponActive == false)
             {
                 transform.Rotate(Vector3.right * Time.deltaTime * rotateSpeed);
                 throwWeapon();
             }
-            if (gameObject.tag == "Hammer" && eqw.weaponActive == false)
+            if (gameObject.name == "SwordEquip" && eqw.weaponActive == false)
+            {
+                //transform.rotation = Quaternion.Euler(pm.transform.rotation.x, 90, pm.transform.rotation.z);
+                transform.rotation = pm.transform.rotation;
+                throwWeapon();
+            }
+            if (gameObject.name == "HammerEquip" && eqw.weaponActive == false)
             {
                 transform.Rotate(Vector3.right * Time.deltaTime * rotateSpeed);
                 throwWeapon();
             }
-            if (gameObject.tag == "Spear" && eqw.weaponActive == false)
+            if (gameObject.name == "SpearEquip" && eqw.weaponActive == false)
             {
-                transform.rotation = Quaternion.Euler(0,90,0);
+                transform.rotation = pm.transform.rotation;
+                throwWeapon();
+            }
+            if (gameObject.name == "KnifeEquip" && eqw.weaponActive == false)
+            {
+                transform.rotation = areaDrop.transform.rotation;
                 throwWeapon();
             }
             else
@@ -53,32 +67,19 @@ public class pickupItem : MonoBehaviour
         
     }
 
-    //void OnTriggerEnter(Collider col)
-    //{
-    //    if (col.gameObject.tag == "Player" )
-    //    {
-    //        if (eqw.weaponActive == false && eqw.currWeapon == eqw.playerHand)
-    //        {
-    //            //Destroy(gameObject);
-    //            Debug.Log("You Pick Up " + gameObject);
-    //            StartCoroutine(pickupWeapon(col.gameObject));
-    //        }
-    //    }
-    //}
-
     public void throwWeapon()
     {
         if (eqw.weaponActive == true && eqw.currWeapon == true && patt.AttackState == false)
         {
             if /*(Input.GetKeyDown(KeyCode.G))*/ (Input.GetKeyDown(im.TriangleButton[ControlNumber]))
             {
-                
+                gameObject.transform.parent = weaponsArea.transform;
+                //_anim.GetComponent<Animator>().SetBool("Running", false);
                 rgb.AddForce(eqw.dropArea.forward * 100);
                 //transform.rotation = new Quaternion(areaDrop.rotation.x, areaDrop.rotation.y, areaDrop.rotation.z, 1);
                 StartCoroutine(weaponThrow());
                 eqw.weaponActive = false;
                 Debug.Log("You Drop some " + eqw.currWeapon);
-               
             }
         }
     }
@@ -86,19 +87,84 @@ public class pickupItem : MonoBehaviour
     IEnumerator weaponThrow()
     {
         yield return new WaitForSeconds(2);
-
-        rgb.velocity = new Vector3(0, 0, 0);
-        gameObject.transform.eulerAngles = gameObject.transform.parent.transform.eulerAngles;
-        gameObject.transform.position = gameObject.transform.parent.transform.position;
-
-        gameObject.SetActive(false);
-        patt.HaveWeapon = false;
-        patt.HaveWeaponAxe = false;
-        patt.HaveWeaponKnife = false;
-        patt.HaveWeaponSpear = false;
-        patt.HaveWeaponSword = false;
-        patt.HaveWeaponHammer = false;
-        eqw.currWeapon = null;
+        if (eqw.currWeapon == eqw.Axe)
+        {
+            gameObject.transform.parent = eqw.handAxe.transform;
+            rgb.velocity = new Vector3(0, 0, 0);
+            gameObject.transform.eulerAngles = gameObject.transform.parent.transform.eulerAngles;
+            gameObject.transform.position = gameObject.transform.parent.transform.position;
+            gameObject.SetActive(false);
+            patt.HaveWeapon = false;
+            patt.HaveWeaponAxe = false;
+            patt.HaveWeaponKnife = false;
+            patt.HaveWeaponSpear = false;
+            patt.HaveWeaponSword = false;
+            patt.HaveWeaponHammer = false;
+            eqw.currWeapon = null;
+        }
+        if (eqw.currWeapon == eqw.Sword)
+        {
+            gameObject.transform.parent = eqw.handSword.transform;
+            rgb.velocity = new Vector3(0, 0, 0);
+            gameObject.transform.eulerAngles = gameObject.transform.parent.transform.eulerAngles;
+            gameObject.transform.position = gameObject.transform.parent.transform.position;
+            gameObject.SetActive(false);
+            patt.HaveWeapon = false;
+            patt.HaveWeaponAxe = false;
+            patt.HaveWeaponKnife = false;
+            patt.HaveWeaponSpear = false;
+            patt.HaveWeaponSword = false;
+            patt.HaveWeaponHammer = false;
+            eqw.currWeapon = null;
+        }
+        if (eqw.currWeapon == eqw.Spear)
+        {
+            gameObject.transform.SetParent(eqw.handSpear.transform);
+            rgb.velocity = new Vector3(0, 0, 0);
+            gameObject.transform.eulerAngles = gameObject.transform.parent.transform.eulerAngles;
+            gameObject.transform.position = gameObject.transform.parent.transform.position;
+            gameObject.transform.localScale = new Vector3(1,1,1);
+            gameObject.SetActive(false);
+            patt.HaveWeapon = false;
+            patt.HaveWeaponAxe = false;
+            patt.HaveWeaponKnife = false;
+            patt.HaveWeaponSpear = false;
+            patt.HaveWeaponSword = false;
+            patt.HaveWeaponHammer = false;
+            eqw.currWeapon = null;
+        }
+        if (eqw.currWeapon == eqw.Knife)
+        {
+            gameObject.transform.SetParent(eqw.handKnife.transform);
+            rgb.velocity = new Vector3(0, 0, 0);
+            gameObject.transform.eulerAngles = gameObject.transform.parent.transform.eulerAngles;
+            gameObject.transform.position = gameObject.transform.parent.transform.position;
+            gameObject.transform.localScale = new Vector3(1, 1, 1);
+            gameObject.SetActive(false);
+            patt.HaveWeapon = false;
+            patt.HaveWeaponAxe = false;
+            patt.HaveWeaponKnife = false;
+            patt.HaveWeaponSpear = false;
+            patt.HaveWeaponSword = false;
+            patt.HaveWeaponHammer = false;
+            eqw.currWeapon = null;
+        }
+        if (eqw.currWeapon == eqw.Hammer)
+        {
+            gameObject.transform.SetParent(eqw.handHammer.transform);
+            rgb.velocity = new Vector3(0, 0, 0);
+            gameObject.transform.eulerAngles = gameObject.transform.parent.transform.eulerAngles;
+            gameObject.transform.position = gameObject.transform.parent.transform.position;
+            gameObject.transform.localScale = new Vector3(1, 1, 1);
+            gameObject.SetActive(false);
+            patt.HaveWeapon = false;
+            patt.HaveWeaponAxe = false;
+            patt.HaveWeaponKnife = false;
+            patt.HaveWeaponSpear = false;
+            patt.HaveWeaponSword = false;
+            patt.HaveWeaponHammer = false;
+            eqw.currWeapon = null;
+        }
     }
 
     //IEnumerator pickupWeapon(GameObject weap)

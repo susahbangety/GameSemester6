@@ -12,6 +12,8 @@ public class InputManager : MonoBehaviour {
     public KeyCode[] SquareButton = new KeyCode[4];
     public KeyCode[] TriangleButton = new KeyCode[4];
     public KeyCode[] StartButton = new KeyCode[4];
+    public KeyCode[] LeftBumper = new KeyCode[4];
+
 
     // Use this for initialization
     void Start () {
@@ -34,6 +36,11 @@ public class InputManager : MonoBehaviour {
         TriangleButton[1] = KeyCode.Joystick2Button3;
         TriangleButton[2] = KeyCode.Joystick3Button3;
         TriangleButton[3] = KeyCode.Joystick4Button3;
+
+        LeftBumper[0] = KeyCode.Joystick1Button4;
+        LeftBumper[1] = KeyCode.Joystick2Button4;
+        LeftBumper[2] = KeyCode.Joystick3Button4;
+        LeftBumper[3] = KeyCode.Joystick4Button4;
 
         StartButton[0] = KeyCode.Joystick1Button7;
         StartButton[1] = KeyCode.Joystick2Button7;

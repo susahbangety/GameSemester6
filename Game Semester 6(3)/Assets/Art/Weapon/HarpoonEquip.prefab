@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 9164909076947865699}
   m_Layer: 0
   m_Name: HarpoonEquip
-  m_TagString: Spear
+  m_TagString: WeaponPlayer1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,6 +110,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rgb: {fileID: 9164909076947865699}
   ControlNumber: 0
+  rotateSpeed: 0
+  areaDrop: {fileID: 0}
+  pm: {fileID: 0}
   im: {fileID: 0}
   eqw: {fileID: 0}
   patt: {fileID: 0}

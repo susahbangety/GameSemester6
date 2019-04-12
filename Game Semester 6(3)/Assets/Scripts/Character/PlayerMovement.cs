@@ -13,6 +13,12 @@ public class PlayerMovement : MonoBehaviour {
     public int PlayerNumber;
     public CharacterAttributes CharacterAttributes;
 
+    [Header("PLAYER WALK & JUMP")]
+    private CharacterController charControl;
+    public float verticalVelocity;
+    public float gravity;
+    public float jumpForce;
+
     public float MovementSpeed;
     public float SpeedMultiplier;
 
@@ -21,36 +27,105 @@ public class PlayerMovement : MonoBehaviour {
 
     public float Angle;
     public float TurnSpeed;
-    public Quaternion TargetRotation;  
+    public Quaternion TargetRotation;
+
+    public bool Roll;
+    public bool StartRoll;
+    public float RollSpeed;
+    public float RollTime;
+    public float SetRollTime;
+
+    public GameObject footStep;
 
     // Use this for initialization
     void Start () {
         SpeedMultiplier = 1.0f;
         PlayerNumber = PlayerNumber - 1;
         IM = GameObject.FindGameObjectWithTag("InputManager").GetComponent<InputManager>();
+        charControl = GetComponent<CharacterController>();
+        Roll = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        GetWalkInput();
+        playerWalkJump();
         if (Mathf.Abs(InputJoystick.x) > 0.1 || Mathf.Abs(InputJoystick.z) > 0.1)
         {
             gameObject.GetComponent<Animator>().SetBool("Running", true);
+            if (charControl.isGrounded)
+            {
+                GameObject NewFootStep = Instantiate(footStep, transform.position, footStep.transform.rotation);
+            }
             CalculateDirection();
             Rotate();
             CheckPlayerPosition();
             PlayerMove();
         }
+        else if (Roll == true) {
+            Rolling();
+        }
         else
         {
             gameObject.GetComponent<Animator>().SetBool("Running", false);
         }
+
     }
 
-    public void GetWalkInput()
+    public void playerWalkJump()
     {
+        if (charControl.isGrounded)
+        {
+            verticalVelocity = -gravity * Time.deltaTime;
+            if (Input.GetKeyDown(IM.CircleButton[ControlNumber]))
+            {
+                verticalVelocity = jumpForce;
+            }else if (Input.GetKeyDown(IM.LeftBumper[ControlNumber]) && Roll == false)
+            {
+                       gameObject.GetComponent<Animator>().SetBool("Rolling", true);
+                       Roll = true;
+                        StartRoll = true;
+                        RollTime = 0;
+            }
+        }
+        else
+        {
+            verticalVelocity -= gravity * Time.deltaTime;
+        }
+        Vector3 moveVector = new Vector3(0, verticalVelocity, 0);
         InputJoystick.x = Input.GetAxis(IM.HorizontalAxis[ControlNumber]);
         InputJoystick.z = Input.GetAxis(IM.VerticalAxis[ControlNumber]);
+        charControl.Move(moveVector * Time.deltaTime);
+    }
+
+    //public void GetWalkInput()
+    //{
+    //    InputJoystick.x = Input.GetAxis(IM.HorizontalAxis[ControlNumber]);
+    //    InputJoystick.z = Input.GetAxis(IM.VerticalAxis[ControlNumber]);
+    //    if (Input.GetKeyDown(IM.CircleButton[ControlNumber]) && Roll == false) {
+    //        gameObject.GetComponent<Animator>().SetBool("Rolling", true);
+    //        Roll = true;
+    //        StartRoll = true;
+    //        RollTime = 0;
+    //    }
+    //}
+
+    void Rolling()
+    {
+        if (StartRoll == true)
+        {
+            StartRoll = false;
+        }
+
+        RollSpeed = 0.1f;
+        transform.position += transform.TransformDirection(Vector3.forward * RollSpeed);
+        RollTime += Time.deltaTime;
+
+        if (RollTime >= SetRollTime)
+        {
+            gameObject.GetComponent<Animator>().SetBool("Rolling", false);
+            RollTime = SetRollTime;
+            Roll = false;
+        }
     }
 
     void CalculateDirection()

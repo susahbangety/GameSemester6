@@ -28,12 +28,12 @@ public class spawnerWeapon : MonoBehaviour
         //{
         //    transform.rotation = Quaternion.Euler(0, transform.rotation.y, transform.rotation.z);
         //}
-        
+
     }
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player" || col.gameObject.tag == "Player2")
         {
             if (eqw.weaponActive == false && eqw.currWeapon == null)
             {

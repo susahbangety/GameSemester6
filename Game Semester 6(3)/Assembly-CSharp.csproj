@@ -61,17 +61,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Art\Karakter\Character Effects\DestroyFootStep.cs" />
     <Compile Include="Assets\Scripts\Character\PlayerAttack.cs" />
     <Compile Include="Assets\Scripts\Character\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\CharacterAttributes.cs" />
     <Compile Include="Assets\Scripts\CharacterDamaged.cs" />
     <Compile Include="Assets\Scripts\ControllerNumber.cs" />
     <Compile Include="Assets\Scripts\dropWeapon.cs" />
+    <Compile Include="Assets\Scripts\Environments\equipAxe.cs" />
+    <Compile Include="Assets\Scripts\Environments\Japan\DartSpawn.cs" />
+    <Compile Include="Assets\Scripts\Environments\Japan\EarthQuake.cs" />
+    <Compile Include="Assets\Scripts\Environments\Japan\Spikes.cs" />
+    <Compile Include="Assets\Scripts\Environments\Japan\spikeSpawner.cs" />
     <Compile Include="Assets\Scripts\EquipWeapon.cs" />
     <Compile Include="Assets\Scripts\FadeObjectOptions.cs" />
     <Compile Include="Assets\Scripts\FadeObstructionsManager.cs" />
     <Compile Include="Assets\Scripts\FadeToMe.cs" />
     <Compile Include="Assets\Scripts\InputManager.cs" />
+    <Compile Include="Assets\Scripts\JatuhRespawn.cs" />
     <Compile Include="Assets\Scripts\pickupItem.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\randomSpawn.cs" />
@@ -117,6 +124,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\Art\UI\UI Pause Screen\font = CONSOLAS.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\Art\UI\UI StartGame\UI Map Selection\note.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
