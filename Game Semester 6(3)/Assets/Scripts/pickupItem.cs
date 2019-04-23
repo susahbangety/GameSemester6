@@ -34,48 +34,48 @@ public class pickupItem : MonoBehaviour
 
     void Update()
     {
-            if(gameObject.name == "AxeEquip" && eqw.weaponActive == false)
-            {
-                transform.Rotate(Vector3.right * Time.deltaTime * rotateSpeed);
-                throwWeapon();
-            }
-            if (gameObject.name == "SwordEquip" && eqw.weaponActive == false)
-            {
-                //transform.rotation = Quaternion.Euler(pm.transform.rotation.x, 90, pm.transform.rotation.z);
-                transform.rotation = pm.transform.rotation;
-                throwWeapon();
-            }
-            if (gameObject.name == "HammerEquip" && eqw.weaponActive == false)
-            {
-                transform.Rotate(Vector3.right * Time.deltaTime * rotateSpeed);
-                throwWeapon();
-            }
-            if (gameObject.name == "SpearEquip" && eqw.weaponActive == false)
-            {
-                transform.rotation = pm.transform.rotation;
-                throwWeapon();
-            }
-            if (gameObject.name == "KnifeEquip" && eqw.weaponActive == false)
-            {
-                transform.rotation = areaDrop.transform.rotation;
-                throwWeapon();
-            }
-            else
-            {
-                throwWeapon();
-            }
-        
+        if (gameObject.name == "AxeEquip" && eqw.weaponActive == false)
+        {
+            transform.Rotate(Vector3.right * Time.deltaTime * rotateSpeed);
+            throwWeapon();
+        }
+        if (gameObject.name == "KatanaEquip" && eqw.weaponActive == false)
+        {
+            //transform.rotation = Quaternion.Euler(pm.transform.rotation.x, 90, pm.transform.rotation.z);
+            transform.rotation = pm.transform.rotation;
+            throwWeapon();
+        }
+        if (gameObject.name == "JangkarEquip" && eqw.weaponActive == false)
+        {
+            transform.Rotate(Vector3.right * Time.deltaTime * rotateSpeed);
+            throwWeapon();
+        }
+        if (gameObject.name == "HarpoonEquip" && eqw.weaponActive == false)
+        {
+            transform.rotation = pm.transform.rotation;
+            //transform.rotation = Quaternion.Euler(pm.transform.rotation.x, 0, pm.transform.rotation.z);
+            throwWeapon();
+        }
+        if (gameObject.name == "DaggerEquip" && eqw.weaponActive == false)
+        {
+            transform.rotation = areaDrop.transform.rotation;
+            throwWeapon();
+        }
+        else
+        {
+            throwWeapon();
+        }
     }
 
     public void throwWeapon()
     {
         if (eqw.weaponActive == true && eqw.currWeapon == true && patt.AttackState == false)
         {
-            if /*(Input.GetKeyDown(KeyCode.G))*/ (Input.GetKeyDown(im.TriangleButton[ControlNumber]))
+            if ((Input.GetKeyDown(KeyCode.G)) || (Input.GetKeyDown(im.TriangleButton[ControlNumber])))
             {
                 gameObject.transform.parent = weaponsArea.transform;
                 //_anim.GetComponent<Animator>().SetBool("Running", false);
-                rgb.AddForce(eqw.dropArea.forward * 100);
+                rgb.AddForce(eqw.dropArea.forward * 200);
                 //transform.rotation = new Quaternion(areaDrop.rotation.x, areaDrop.rotation.y, areaDrop.rotation.z, 1);
                 StartCoroutine(weaponThrow());
                 eqw.weaponActive = false;
