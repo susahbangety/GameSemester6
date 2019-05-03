@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class OptionHandler : MonoBehaviour
 {
@@ -84,7 +85,6 @@ public class OptionHandler : MonoBehaviour
                 PindahInputKeSampingMusic();
                 ApplyInputKeSampingMusic();
                 StartCoroutine(InputHolder2());
-
             }
         }
         if (index[0] == 1)
@@ -242,11 +242,11 @@ public class OptionHandler : MonoBehaviour
 
     void ApplySetting() {
         if (index[0] == 3 && Input.GetKeyDown(IM.StartButton[ControlNumber])) {
-            Debug.Log("pindah ke scene control");
+            SceneManager.LoadScene("Control");
         }
         if (index[0] == 4 && Input.GetKeyDown(IM.StartButton[ControlNumber]))
         {
-            Debug.Log("berhasil mengubah setting");
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }

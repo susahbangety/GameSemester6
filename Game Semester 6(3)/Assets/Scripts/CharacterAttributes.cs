@@ -18,7 +18,7 @@ public class CharacterAttributes : MonoBehaviour {
     public float[] FlashCounter;
     public float[] FlashLength;
 
-    public float amount;
+    public int[] amount;
     public SkinnedMeshRenderer[] PlayerRenderer;
 
     [Header("UI")]
@@ -35,9 +35,12 @@ public class CharacterAttributes : MonoBehaviour {
     public bool[] IsUltiReady;
     public bool[] isHit;
 
-    public Text[] SkorText;
+    public float[] KnockbackForce;
 
+    public Text[] SkorText;
     public int[] skorPlayer;
+
+    public Image[] playerCrown;
 
     public bool[] penandaLastHitPlayer1;
     public bool[] penandaLastHitPlayer2;
@@ -59,6 +62,7 @@ public class CharacterAttributes : MonoBehaviour {
         //RespawnPoint = new GameObject[Player.Length];
         RespawnLength = new float[Player.Length];
         IsUltiReady = new bool[Player.Length];
+        amount = new int[Player.Length];
 
         for (int i = 0; i < Player.Length; i++)
         {
@@ -68,6 +72,8 @@ public class CharacterAttributes : MonoBehaviour {
             CurrPowerBar[i] = 0;
             PowerBar[i].fillAmount = CurrPowerBar[i] / MaxPowerBar[i];
             HealthBar[i].fillAmount = CurrHealth[i] / MaxHealth[i];
+            playerCrown[i].enabled = false;
+            amount[i] = 10;
         }
     }
 	
@@ -87,18 +93,22 @@ public class CharacterAttributes : MonoBehaviour {
             if (penandaLastHitPlayer2[i] == true) {
                 ScoreCounter(i);
             }
+            if (penandaLastHitPlayer1[i] == true) {
+                ScoreCounter(i);
+            }
             if (InvicibilityCounter[i] > 0)
             {
                 InvicibilityCounter[i] -= Time.deltaTime;
                 FlashCounter[i] -= Time.deltaTime;
+                Player[i].GetComponent<CharacterDamaged>().enabled = false;
                 if (FlashCounter[i] <= 0)
                 {
                     PlayerRenderer[i].enabled = !PlayerRenderer[i].enabled;
                     FlashCounter[i] = FlashLength[i];
-                    Player[i].GetComponent<CharacterDamaged>().enabled = false;
                 }
-                if (InvicibilityCounter[i] <= 0)
+                if (InvicibilityCounter[i] < 0)
                 {
+                    InvicibilityCounter[i] = 0;
                     PlayerRenderer[i].enabled = true;
                     Player[i].GetComponent<CharacterDamaged>().enabled = true;
                 }
@@ -107,7 +117,7 @@ public class CharacterAttributes : MonoBehaviour {
     }
 
     public void AttackSuccess(int i) {
-        CurrPowerBar[i] += amount;
+        CurrPowerBar[i] += amount[i];
         PowerBar[i].fillAmount = CurrPowerBar[i] / MaxPowerBar[i];
         isHit[i] = false;
         if (CurrPowerBar[i] >= MaxPowerBar[i])
@@ -117,7 +127,7 @@ public class CharacterAttributes : MonoBehaviour {
     }
     
     void CalculateHealth(int i) {
-        CurrHealth[i] -= amount;
+        CurrHealth[i] -= amount[i];
         HealthBar[i].fillAmount = CurrHealth[i] / MaxHealth[i];
         IsDamaged[i] = false;
         if (CurrHealth[i] <= 0) {
@@ -126,11 +136,46 @@ public class CharacterAttributes : MonoBehaviour {
         }
     }
 
+    void CompareScore() {
+        if (skorPlayer[0] > skorPlayer[1] && skorPlayer[0] > skorPlayer[2] && skorPlayer[0] > skorPlayer[3]) {
+            for (int i = 0; i < Player.Length; i++) {
+                playerCrown[i].enabled = false;
+            }
+            playerCrown[0].enabled = true;
+        }
+        else if (skorPlayer[1] > skorPlayer[0] && skorPlayer[1] > skorPlayer[2] && skorPlayer[1] > skorPlayer[3])
+        {
+            for (int i = 0; i < Player.Length; i++)
+            {
+                playerCrown[i].enabled = false;
+            }
+            playerCrown[1].enabled = true;
+        }
+        else if (skorPlayer[2] > skorPlayer[0] && skorPlayer[2] > skorPlayer[1] && skorPlayer[2] > skorPlayer[3])
+        {
+            for (int i = 0; i < Player.Length; i++)
+            {
+                playerCrown[i].enabled = false;
+            }
+            playerCrown[2].enabled = true;
+        }
+        else if (skorPlayer[3] > skorPlayer[0] && skorPlayer[3] > skorPlayer[1] && skorPlayer[3] > skorPlayer[2])
+        {
+            for (int i = 0; i < Player.Length; i++)
+            {
+                playerCrown[i].enabled = false;
+            }
+            playerCrown[3].enabled = true;
+        }
+    }
+
     public void ScoreCounter(int i)
     {
         skorPlayer[i]++;
         SkorText[i].text = " " + skorPlayer[i];
+        penandaLastHitPlayer1[i] = false;
         penandaLastHitPlayer2[i] = false;
+        CompareScore();
     }
 
     public void Respawning(int i)

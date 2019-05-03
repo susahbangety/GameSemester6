@@ -38,7 +38,7 @@ public class DartSpawn : MonoBehaviour
         {
             if (Random.value * 100 < dartspawn[i].spawnChance)
             {
-                Instantiate(dartObject, dartspawn[i].spawnPos.transform.position, dartspawn[i].spawnPos.transform.rotation);
+                //Instantiate(dartObject, dartspawn[i].spawnPos.transform.position, dartspawn[i].spawnPos.transform.rotation);
                 Debug.Log(dartObject.name + " has spawned in the location " + dartspawn[i].spawnPos);
                 Debug.Log("Spawn chance is : " + dartspawn[i].spawnChance + "%");
                 //DestroyImmediate(dartObject, true);

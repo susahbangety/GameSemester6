@@ -6,8 +6,6 @@ public class JatuhRespawn : MonoBehaviour
 {
 
     public CharacterAttributes ca;
-    public GameObject[] Player;
-    public GameObject[] RespawnPoint;
 
     // Start is called before the first frame update
     void Start()

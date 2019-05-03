@@ -28,6 +28,9 @@ public class PlayerAttack : MonoBehaviour
     public float AttackTime;
     public float setAttackTime;
 
+    public bool isThrowing = false;
+    public bool isThrowingKnife = false;
+
     public ParticleSystem axeParticle;
     public ParticleSystem swordParticle;
 
@@ -55,11 +58,12 @@ public class PlayerAttack : MonoBehaviour
     {
         AttackInput();
         CalculateAttack();
-        if (ca.IsUltiReady[0] == true && Input.GetKeyDown(IM.LeftBumper[ControlNumber])) {
-            Debug.Log(PlayerKeberapa + "lagi ulti");
-            ca.CurrPowerBar[PlayerKeberapa - 1] = 0;
-            ca.IsUltiReady[PlayerKeberapa - 1] = false;
-            ca.PowerBar[PlayerKeberapa - 1].fillAmount = ca.CurrPowerBar[PlayerKeberapa] / ca.MaxPowerBar[PlayerKeberapa];
+        for (int i = 0; i < ca.Player.Length; i++) {
+            if (ca.IsUltiReady[i] == true && Input.GetKeyDown(IM.SquareButton[ControlNumber])) {
+                ca.CurrPowerBar[i] = 0;
+                ca.IsUltiReady[i] = false;
+                ca.PowerBar[i].fillAmount = ca.CurrPowerBar[i] / ca.MaxPowerBar[i];
+            }
         }
     }
 
@@ -73,7 +77,7 @@ public class PlayerAttack : MonoBehaviour
         if (AttackState == false && HaveWeaponAxe == true) {
             if (Input.GetKeyDown(IM.XButton[ControlNumber])) {
                 AttackState = true;
-                AttackTime = setAttackTime;
+                anim.SetTrigger("AttackAxe");
             }
         }
         if (AttackState == false && HaveWeaponKnife == true)
@@ -82,14 +86,16 @@ public class PlayerAttack : MonoBehaviour
             {
                 AttackState = true;
                 AttackTime = setAttackTime;
+                anim.SetTrigger("AttackKnife");
             }
         }
         if (AttackState == false && HaveWeaponSword == true)
         {
-            if (Input.GetKeyDown(IM.XButton[ControlNumber]) || Input.GetKeyDown(KeyCode.K))
+            if (Input.GetKeyDown(IM.XButton[ControlNumber]))
             {
                 AttackState = true;
                 AttackTime = setAttackTime;
+                anim.SetTrigger("AttackSword");
             }
         }
         if (AttackState == false && HaveWeaponSpear == true)
@@ -98,6 +104,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 AttackState = true;
                 AttackTime = setAttackTime;
+                anim.SetTrigger("AttackSpear");
             }
         }
         if (AttackState == false && HaveWeaponHammer == true)
@@ -106,6 +113,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 AttackState = true;
                 AttackTime = setAttackTime;
+                anim.SetTrigger("AttackHammer");
             }
         }
     }
@@ -117,39 +125,30 @@ public class PlayerAttack : MonoBehaviour
                 anim.SetBool("AttackPunch", true);
             }
             if (HaveWeaponAxe == true) {
-                Axe.GetComponent<BoxCollider>().enabled = true;
                 axeParticle.Play();
                 axeParticle.enableEmission = true;
                 AttackTime -= Time.deltaTime;
-                anim.SetBool("AttackAxe", true);
             }
             if (HaveWeaponKnife == true)
             {
-                Knife.GetComponent<BoxCollider>().enabled = true;
                 AttackTime -= Time.deltaTime;
-                anim.SetBool("AttackKnife", true);
             }
             if (HaveWeaponSword == true) {
-                Sword.GetComponent<BoxCollider>().enabled = true;
                 swordParticle.Play();
                 swordParticle.enableEmission = true;
                 AttackTime -= Time.deltaTime;
-                anim.SetBool("AttackSword", true);
             }
             if (HaveWeaponSpear == true) {
-                Spear.GetComponent<BoxCollider>().enabled = true;
+
                 AttackTime -= Time.deltaTime;
-                anim.SetBool("AttackSpear", true);
             }
             if (HaveWeaponHammer == true)
             {
-                Hammer.GetComponent<BoxCollider>().enabled = true;
                 AttackTime -= Time.deltaTime;
-                anim.SetBool("AttackHammer", true);
             }
         }
 
-        if (AttackTime < 0) {
+        if (AttackTime <= 0) {
             if (HaveWeapon == false)
             {
                 AttackState = false;
@@ -157,38 +156,28 @@ public class PlayerAttack : MonoBehaviour
             }
             if (HaveWeaponAxe == true)
             {
-                Axe.GetComponent<BoxCollider>().enabled = false;
                 axeParticle.Stop();
                 axeParticle.enableEmission = false;
                 AttackState = false;
-                anim.SetBool("AttackAxe", false);
             }
             if (HaveWeaponKnife == true)
             {
-                Knife.GetComponent<BoxCollider>().enabled = false;
                 AttackState = false;
-                anim.SetBool("AttackKnife", false);
              
             }
             if (HaveWeaponSword == true)
             {
-                Sword.GetComponent<BoxCollider>().enabled = false;
                 swordParticle.Stop();
                 swordParticle.enableEmission = false;
                 AttackState = false;
-                anim.SetBool("AttackSword", false);
             }
             if (HaveWeaponSpear == true)
             {
-                Spear.GetComponent<BoxCollider>().enabled = false;
                 AttackState = false;
-                anim.SetBool("AttackSpear", false);
             }
             if (HaveWeaponHammer == true)
             {
-                Hammer.GetComponent<BoxCollider>().enabled = false;
                 AttackState = false;
-                anim.SetBool("AttackHammer", false);
             }
         }
     }

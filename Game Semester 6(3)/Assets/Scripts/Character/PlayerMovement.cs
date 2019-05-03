@@ -49,26 +49,27 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         playerWalkJump();
-        if (Mathf.Abs(InputJoystick.x) > 0.1 || Mathf.Abs(InputJoystick.z) > 0.1)
+        if (Mathf.Abs(InputJoystick.x) < 0.1 && Mathf.Abs(InputJoystick.z) < 0.1 && Roll == false)
         {
-            gameObject.GetComponent<Animator>().SetBool("Running", true);
+            gameObject.GetComponent<Animator>().SetBool("Running", false);
+            return;
+        }
+        if (Roll == true)
+        {
+            Rolling();
+        }
+        if (Roll == false)
+        {
             if (charControl.isGrounded)
             {
                 GameObject NewFootStep = Instantiate(footStep, transform.position, footStep.transform.rotation);
             }
-            CalculateDirection();
+            gameObject.GetComponent<Animator>().SetBool("Running", true);
             Rotate();
+            CalculateDirection();
             CheckPlayerPosition();
             PlayerMove();
         }
-        else if (Roll == true) {
-            Rolling();
-        }
-        else
-        {
-            gameObject.GetComponent<Animator>().SetBool("Running", false);
-        }
-
     }
 
     public void playerWalkJump()
@@ -79,12 +80,14 @@ public class PlayerMovement : MonoBehaviour {
             if (Input.GetKeyDown(IM.CircleButton[ControlNumber]))
             {
                 verticalVelocity = jumpForce;
-            }else if (Input.GetKeyDown(IM.LeftBumper[ControlNumber]) && Roll == false)
+                gameObject.GetComponent<Animator>().SetTrigger("Jump");
+            }
+            if (Input.GetKeyDown(IM.LeftBumper[ControlNumber]) && Roll == false)
             {
-                       gameObject.GetComponent<Animator>().SetBool("Rolling", true);
-                       Roll = true;
-                        StartRoll = true;
-                        RollTime = 0;
+                  gameObject.GetComponent<Animator>().SetTrigger("Roll");
+                  //Roll = true;
+                  StartRoll = true;
+                  RollTime = 0;
             }
         }
         else
@@ -116,16 +119,17 @@ public class PlayerMovement : MonoBehaviour {
             StartRoll = false;
         }
 
-        RollSpeed = 0.1f;
-        transform.position += transform.TransformDirection(Vector3.forward * RollSpeed);
-        RollTime += Time.deltaTime;
+        transform.position += transform.forward * RollSpeed;
+        //transform.position += transform.TransformDirection(Vector3.forward * RollSpeed);
+        //RollSpeed = 0.1f;
+        //RollTime += Time.deltaTime;
 
-        if (RollTime >= SetRollTime)
-        {
-            gameObject.GetComponent<Animator>().SetBool("Rolling", false);
-            RollTime = SetRollTime;
-            Roll = false;
-        }
+        //if (RollTime >= SetRollTime)
+        //{
+        //    gameObject.GetComponent<Animator>().SetBool("Rolling", false);
+        //    RollTime = SetRollTime;
+        //    Roll = false;
+        //}
     }
 
     void CalculateDirection()

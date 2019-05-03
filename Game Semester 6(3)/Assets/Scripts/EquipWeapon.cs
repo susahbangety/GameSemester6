@@ -36,7 +36,6 @@ public class EquipWeapon : MonoBehaviour
     //public GameObject throwDirection;
     //public Spawner spawn;
     public PlayerAttack patt;
-    public dropWeapon dropWeap;
     private pickupItem pickUp;
 
 
