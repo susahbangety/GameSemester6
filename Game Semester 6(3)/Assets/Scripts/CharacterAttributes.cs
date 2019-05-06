@@ -47,6 +47,8 @@ public class CharacterAttributes : MonoBehaviour {
     public bool[] penandaLastHitPlayer3;
     public bool[] penandaLastHitPlayer4;
 
+    public float amountOverTime;
+
     // Use this for initialization
     void Start () {
         CurrHealth = new float[Player.Length];
@@ -80,6 +82,7 @@ public class CharacterAttributes : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         for (int i = 0; i < Player.Length; i++) {
+            PowerBarOverTime(i);
             if (IsDamaged[i] == true) {
                 CalculateHealth(i);
             }
@@ -134,6 +137,16 @@ public class CharacterAttributes : MonoBehaviour {
             Respawning(i);
             InvicibilityCounter[i] = InvicibilityLength[i];
         }
+    }
+
+    public void PowerBarOverTime(int i) {
+        CurrPowerBar[i] += amountOverTime;
+        PowerBar[i].fillAmount = CurrPowerBar[i] / MaxPowerBar[i];
+        if (CurrPowerBar[i] >= MaxPowerBar[i])
+        {
+            CurrPowerBar[i] = MaxPowerBar[i];
+        }
+    
     }
 
     void CompareScore() {

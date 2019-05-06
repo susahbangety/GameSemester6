@@ -19,6 +19,7 @@ public class pickupItem : MonoBehaviour
     public EquipWeapon eqw;
     public PlayerAttack patt;
     private Animation _anim;
+    public CharacterAttributes CA;
 
     //public dropWeapon drop;
 

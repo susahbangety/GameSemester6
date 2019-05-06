@@ -7,7 +7,15 @@ public class Darts : MonoBehaviour
     void Update()
     {
         transform.Translate(new Vector3(3, 0, 0) * Time.deltaTime);
-        Destroy(gameObject, 2f);
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerMovement>().PlayerStun();
+            Destroy(gameObject);
+        }
     }
 
 }

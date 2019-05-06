@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
 
 
     [Header("INPUT MANAGER")]
@@ -13,11 +14,21 @@ public class PlayerMovement : MonoBehaviour {
     public int PlayerNumber;
     public CharacterAttributes CharacterAttributes;
 
-    [Header("PLAYER WALK & JUMP")]
+    [Header("WALK & JUMP")]
     private CharacterController charControl;
     public float verticalVelocity;
     public float gravity;
     public float jumpForce;
+
+    [Header("ROLLING")]
+    public bool Roll;
+    public bool StartRoll;
+    public float RollSpeed;
+    public float RollTime;
+    public float SetRollTime;
+
+    public bool isStun;
+    public float StunTime;
 
     public float MovementSpeed;
     public float SpeedMultiplier;
@@ -29,25 +40,23 @@ public class PlayerMovement : MonoBehaviour {
     public float TurnSpeed;
     public Quaternion TargetRotation;
 
-    public bool Roll;
-    public bool StartRoll;
-    public float RollSpeed;
-    public float RollTime;
-    public float SetRollTime;
+
 
     public GameObject footStep;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         SpeedMultiplier = 1.0f;
         PlayerNumber = PlayerNumber - 1;
         IM = GameObject.FindGameObjectWithTag("InputManager").GetComponent<InputManager>();
         charControl = GetComponent<CharacterController>();
         Roll = false;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         playerWalkJump();
         if (Mathf.Abs(InputJoystick.x) < 0.1 && Mathf.Abs(InputJoystick.z) < 0.1 && Roll == false)
         {
@@ -84,10 +93,10 @@ public class PlayerMovement : MonoBehaviour {
             }
             if (Input.GetKeyDown(IM.LeftBumper[ControlNumber]) && Roll == false)
             {
-                  gameObject.GetComponent<Animator>().SetTrigger("Roll");
-                  //Roll = true;
-                  StartRoll = true;
-                  RollTime = 0;
+                gameObject.GetComponent<Animator>().SetTrigger("Roll");
+                //Roll = true;
+                StartRoll = true;
+                RollTime = 0;
             }
         }
         else
@@ -158,5 +167,27 @@ public class PlayerMovement : MonoBehaviour {
         LeftJoystickInputDirection.z = Input.GetAxis(IM.VerticalAxis[ControlNumber]) * MovementSpeed * SpeedMultiplier;
 
         transform.position = PlayerPos + LeftJoystickInputDirection;
+    }
+
+    public void PlayerStun()
+    {
+        if (isStun)
+        {
+            return;
+        }
+
+        isStun = true;
+        this.enabled = false;
+        gameObject.GetComponent<Animator>().SetBool("Running", false);
+
+        StartCoroutine(WaitForStunToEnd());
+    }
+
+    private IEnumerator WaitForStunToEnd()
+    {
+        yield return new WaitForSeconds(StunTime);
+        isStun = false;
+        this.enabled = true;
+        gameObject.GetComponent<Animator>().SetBool("Running", true);
     }
 }
