@@ -58,13 +58,190 @@ public class PlayerAttack : MonoBehaviour
     {
         AttackInput();
         CalculateAttack();
-        for (int i = 0; i < ca.Player.Length; i++) {
-            if (ca.IsUltiReady[i] == true && Input.GetKeyDown(IM.SquareButton[ControlNumber])) {
-                ca.CurrPowerBar[i] = 0;
-                ca.IsUltiReady[i] = false;
-                ca.PowerBar[i].fillAmount = ca.CurrPowerBar[i] / ca.MaxPowerBar[i];
+        if (ca.IsUltiReady[0] == true && Input.GetKeyDown(IM.SquareButton[0])) {
+            VerifyAttack(0);
+            if (HaveWeapon == false) {
+                UltiFist(0);
+                AttackState = true;
+                AttackTime = 2;
+            }
+            else if (HaveWeaponAxe == true) {
+                UltiAxe(0);
+                AttackState = true;
+                AttackTime = 2;
+            }
+            else if (HaveWeaponHammer == true) {
+                UltiHammer(0);
+                AttackState = true;
+                AttackTime = 2;
+            }
+            else if (HaveWeaponKnife == true) {
+                UltiKnife(0);
+                AttackState = true;
+                AttackTime = 2;
+            }
+            else if (HaveWeaponSpear == true) {
+                UltiSpear(0);
+                AttackState = true;
+                AttackTime = 2;
+            }
+            else if (HaveWeaponHammer == true) {
+                UltiHammer(0);
+                AttackState = true;
+                AttackTime = 2;
             }
         }
+        if (ca.IsUltiReady[1] == true && Input.GetKeyDown(IM.SquareButton[1]))
+        {
+            VerifyAttack(1);
+            if (HaveWeapon == false)
+            {
+                UltiFist(1);
+                AttackState = true;
+                AttackTime = 2;
+            }
+            else if (HaveWeaponAxe == true)
+            {
+                UltiAxe(1);
+                AttackState = true;
+                AttackTime = 2;
+            }
+            else if (HaveWeaponHammer == true)
+            {
+                UltiHammer(1);
+                AttackState = true;
+                AttackTime = 2;
+            }
+            else if (HaveWeaponKnife == true)
+            {
+                UltiKnife(1);
+                AttackState = true;
+                AttackTime = 2;
+            }
+            else if (HaveWeaponSpear == true)
+            {
+                UltiSpear(1);
+                AttackState = true;
+                AttackTime = 2;
+            }
+            else if (HaveWeaponHammer == true)
+            {
+                UltiHammer(1);
+                AttackState = true;
+                AttackTime = 2;
+            }
+        }
+        if (ca.IsUltiReady[2] == true && Input.GetKeyDown(IM.SquareButton[2]))
+        {
+            VerifyAttack(2);
+            if (HaveWeapon == false)
+            {
+                UltiFist(2);
+                AttackState = true;
+                AttackTime = 2;
+            }
+            else if (HaveWeaponAxe == true)
+            {
+                UltiAxe(2);
+                AttackState = true;
+                AttackTime = 2;
+            }
+            else if (HaveWeaponHammer == true)
+            {
+                UltiHammer(2);
+                AttackState = true;
+                AttackTime = 2;
+            }
+            else if (HaveWeaponKnife == true)
+            {
+                UltiKnife(2);
+                AttackState = true;
+                AttackTime = 2;
+            }
+            else if (HaveWeaponSpear == true)
+            {
+                UltiSpear(2);
+                AttackState = true;
+                AttackTime = 2;
+            }
+            else if (HaveWeaponHammer == true)
+            {
+                UltiHammer(2);
+                AttackState = true;
+                AttackTime = 2;
+            }
+        }
+        if (ca.IsUltiReady[3] == true && Input.GetKeyDown(IM.SquareButton[3]))
+        {
+            VerifyAttack(3);
+            if (HaveWeapon == false)
+            {
+                UltiFist(3);
+                AttackTime = 2;
+                AttackState = true;
+            }
+            if (HaveWeaponAxe == true)
+            {
+                UltiAxe(3);
+                AttackTime = 2;
+                AttackState = true;
+            }
+            else if (HaveWeaponHammer == true)
+            {
+                UltiHammer(3);
+                AttackTime = 2;
+                AttackState = true;
+            }
+            else if (HaveWeaponKnife == true)
+            {
+                UltiKnife(3);
+                AttackTime = 2;
+                AttackState = true;
+            }
+            else if (HaveWeaponSpear == true)
+            {
+                UltiSpear(3);
+                AttackTime = 2;
+                AttackState = true;
+            }
+            else if (HaveWeaponHammer == true)
+            {
+                UltiHammer(3);
+                AttackTime = 2;
+                AttackState = true;
+            }
+        }
+    }
+
+    void VerifyAttack(int i)
+    {
+        ca.CurrPowerBar[i] = 0;
+        ca.IsUltiReady[i] = false;
+        ca.PowerBar[i].fillAmount = ca.CurrPowerBar[i] / ca.MaxPowerBar[i];
+    }
+
+    void UltiFist(int i) {
+        anim.SetTrigger("UltiFist");
+    }
+
+    void UltiAxe(int i) {
+        anim.SetTrigger("UltiAxe");
+    }
+
+    void UltiHammer(int i) {
+        anim.SetTrigger("UltiHammer");
+    }
+
+    void UltiSword(int i) {
+        anim.SetTrigger("UltiSword");
+    }
+
+    void UltiSpear(int i) {
+        anim.SetTrigger("UltiSpear");
+    }
+
+    void UltiKnife(int i) {
+        anim.SetTrigger("UltiKnife");
     }
 
     void AttackInput() {
@@ -77,6 +254,7 @@ public class PlayerAttack : MonoBehaviour
         if (AttackState == false && HaveWeaponAxe == true) {
             if (Input.GetKeyDown(IM.XButton[ControlNumber])) {
                 AttackState = true;
+                AttackTime = setAttackTime;
                 anim.SetTrigger("AttackAxe");
             }
         }
@@ -120,11 +298,13 @@ public class PlayerAttack : MonoBehaviour
 
     void CalculateAttack() {
         if (AttackTime > 0) {
-            if (HaveWeapon == false) {
+            if (HaveWeapon == false)
+            {
                 AttackTime -= Time.deltaTime;
                 anim.SetBool("AttackPunch", true);
             }
-            if (HaveWeaponAxe == true) {
+            if (HaveWeaponAxe == true)
+            {
                 axeParticle.Play();
                 axeParticle.enableEmission = true;
                 AttackTime -= Time.deltaTime;
@@ -138,8 +318,8 @@ public class PlayerAttack : MonoBehaviour
                 swordParticle.enableEmission = true;
                 AttackTime -= Time.deltaTime;
             }
-            if (HaveWeaponSpear == true) {
-
+            if (HaveWeaponSpear == true)
+            {
                 AttackTime -= Time.deltaTime;
             }
             if (HaveWeaponHammer == true)

@@ -44,7 +44,10 @@ public class Timer : MonoBehaviour
         }
         else
         {
-            timerText.text = "Game Over!";
+            timerText.text = "Time Out!";
+            timerText.rectTransform.anchorMin = new Vector2(0.5f, 0.65f);
+            timerText.rectTransform.anchorMax = new Vector2(0.5f, 0.65f);
+            timerText.rectTransform.pivot = new Vector2(0.5f, 0.5f);
         }
     }
 }

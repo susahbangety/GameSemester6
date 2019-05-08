@@ -59,6 +59,14 @@ public class CharacterDamaged : MonoBehaviour {
                     ca.penandaLastHitPlayer1[PlayerKeberapa + 2] = false;
                 }
             }
+            if(coll.gameObject.tag == "DoubleDamageItem")
+            {
+                ca.powerUpDamage[PlayerKeberapa - 1] = true;
+            }
+            if (coll.gameObject.tag == "Healing") {
+                ca.CurrHealth[PlayerKeberapa - 1] += 20;
+                ca.HealthBar[PlayerKeberapa -1].fillAmount = ca.CurrHealth[PlayerKeberapa -1] / ca.MaxHealth[PlayerKeberapa -1];
+            }
         }
         else if (PlayerKeberapa == 2 && ca.InvicibilityCounter[1] == 0) {
             if (coll.gameObject.tag == "WeaponPlayer1") {
@@ -97,6 +105,15 @@ public class CharacterDamaged : MonoBehaviour {
                     ca.penandaLastHitPlayer2[PlayerKeberapa + 1] = false;
                 }
             }
+            if (coll.gameObject.tag == "DoubleDamageItem")
+            {
+                ca.powerUpDamage[PlayerKeberapa - 1] = true;
+            }
+            if (coll.gameObject.tag == "Healing")
+            {
+                ca.CurrHealth[PlayerKeberapa - 1] += 20;
+                ca.HealthBar[PlayerKeberapa - 1].fillAmount = ca.CurrHealth[PlayerKeberapa - 1] / ca.MaxHealth[PlayerKeberapa - 1];
+            }
         }
         else if (PlayerKeberapa == 3 && ca.InvicibilityCounter[2] == 0) {
             if (coll.gameObject.tag == "WeaponPlayer1")
@@ -111,6 +128,15 @@ public class CharacterDamaged : MonoBehaviour {
                 {
                     ca.penandaLastHitPlayer3[PlayerKeberapa - 2] = false;
                 }
+            }
+            if (coll.gameObject.tag == "DoubleDamageItem")
+            {
+                ca.powerUpDamage[PlayerKeberapa - 1] = true;
+            }
+            if (coll.gameObject.tag == "Healing")
+            {
+                ca.CurrHealth[PlayerKeberapa - 1] += 20;
+                ca.HealthBar[PlayerKeberapa - 1].fillAmount = ca.CurrHealth[PlayerKeberapa - 1] / ca.MaxHealth[PlayerKeberapa - 1];
             }
         }
     }

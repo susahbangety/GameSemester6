@@ -18,7 +18,7 @@ public class CharacterAttributes : MonoBehaviour {
     public float[] FlashCounter;
     public float[] FlashLength;
 
-    public int[] amount;
+    public float[] amount;
     public SkinnedMeshRenderer[] PlayerRenderer;
 
     [Header("UI")]
@@ -35,7 +35,6 @@ public class CharacterAttributes : MonoBehaviour {
     public bool[] IsUltiReady;
     public bool[] isHit;
 
-    public float[] KnockbackForce;
 
     public Text[] SkorText;
     public int[] skorPlayer;
@@ -48,6 +47,9 @@ public class CharacterAttributes : MonoBehaviour {
     public bool[] penandaLastHitPlayer4;
 
     public float amountOverTime;
+
+    public float powerUpTime;
+    public bool[] powerUpDamage;
 
     // Use this for initialization
     void Start () {
@@ -64,7 +66,7 @@ public class CharacterAttributes : MonoBehaviour {
         //RespawnPoint = new GameObject[Player.Length];
         RespawnLength = new float[Player.Length];
         IsUltiReady = new bool[Player.Length];
-        amount = new int[Player.Length];
+        amount = new float[Player.Length];
 
         for (int i = 0; i < Player.Length; i++)
         {
@@ -96,9 +98,15 @@ public class CharacterAttributes : MonoBehaviour {
             if (penandaLastHitPlayer2[i] == true) {
                 ScoreCounter(i);
             }
-            if (penandaLastHitPlayer1[i] == true) {
+            if (penandaLastHitPlayer1[i] == true)
+            {
                 ScoreCounter(i);
             }
+
+            if (powerUpDamage[i] == true) {
+                StartCoroutine(DoubleDamage(i));
+            }
+
             if (InvicibilityCounter[i] > 0)
             {
                 InvicibilityCounter[i] -= Time.deltaTime;
@@ -211,5 +219,12 @@ public class CharacterAttributes : MonoBehaviour {
         CurrPowerBar[i] = 0;
         HealthBar[i].fillAmount = CurrHealth[i] / MaxHealth[i];
         PowerBar[i].fillAmount = CurrPowerBar[i] / MaxPowerBar[i];
+    }
+
+    public IEnumerator DoubleDamage(int i) {
+        amount[i] *= 2;
+        powerUpDamage[i] = false;
+        yield return new WaitForSeconds(powerUpTime);
+        amount[i] /= 2;
     }
 }

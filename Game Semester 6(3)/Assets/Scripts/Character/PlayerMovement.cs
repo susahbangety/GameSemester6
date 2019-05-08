@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-
     [Header("INPUT MANAGER")]
     public int ControlNumber;
     public InputManager IM;
