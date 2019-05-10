@@ -30,10 +30,7 @@ public class PlayerAttack : MonoBehaviour
 
     public bool isThrowing = false;
     public bool isThrowingKnife = false;
-
-    public ParticleSystem axeParticle;
-    public ParticleSystem swordParticle;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -47,10 +44,6 @@ public class PlayerAttack : MonoBehaviour
         HaveWeaponSpear = false;
         HaveWeaponHammer = false;
         anim = GetComponent<Animator>();
-        axeParticle.Stop();
-        axeParticle.enableEmission = false;
-        swordParticle.Stop();
-        swordParticle.enableEmission = false;
     }
 
     // Update is called once per frame
@@ -85,8 +78,8 @@ public class PlayerAttack : MonoBehaviour
                 AttackState = true;
                 AttackTime = 2;
             }
-            else if (HaveWeaponHammer == true) {
-                UltiHammer(0);
+            else if (HaveWeaponSword == true) {
+                UltiSword(0);
                 AttackState = true;
                 AttackTime = 2;
             }
@@ -124,9 +117,9 @@ public class PlayerAttack : MonoBehaviour
                 AttackState = true;
                 AttackTime = 2;
             }
-            else if (HaveWeaponHammer == true)
+            else if (HaveWeaponSword == true)
             {
-                UltiHammer(1);
+                UltiSword(1);
                 AttackState = true;
                 AttackTime = 2;
             }
@@ -164,9 +157,9 @@ public class PlayerAttack : MonoBehaviour
                 AttackState = true;
                 AttackTime = 2;
             }
-            else if (HaveWeaponHammer == true)
+            else if (HaveWeaponSword == true)
             {
-                UltiHammer(2);
+                UltiSword(2);
                 AttackState = true;
                 AttackTime = 2;
             }
@@ -204,11 +197,11 @@ public class PlayerAttack : MonoBehaviour
                 AttackTime = 2;
                 AttackState = true;
             }
-            else if (HaveWeaponHammer == true)
+            else if (HaveWeaponSword == true)
             {
-                UltiHammer(3);
-                AttackTime = 2;
+                UltiSword(3);
                 AttackState = true;
+                AttackTime = 2;
             }
         }
     }
@@ -305,8 +298,6 @@ public class PlayerAttack : MonoBehaviour
             }
             if (HaveWeaponAxe == true)
             {
-                axeParticle.Play();
-                axeParticle.enableEmission = true;
                 AttackTime -= Time.deltaTime;
             }
             if (HaveWeaponKnife == true)
@@ -314,8 +305,6 @@ public class PlayerAttack : MonoBehaviour
                 AttackTime -= Time.deltaTime;
             }
             if (HaveWeaponSword == true) {
-                swordParticle.Play();
-                swordParticle.enableEmission = true;
                 AttackTime -= Time.deltaTime;
             }
             if (HaveWeaponSpear == true)
@@ -331,33 +320,34 @@ public class PlayerAttack : MonoBehaviour
         if (AttackTime <= 0) {
             if (HaveWeapon == false)
             {
+                AttackTime = 0;
                 AttackState = false;
                 anim.SetBool("AttackPunch", false);
             }
             if (HaveWeaponAxe == true)
             {
-                axeParticle.Stop();
-                axeParticle.enableEmission = false;
+                AttackTime = 0;
                 AttackState = false;
             }
             if (HaveWeaponKnife == true)
             {
                 AttackState = false;
-             
+                AttackTime = 0;
             }
             if (HaveWeaponSword == true)
             {
-                swordParticle.Stop();
-                swordParticle.enableEmission = false;
+                AttackTime = 0;
                 AttackState = false;
             }
             if (HaveWeaponSpear == true)
             {
                 AttackState = false;
+                AttackTime = 0;
             }
             if (HaveWeaponHammer == true)
             {
                 AttackState = false;
+                AttackTime = 0;
             }
         }
     }

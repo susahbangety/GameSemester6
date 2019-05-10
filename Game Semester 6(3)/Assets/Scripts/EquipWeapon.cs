@@ -12,23 +12,23 @@ public class EquipWeapon : MonoBehaviour
 
     [Header("EQUIP AXE")]
     public GameObject Axe;
-    public GameObject handAxe;
+    //public GameObject handAxe;
 
     [Header("EQUIP SWORD")]
     public GameObject Sword;
-    public GameObject handSword;
+    //public GameObject handSword;
 
     [Header("EQUIP SPEAR")]
     public GameObject Spear;
-    public GameObject handSpear;
+    //public GameObject handSpear;
 
     [Header("EQUIP HAMMER")]
     public GameObject Hammer;
-    public GameObject handHammer;
+    //public GameObject handHammer;
 
     [Header("EQUIP KNIFE")]
     public GameObject Knife;
-    public GameObject handKnife;
+    //public GameObject handKnife;
     private Rigidbody rgbWeapon;
     public Transform dropArea;
     //private ParticleSystem particle;

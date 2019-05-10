@@ -7,6 +7,7 @@ public class CharacterDamaged : MonoBehaviour {
     public int PlayerKeberapa;
 
     public CharacterAttributes ca;
+    public Animator anim;
 
     // Use this for initialization
     void Start()
@@ -31,7 +32,13 @@ public class CharacterDamaged : MonoBehaviour {
                 }
                 else {
                     ca.penandaLastHitPlayer1[PlayerKeberapa] = false;
-                } 
+                }
+                anim.SetTrigger("Knockback");
+                
+                //Vector3 look = coll.transform.position;
+                //look.y = 0;
+                //transform.LookAt(look);
+
             }
             if (coll.gameObject.tag == "WeaponPlayer3")
             {
@@ -45,6 +52,7 @@ public class CharacterDamaged : MonoBehaviour {
                 {
                     ca.penandaLastHitPlayer1[PlayerKeberapa + 1] = false;
                 }
+                anim.SetTrigger("Knockback");
             }
             if (coll.gameObject.tag == "WeaponPlayer4")
             {
@@ -58,14 +66,7 @@ public class CharacterDamaged : MonoBehaviour {
                 {
                     ca.penandaLastHitPlayer1[PlayerKeberapa + 2] = false;
                 }
-            }
-            if(coll.gameObject.tag == "DoubleDamageItem")
-            {
-                ca.powerUpDamage[PlayerKeberapa - 1] = true;
-            }
-            if (coll.gameObject.tag == "Healing") {
-                ca.CurrHealth[PlayerKeberapa - 1] += 20;
-                ca.HealthBar[PlayerKeberapa -1].fillAmount = ca.CurrHealth[PlayerKeberapa -1] / ca.MaxHealth[PlayerKeberapa -1];
+                anim.SetTrigger("Knockback");
             }
         }
         else if (PlayerKeberapa == 2 && ca.InvicibilityCounter[1] == 0) {
@@ -79,6 +80,10 @@ public class CharacterDamaged : MonoBehaviour {
                 else {
                     ca.penandaLastHitPlayer2[PlayerKeberapa - 2] = false;
                 }
+                anim.SetTrigger("Knockback");
+                //Vector3 look = coll.transform.position;
+                //look.y = 0;
+                //transform.LookAt(look);
             }
             if (coll.gameObject.tag == "WeaponPlayer3") {
                 ca.IsDamaged[PlayerKeberapa - 1] = true;
@@ -91,6 +96,7 @@ public class CharacterDamaged : MonoBehaviour {
                 {
                     ca.penandaLastHitPlayer2[PlayerKeberapa] = false;
                 }
+                anim.SetTrigger("Knockback");
             }
             if (coll.gameObject.tag == "WeaponPlayer4")
             {
@@ -104,15 +110,7 @@ public class CharacterDamaged : MonoBehaviour {
                 {
                     ca.penandaLastHitPlayer2[PlayerKeberapa + 1] = false;
                 }
-            }
-            if (coll.gameObject.tag == "DoubleDamageItem")
-            {
-                ca.powerUpDamage[PlayerKeberapa - 1] = true;
-            }
-            if (coll.gameObject.tag == "Healing")
-            {
-                ca.CurrHealth[PlayerKeberapa - 1] += 20;
-                ca.HealthBar[PlayerKeberapa - 1].fillAmount = ca.CurrHealth[PlayerKeberapa - 1] / ca.MaxHealth[PlayerKeberapa - 1];
+                anim.SetTrigger("Knockback");
             }
         }
         else if (PlayerKeberapa == 3 && ca.InvicibilityCounter[2] == 0) {
@@ -128,15 +126,7 @@ public class CharacterDamaged : MonoBehaviour {
                 {
                     ca.penandaLastHitPlayer3[PlayerKeberapa - 2] = false;
                 }
-            }
-            if (coll.gameObject.tag == "DoubleDamageItem")
-            {
-                ca.powerUpDamage[PlayerKeberapa - 1] = true;
-            }
-            if (coll.gameObject.tag == "Healing")
-            {
-                ca.CurrHealth[PlayerKeberapa - 1] += 20;
-                ca.HealthBar[PlayerKeberapa - 1].fillAmount = ca.CurrHealth[PlayerKeberapa - 1] / ca.MaxHealth[PlayerKeberapa - 1];
+                anim.SetTrigger("Knockback");
             }
         }
     }
