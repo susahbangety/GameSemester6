@@ -33,7 +33,7 @@ public class spawnerWeapon : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Player" || col.gameObject.tag == "Player2")
+        if (col.gameObject.tag == "Player")
         {
             if (eqw.weaponActive == false && eqw.currWeapon == null)
             {
