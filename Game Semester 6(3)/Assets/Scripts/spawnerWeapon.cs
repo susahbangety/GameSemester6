@@ -14,16 +14,42 @@ public class spawnerWeapon : MonoBehaviour
     {
         sp = GameObject.Find("WeaponSpawn").GetComponent<Spawner>();
         eqw = GameObject.FindGameObjectWithTag("Player").GetComponent<EquipWeapon>();
+        if (gameObject.tag == "Hammer")
+        {
+            transform.rotation = Quaternion.Euler(90, transform.rotation.y, transform.rotation.z);
+            transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
+        }
+        if (gameObject.tag == "Axe")
+        {
+            transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, -180);
+        }
+        if (gameObject.tag == "Knife")
+        {
+            transform.rotation = Quaternion.Euler(-90, transform.rotation.y, transform.rotation.z);
+            transform.position = new Vector3(transform.position.x, 1.7f, transform.position.z);
+        }
+        if (gameObject.tag == "Spear")
+        {
+            transform.position = new Vector3(transform.position.x, 2f, transform.position.z);
+        }
+        if (gameObject.tag == "Sword")
+        {
+            transform.position = new Vector3(transform.position.x, 2.6f, transform.position.z);
+        }
     }
 
     void Update()
     {
-        transform.Rotate(Vector3.forward * Time.deltaTime * rotate);
-
-        if (gameObject.tag == "Spear")
+        if (gameObject.tag == "Hammer" || gameObject.tag == "Knife")
         {
-            transform.position = new Vector3(transform.position.x, 2.6f, transform.position.z);
+            transform.Rotate(Vector3.forward * Time.deltaTime * rotate);
         }
+        else
+        {
+            transform.Rotate(Vector3.up * Time.deltaTime * rotate);
+        }
+
+
         //if (gameObject.tag == "Sword")
         //{
         //    transform.rotation = Quaternion.Euler(0, transform.rotation.y, transform.rotation.z);
@@ -35,7 +61,7 @@ public class spawnerWeapon : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            if (eqw.weaponActive == false && eqw.currWeapon == null)
+            if (eqw.weaponActive == false)
             {
                 //Destroy(gameObject);
                 Debug.Log("You Pick Up " + gameObject);

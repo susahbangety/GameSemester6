@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Environments\Japan\EarthQuake.cs" />
     <Compile Include="Assets\Scripts\Environments\Japan\Spikes.cs" />
     <Compile Include="Assets\Scripts\Environments\Japan\spikeSpawner.cs" />
+    <Compile Include="Assets\Scripts\Environments\SpearThrow.cs" />
     <Compile Include="Assets\Scripts\EquipWeapon.cs" />
     <Compile Include="Assets\Scripts\FadeObjectOptions.cs" />
     <Compile Include="Assets\Scripts\FadeObstructionsManager.cs" />

@@ -8,7 +8,6 @@ public class EquipWeapon : MonoBehaviour
 
     public GameObject playerHandRight;
     public GameObject playerHandLeft;
-    public GameObject currWeapon;
 
     [Header("EQUIP AXE")]
     public GameObject Axe;
@@ -66,14 +65,13 @@ public class EquipWeapon : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "Axe" && weaponActive == false && currWeapon == null)
+        if (collider.gameObject.tag == "Axe" && weaponActive == false)
         {
             Debug.Log("You Use " + collider.gameObject.name);
             //Destroy(collider.gameObject);
-            rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
+            //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
             //Axe.GetComponent<ParticleSystem>().Stop();
             weaponActive = true;
-            currWeapon = Axe;
             patt.HaveWeapon = true;
             patt.HaveWeaponAxe = true;
             Axe.SetActive(true);
@@ -82,13 +80,12 @@ public class EquipWeapon : MonoBehaviour
             Knife.SetActive(false);
             Hammer.SetActive(false);
         }
-        if (collider.gameObject.tag == "Sword" && weaponActive == false && currWeapon == null)
+        if (collider.gameObject.tag == "Sword" && weaponActive == false)
         {
             Debug.Log("You Use " + collider.gameObject.name);
-            rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
+            //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
             //Destroy(collider.gameObject);
             weaponActive = true;
-            currWeapon = Sword;
             patt.HaveWeapon = true;
             patt.HaveWeaponSword = true;
             Axe.SetActive(false);
@@ -97,13 +94,12 @@ public class EquipWeapon : MonoBehaviour
             Knife.SetActive(false);
             Hammer.SetActive(false);
         }
-        if (collider.gameObject.tag == "Spear" && weaponActive == false && currWeapon == null)
+        if (collider.gameObject.tag == "Spear" && weaponActive == false)
         {
             Debug.Log("You Use " + collider.gameObject.name);
-            rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
+            //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
             //Destroy(collider.gameObject);
             weaponActive = true;
-            currWeapon = Spear;
             patt.HaveWeapon = true;
             patt.HaveWeaponSpear = true;
             Axe.SetActive(false);
@@ -112,13 +108,12 @@ public class EquipWeapon : MonoBehaviour
             Knife.SetActive(false);
             Hammer.SetActive(false);
         }
-        if (collider.gameObject.tag == "Knife" && weaponActive == false && currWeapon == null)
+        if (collider.gameObject.tag == "Knife" && weaponActive == false)
         {
             Debug.Log("You Use " + collider.gameObject.name);
-            rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
+            //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
             //Destroy(collider.gameObject);
             weaponActive = true;
-            currWeapon = Knife;
             patt.HaveWeapon = true;
             patt.HaveWeaponKnife = true;
             Axe.SetActive(false);
@@ -127,13 +122,12 @@ public class EquipWeapon : MonoBehaviour
             Knife.SetActive(true);
             Hammer.SetActive(false);
         }
-        if (collider.gameObject.tag == "Hammer" && weaponActive == false && currWeapon == null)
+        if (collider.gameObject.tag == "Hammer" && weaponActive == false)
         {
             Debug.Log("You Use " + collider.gameObject.name);
-            rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
+            //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
             //Destroy(collider.gameObject);
             weaponActive = true;
-            currWeapon = Hammer;
             patt.HaveWeapon = true;
             patt.HaveWeaponHammer = true;
             Axe.SetActive(false);
