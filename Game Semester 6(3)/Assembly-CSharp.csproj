@@ -94,6 +94,7 @@
     <Compile Include="Assets\Scripts\UI\MapSelectionHandler.cs" />
     <Compile Include="Assets\Scripts\UI\OptionHandler.cs" />
     <Compile Include="Assets\Scripts\UI\PlayerSelectionHandler.cs" />
+    <Compile Include="Assets\Scripts\UI\ScoreboardController.cs" />
     <Compile Include="Assets\Scripts\UI\Timer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />

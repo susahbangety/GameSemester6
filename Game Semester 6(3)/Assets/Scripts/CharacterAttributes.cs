@@ -38,6 +38,7 @@ public class CharacterAttributes : MonoBehaviour {
 
     public Text[] SkorText;
     public int[] skorPlayer;
+    public int[] tempSkorPlayer;
 
     public Image[] playerCrown;
 
@@ -50,6 +51,8 @@ public class CharacterAttributes : MonoBehaviour {
 
     public float powerUpTime;
     public bool[] powerUpDamage;
+
+    public int[] playerDeath;
 
     // Use this for initialization
     void Start () {
@@ -68,6 +71,8 @@ public class CharacterAttributes : MonoBehaviour {
         IsUltiReady = new bool[Player.Length];
         amount = new float[Player.Length];
 
+
+        
         for (int i = 0; i < Player.Length; i++)
         {
             MaxHealth[i] = SetMaxHP;
@@ -83,8 +88,15 @@ public class CharacterAttributes : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (Input.GetKeyDown(KeyCode.U)) {
+            SortScore();
+        }
+
         for (int i = 0; i < Player.Length; i++) {
             PowerBarOverTime(i);
+
+
             if (IsDamaged[i] == true) {
                 CalculateHealth(i);
             }
@@ -207,12 +219,35 @@ public class CharacterAttributes : MonoBehaviour {
         }
     }
 
+    public void SortScore()
+    {
+        for (int i = 0; i < tempSkorPlayer.Length; i++) {
+            tempSkorPlayer[i] = skorPlayer[i];
+        }
+
+        for (int i = 0; i < tempSkorPlayer.Length - 1; i++)
+        {
+            for (int j = i + 1; j < tempSkorPlayer.Length; j++)
+            {
+                if (tempSkorPlayer[i] > tempSkorPlayer[j]) {
+                    int temp = tempSkorPlayer[i];
+                    tempSkorPlayer[i] = tempSkorPlayer[j];
+                    tempSkorPlayer[j] = temp;
+                }
+            }
+        }
+        for (int i = 0; i < tempSkorPlayer.Length; i++) {
+            Debug.Log(tempSkorPlayer[i]);
+        }
+    }
+
     public IEnumerator RespawningCo(int i)
     {
         isRespawning[i] = true;
         Player[i].SetActive(false);
         Player[i].transform.position = RespawnPoint[i].transform.position;
         yield return new WaitForSeconds(RespawnLength[i]);
+        playerDeath[i]++;
         isRespawning[i] = false;
         Player[i].SetActive(true);
         CurrHealth[i] = MaxHealth[i];
