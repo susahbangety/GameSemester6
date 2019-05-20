@@ -89,7 +89,6 @@
     <Compile Include="Assets\Scripts\SetControllerNumber.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\spawnerWeapon.cs" />
-    <Compile Include="Assets\Scripts\ThrowWeapon.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenuHandler.cs" />
     <Compile Include="Assets\Scripts\UI\MapSelectionHandler.cs" />
     <Compile Include="Assets\Scripts\UI\OptionHandler.cs" />
