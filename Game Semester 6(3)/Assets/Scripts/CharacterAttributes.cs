@@ -55,7 +55,7 @@ public class CharacterAttributes : MonoBehaviour {
     public int[] playerDeath;
 
     // Use this for initialization
-    void Start () {
+    void Start() {
         CurrHealth = new float[Player.Length];
         MaxHealth = new float[Player.Length];
         CurrPowerBar = new float[Player.Length];
@@ -72,7 +72,7 @@ public class CharacterAttributes : MonoBehaviour {
         amount = new float[Player.Length];
 
 
-        
+
         for (int i = 0; i < Player.Length; i++)
         {
             MaxHealth[i] = SetMaxHP;
@@ -85,18 +85,19 @@ public class CharacterAttributes : MonoBehaviour {
             amount[i] = 10;
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
 
-        if (Input.GetKeyDown(KeyCode.U)) {
-            SortScore();
-        }
+    // Update is called once per frame
+    void Update() {
+
+        //if (Input.GetKeyDown(KeyCode.U)) {
+        //    SortScore();
+        //}
+        //if (Input.GetKeyDown(KeyCode.T)) {
+        //    findHighestScore();
+        //}
 
         for (int i = 0; i < Player.Length; i++) {
             PowerBarOverTime(i);
-
-
             if (IsDamaged[i] == true) {
                 CalculateHealth(i);
             }
@@ -148,7 +149,7 @@ public class CharacterAttributes : MonoBehaviour {
             CurrPowerBar[i] = MaxPowerBar[i];
         }
     }
-    
+
     void CalculateHealth(int i) {
         CurrHealth[i] -= amount[i];
         HealthBar[i].fillAmount = CurrHealth[i] / MaxHealth[i];
@@ -166,41 +167,41 @@ public class CharacterAttributes : MonoBehaviour {
         {
             CurrPowerBar[i] = MaxPowerBar[i];
         }
-    
+
     }
 
-    void CompareScore() {
-        if (skorPlayer[0] > skorPlayer[1] && skorPlayer[0] > skorPlayer[2] && skorPlayer[0] > skorPlayer[3]) {
-            for (int i = 0; i < Player.Length; i++) {
-                playerCrown[i].enabled = false;
-            }
-            playerCrown[0].enabled = true;
-        }
-        else if (skorPlayer[1] > skorPlayer[0] && skorPlayer[1] > skorPlayer[2] && skorPlayer[1] > skorPlayer[3])
-        {
-            for (int i = 0; i < Player.Length; i++)
-            {
-                playerCrown[i].enabled = false;
-            }
-            playerCrown[1].enabled = true;
-        }
-        else if (skorPlayer[2] > skorPlayer[0] && skorPlayer[2] > skorPlayer[1] && skorPlayer[2] > skorPlayer[3])
-        {
-            for (int i = 0; i < Player.Length; i++)
-            {
-                playerCrown[i].enabled = false;
-            }
-            playerCrown[2].enabled = true;
-        }
-        else if (skorPlayer[3] > skorPlayer[0] && skorPlayer[3] > skorPlayer[1] && skorPlayer[3] > skorPlayer[2])
-        {
-            for (int i = 0; i < Player.Length; i++)
-            {
-                playerCrown[i].enabled = false;
-            }
-            playerCrown[3].enabled = true;
-        }
-    }
+    //void CompareScore() {
+    //    if (skorPlayer[0] > skorPlayer[1] && skorPlayer[0] > skorPlayer[2] && skorPlayer[0] > skorPlayer[3]) {
+    //        for (int i = 0; i < Player.Length; i++) {
+    //            playerCrown[i].enabled = false;
+    //        }
+    //        playerCrown[0].enabled = true;
+    //    }
+    //    else if (skorPlayer[1] > skorPlayer[0] && skorPlayer[1] > skorPlayer[2] && skorPlayer[1] > skorPlayer[3])
+    //    {
+    //        for (int i = 0; i < Player.Length; i++)
+    //        {
+    //            playerCrown[i].enabled = false;
+    //        }
+    //        playerCrown[1].enabled = true;
+    //    }
+    //    else if (skorPlayer[2] > skorPlayer[0] && skorPlayer[2] > skorPlayer[1] && skorPlayer[2] > skorPlayer[3])
+    //    {
+    //        for (int i = 0; i < Player.Length; i++)
+    //        {
+    //            playerCrown[i].enabled = false;
+    //        }
+    //        playerCrown[2].enabled = true;
+    //    }
+    //    else if (skorPlayer[3] > skorPlayer[0] && skorPlayer[3] > skorPlayer[1] && skorPlayer[3] > skorPlayer[2])
+    //    {
+    //        for (int i = 0; i < Player.Length; i++)
+    //        {
+    //            playerCrown[i].enabled = false;
+    //        }
+    //        playerCrown[3].enabled = true;
+    //    }
+    //}
 
     public void ScoreCounter(int i)
     {
@@ -208,7 +209,8 @@ public class CharacterAttributes : MonoBehaviour {
         SkorText[i].text = " " + skorPlayer[i];
         penandaLastHitPlayer1[i] = false;
         penandaLastHitPlayer2[i] = false;
-        CompareScore();
+        SortScore();
+        findHighestScore();
     }
 
     public void Respawning(int i)
@@ -229,15 +231,32 @@ public class CharacterAttributes : MonoBehaviour {
         {
             for (int j = i + 1; j < tempSkorPlayer.Length; j++)
             {
-                if (tempSkorPlayer[i] > tempSkorPlayer[j]) {
+                if (tempSkorPlayer[i] < tempSkorPlayer[j]) {
                     int temp = tempSkorPlayer[i];
                     tempSkorPlayer[i] = tempSkorPlayer[j];
                     tempSkorPlayer[j] = temp;
                 }
             }
         }
-        for (int i = 0; i < tempSkorPlayer.Length; i++) {
-            Debug.Log(tempSkorPlayer[i]);
+    }
+
+    public void findHighestScore() {
+        int c = 0;
+        for (int i = 0; i < skorPlayer.Length; i++) {
+            if (tempSkorPlayer[0] == skorPlayer[i])
+            {
+                playerCrown[i].enabled = true;
+                c++;
+            }
+            else {
+                playerCrown[i].enabled = false;
+            }
+        }
+        if (c > 1) {
+            for (int i = 0; i < playerCrown.Length; i++)
+            {
+                playerCrown[i].enabled = false;
+            }
         }
     }
 

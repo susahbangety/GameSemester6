@@ -27,7 +27,7 @@ public class JatuhRespawn : MonoBehaviour
         }
         if (other.gameObject.tag == "Player2")
         {
-            ca.RespawningCo(1);
+            ca.Respawning(1);
             ca.InvicibilityCounter[1] = ca.InvicibilityLength[1];
         }
         if (other.gameObject.tag == "Player3")

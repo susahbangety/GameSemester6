@@ -42,11 +42,11 @@ public class spawnerWeapon : MonoBehaviour
     {
         if (gameObject.tag == "Hammer" || gameObject.tag == "Knife")
         {
-            transform.Rotate(Vector3.forward * Time.deltaTime * rotate);
+            gameObject.transform.Rotate(Vector3.forward * Time.deltaTime * rotate);
         }
         else
         {
-            transform.Rotate(Vector3.up * Time.deltaTime * rotate);
+            gameObject.transform.Rotate(Vector3.up * Time.deltaTime * rotate);
         }
 
 
@@ -60,6 +60,15 @@ public class spawnerWeapon : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "Player")
+        {
+            if (eqw.weaponActive == false)
+            {
+                //Destroy(gameObject);
+                Debug.Log("You Pick Up " + gameObject);
+                StartCoroutine(pickupWeapon(col.gameObject));
+            }
+        }
+        else if (col.gameObject.tag == "Player2")
         {
             if (eqw.weaponActive == false)
             {

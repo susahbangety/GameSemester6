@@ -18,8 +18,8 @@ public class MainMenuHandler : MonoBehaviour
     public bool inputHold;
     public Vector3 inputAxis;
 
-    public Image BackgroundBerputar;
-    public float value;
+    //public Image BackgroundBerputar;
+    //public float value;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +33,7 @@ public class MainMenuHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BackgroundBerputar.rectTransform.Rotate(new Vector3(0, 0, value));
+        //BackgroundBerputar.rectTransform.Rotate(new Vector3(0, 0, value));
         GetInputAxis();
         if (inputAxis.z > 0.2f || inputAxis.z < -0.2f )
         {

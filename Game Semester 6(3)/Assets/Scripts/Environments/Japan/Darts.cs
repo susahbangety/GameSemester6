@@ -11,7 +11,7 @@ public class Darts : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2")
         {
             collision.gameObject.GetComponent<PlayerMovement>().PlayerStun();
             Destroy(gameObject);

@@ -34,10 +34,6 @@ public class PlayerAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Axe.GetComponent<MeshCollider>().enabled = false;
-        Sword.GetComponent<MeshCollider>().enabled = false;
-        Hammer.GetComponent<MeshCollider>().enabled = false;
-        Spear.GetComponent<MeshCollider>().enabled = false;
         HaveWeaponAxe = false;
         HaveWeaponKnife = false;
         HaveWeaponSword = false;
