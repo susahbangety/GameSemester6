@@ -10,8 +10,27 @@ public class PlayerAttack : MonoBehaviour
     public int ControlNumber;
     public int PlayerKeberapa;
 
-    [Header("Senjata")]
-    public GameObject Axe, Hammer, Sword, Spear, Knife;
+    [Header("WEAPONS")]
+
+    [Header("AXE")]
+    public GameObject AxeEquip;
+    public ParticleSystem AxeEffect;
+
+    [Header("SWORD")]
+    public GameObject SwordEquip;
+    public ParticleSystem SwordEffect;
+
+    [Header("SPEAR")]
+    public GameObject SpearEquip;
+    public ParticleSystem SpearEffect;
+
+    [Header("HAMMER")]
+    public GameObject HammerEquip;
+    public ParticleSystem HammerEffect;
+
+    [Header("KNIFE")]
+    public GameObject KnifeEquip;
+    public ParticleSystem KnifeEffect;
 
     public CharacterAttributes ca;
 

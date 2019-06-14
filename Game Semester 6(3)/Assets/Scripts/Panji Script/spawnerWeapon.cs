@@ -13,7 +13,6 @@ public class spawnerWeapon : MonoBehaviour
     void Start()
     {
         sp = GameObject.Find("WeaponSpawn").GetComponent<Spawner>();
-        eqw = GameObject.FindGameObjectWithTag("Player").GetComponent<EquipWeapon>();
         if (gameObject.tag == "Hammer")
         {
             transform.rotation = Quaternion.Euler(90, transform.rotation.y, transform.rotation.z);
@@ -48,34 +47,15 @@ public class spawnerWeapon : MonoBehaviour
         {
             gameObject.transform.Rotate(Vector3.up * Time.deltaTime * rotate);
         }
-
-
-        //if (gameObject.tag == "Sword")
-        //{
-        //    transform.rotation = Quaternion.Euler(0, transform.rotation.y, transform.rotation.z);
-        //}
-
     }
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player" || col.gameObject.tag == "Player2")
         {
-            if (eqw.weaponActive == false)
-            {
-                //Destroy(gameObject);
-                Debug.Log("You Pick Up " + gameObject);
-                StartCoroutine(pickupWeapon(col.gameObject));
-            }
-        }
-        else if (col.gameObject.tag == "Player2")
-        {
-            if (eqw.weaponActive == false)
-            {
-                //Destroy(gameObject);
-                Debug.Log("You Pick Up " + gameObject);
-                StartCoroutine(pickupWeapon(col.gameObject));
-            }
+            
+            Debug.Log("You Pick Up " + gameObject);
+            StartCoroutine(pickupWeapon(col.gameObject));
         }
     }
 

@@ -26,10 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public float RollSpeed;
     public float RollTime;
     public float RollDelayTime;
-
-    public bool isStun;
-    public float StunTime;
-
+    
     public float MovementSpeed;
     public float SpeedMultiplier;
 
@@ -39,9 +36,13 @@ public class PlayerMovement : MonoBehaviour
     public float Angle;
     public float TurnSpeed;
     public Quaternion TargetRotation;
-
-
+    
     public GameObject footStep;
+
+    [Header("STUNNED")]
+    public bool isStun;
+    public float StunTime;
+    public GameObject stunnedEffect;
 
     // Use this for initialization
     void Start()

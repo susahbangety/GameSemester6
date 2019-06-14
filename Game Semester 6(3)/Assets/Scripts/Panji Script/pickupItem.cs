@@ -120,12 +120,9 @@ public class pickupItem : MonoBehaviour
                 gameObject.transform.eulerAngles = gameObject.transform.parent.transform.eulerAngles;
                 gameObject.transform.position = gameObject.transform.parent.transform.position;
                 gameObject.SetActive(false);
+                //eqw.weaponActive = false;
                 patt.HaveWeapon = false;
                 patt.HaveWeaponAxe = false;
-                patt.HaveWeaponKnife = false;
-                patt.HaveWeaponSpear = false;
-                patt.HaveWeaponSword = false;
-                patt.HaveWeaponHammer = false;
                 //_anim.enabled = false;
             }
             if (gameObject.name == "SwordEquip")
@@ -136,12 +133,9 @@ public class pickupItem : MonoBehaviour
                 gameObject.transform.eulerAngles = gameObject.transform.parent.transform.eulerAngles;
                 gameObject.transform.position = gameObject.transform.parent.transform.position;
                 gameObject.SetActive(false);
+                //eqw.weaponActive = false;
                 patt.HaveWeapon = false;
-                patt.HaveWeaponAxe = false;
-                patt.HaveWeaponKnife = false;
-                patt.HaveWeaponSpear = false;
                 patt.HaveWeaponSword = false;
-                patt.HaveWeaponHammer = false;
             }
             if (gameObject.name == "SpearEquip")
             {
@@ -152,12 +146,9 @@ public class pickupItem : MonoBehaviour
                 gameObject.transform.position = gameObject.transform.parent.transform.position;
                 gameObject.transform.localScale = new Vector3(1, 1, 1);
                 gameObject.SetActive(false);
+                //eqw.weaponActive = false;
                 patt.HaveWeapon = false;
-                patt.HaveWeaponAxe = false;
-                patt.HaveWeaponKnife = false;
                 patt.HaveWeaponSpear = false;
-                patt.HaveWeaponSword = false;
-                patt.HaveWeaponHammer = false;
             }
             if (gameObject.name == "KnifeEquip")
             {
@@ -168,12 +159,9 @@ public class pickupItem : MonoBehaviour
                 gameObject.transform.position = gameObject.transform.parent.transform.position;
                 gameObject.transform.localScale = new Vector3(1, 1, 1);
                 gameObject.SetActive(false);
+                //eqw.weaponActive = false;
                 patt.HaveWeapon = false;
-                patt.HaveWeaponAxe = false;
                 patt.HaveWeaponKnife = false;
-                patt.HaveWeaponSpear = false;
-                patt.HaveWeaponSword = false;
-                patt.HaveWeaponHammer = false;
             }
             if (gameObject.name == "HammerEquip")
             {
@@ -184,11 +172,8 @@ public class pickupItem : MonoBehaviour
                 gameObject.transform.position = gameObject.transform.parent.transform.position;
                 gameObject.transform.localScale = new Vector3(1, 1, 1);
                 gameObject.SetActive(false);
+                //eqw.weaponActive = false;
                 patt.HaveWeapon = false;
-                patt.HaveWeaponAxe = false;
-                patt.HaveWeaponKnife = false;
-                patt.HaveWeaponSpear = false;
-                patt.HaveWeaponSword = false;
                 patt.HaveWeaponHammer = false;
             }
         }

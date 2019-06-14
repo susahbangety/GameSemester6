@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1401504287260761856}
   - component: {fileID: 1401504287259631040}
   - component: {fileID: 8882505555931602808}
-  - component: {fileID: 5691331982445739960}
   - component: {fileID: 7249324381701259945}
   m_Layer: 0
   m_Name: SpearEquip
@@ -28,13 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401504287261885186}
-  m_LocalRotation: {x: -0.45133516, y: 0.3587579, z: 0.7847177, w: -0.22761261}
-  m_LocalPosition: {x: 0.017041488, y: 0.0007032536, z: -0.008194809}
-  m_LocalScale: {x: 0.21747677, y: 0.21747671, z: 0.21747676}
-  m_Children: []
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6222772765242088943}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 34.462, y: 10.264001, z: -12.72}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1401504287260761856
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -98,20 +98,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &5691331982445739960
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1401504287261885186}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: 0dda752fa3c3b9142bf14b97fc93dfa3, type: 3}
 --- !u!114 &7249324381701259945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,3 +120,33 @@ MonoBehaviour:
   eqw: {fileID: 0}
   patt: {fileID: 0}
   CA: {fileID: 0}
+--- !u!1 &5699446213543667029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6222772765242088943}
+  m_Layer: 0
+  m_Name: vfx_WeaponTrail
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6222772765242088943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5699446213543667029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0159, z: -0.0883}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1401504287261531938}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
