@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 1752279334581707533}
   - component: {fileID: 1752279334585131821}
   - component: {fileID: 1752279334584132077}
-  - component: {fileID: 8440985591877805922}
-  - component: {fileID: 2240171422592492477}
   - component: {fileID: 5304026062896958052}
   m_Layer: 0
   m_Name: AxeEquip
@@ -82,36 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &8440985591877805922
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1752279334582206253}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: 7ee9fa13de0bf694f9e0c84272ae78b4, type: 3}
---- !u!54 &2240171422592492477
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1752279334582206253}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &5304026062896958052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc8e23aec94d7ab44979258b7984a0bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rgb: {fileID: 2240171422592492477}
+  rgb: {fileID: 0}
   ControlNumber: 0
   rotateSpeed: 0
   areaDrop: {fileID: 0}

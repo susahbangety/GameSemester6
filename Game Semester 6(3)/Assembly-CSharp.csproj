@@ -62,39 +62,42 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Art\Karakter\Character Effects\DestroyFootStep.cs" />
-    <Compile Include="Assets\Scripts\Character\CharacterPowerup.cs" />
-    <Compile Include="Assets\Scripts\Character\PlayerAttack.cs" />
-    <Compile Include="Assets\Scripts\Character\PlayerMovement.cs" />
-    <Compile Include="Assets\Scripts\CharacterAttributes.cs" />
-    <Compile Include="Assets\Scripts\CharacterDamaged.cs" />
-    <Compile Include="Assets\Scripts\ControllerNumber.cs" />
-    <Compile Include="Assets\Scripts\dropWeapon.cs" />
-    <Compile Include="Assets\Scripts\Environments\equipAxe.cs" />
-    <Compile Include="Assets\Scripts\Environments\Japan\Darts.cs" />
-    <Compile Include="Assets\Scripts\Environments\Japan\DartSpawn.cs" />
-    <Compile Include="Assets\Scripts\Environments\Japan\EarthQuake.cs" />
-    <Compile Include="Assets\Scripts\Environments\Japan\Spikes.cs" />
-    <Compile Include="Assets\Scripts\Environments\Japan\spikeSpawner.cs" />
-    <Compile Include="Assets\Scripts\Environments\SpearThrow.cs" />
-    <Compile Include="Assets\Scripts\EquipWeapon.cs" />
-    <Compile Include="Assets\Scripts\FadeObjectOptions.cs" />
-    <Compile Include="Assets\Scripts\FadeObstructionsManager.cs" />
-    <Compile Include="Assets\Scripts\FadeToMe.cs" />
-    <Compile Include="Assets\Scripts\InputManager.cs" />
-    <Compile Include="Assets\Scripts\JatuhRespawn.cs" />
-    <Compile Include="Assets\Scripts\pickupItem.cs" />
-    <Compile Include="Assets\Scripts\PlayerHealth.cs" />
-    <Compile Include="Assets\Scripts\randomSpawn.cs" />
+    <Compile Include="Assets\Scripts\Panji Script\dropWeapon.cs" />
+    <Compile Include="Assets\Scripts\Panji Script\Environments\equipAxe.cs" />
+    <Compile Include="Assets\Scripts\Panji Script\Environments\Japan\Darts.cs" />
+    <Compile Include="Assets\Scripts\Panji Script\Environments\Japan\DartSpawn.cs" />
+    <Compile Include="Assets\Scripts\Panji Script\Environments\Japan\EarthQuake.cs" />
+    <Compile Include="Assets\Scripts\Panji Script\Environments\Japan\Spikes.cs" />
+    <Compile Include="Assets\Scripts\Panji Script\Environments\Japan\spikeSpawner.cs" />
+    <Compile Include="Assets\Scripts\Panji Script\Environments\SpearThrow.cs" />
+    <Compile Include="Assets\Scripts\Panji Script\EquipWeapon.cs" />
+    <Compile Include="Assets\Scripts\Panji Script\FadeObjectOptions.cs" />
+    <Compile Include="Assets\Scripts\Panji Script\FadeObstructionsManager.cs" />
+    <Compile Include="Assets\Scripts\Panji Script\FadeToMe.cs" />
+    <Compile Include="Assets\Scripts\Panji Script\pickupItem.cs" />
+    <Compile Include="Assets\Scripts\Panji Script\randomSpawn.cs" />
+    <Compile Include="Assets\Scripts\Panji Script\Spawner.cs" />
+    <Compile Include="Assets\Scripts\Panji Script\spawnerWeapon.cs" />
+    <Compile Include="Assets\Scripts\Samuel Script\Character\CharacterAttributes.cs" />
+    <Compile Include="Assets\Scripts\Samuel Script\Character\CharacterDamaged.cs" />
+    <Compile Include="Assets\Scripts\Samuel Script\Character\CharacterPowerup.cs" />
+    <Compile Include="Assets\Scripts\Samuel Script\Character\PlayerAttack.cs" />
+    <Compile Include="Assets\Scripts\Samuel Script\Character\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Samuel Script\ControllerSetting\ControllerNumber.cs" />
+    <Compile Include="Assets\Scripts\Samuel Script\ControllerSetting\InputManager.cs" />
+    <Compile Include="Assets\Scripts\Samuel Script\ControllerSetting\SetControllerNumber.cs" />
+    <Compile Include="Assets\Scripts\Samuel Script\Environment\JatuhRespawn.cs" />
     <Compile Include="Assets\Scripts\Samuel Script\Item\PowerupDestroy.cs" />
-    <Compile Include="Assets\Scripts\SetControllerNumber.cs" />
-    <Compile Include="Assets\Scripts\Spawner.cs" />
-    <Compile Include="Assets\Scripts\spawnerWeapon.cs" />
-    <Compile Include="Assets\Scripts\UI\MainMenuHandler.cs" />
-    <Compile Include="Assets\Scripts\UI\MapSelectionHandler.cs" />
-    <Compile Include="Assets\Scripts\UI\OptionHandler.cs" />
-    <Compile Include="Assets\Scripts\UI\PlayerSelectionHandler.cs" />
-    <Compile Include="Assets\Scripts\UI\ScoreboardController.cs" />
-    <Compile Include="Assets\Scripts\UI\Timer.cs" />
+    <Compile Include="Assets\Scripts\Samuel Script\UI\MainMenuHandler.cs" />
+    <Compile Include="Assets\Scripts\Samuel Script\UI\MapSelectionHandler.cs" />
+    <Compile Include="Assets\Scripts\Samuel Script\UI\OptionHandler.cs" />
+    <Compile Include="Assets\Scripts\Samuel Script\UI\PlayerSelectionHandler.cs" />
+    <Compile Include="Assets\Scripts\Samuel Script\UI\ScoreboardController.cs" />
+    <Compile Include="Assets\Scripts\Samuel Script\UI\Timer.cs" />
+    <Compile Include="Assets\Scripts\Samuel Script\Ultimate\AxeUlti.cs" />
+    <Compile Include="Assets\Scripts\Samuel Script\Ultimate\HammerUlti.cs" />
+    <Compile Include="Assets\Scripts\Samuel Script\Ultimate\KnifeUlti.cs" />
+    <Compile Include="Assets\Scripts\Samuel Script\Weapon\RaycastWeapon.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
@@ -153,19 +156,19 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/Github (Master)/GameSemester6/Game Semester 6(3)/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/RepositoryGame/GameSemester6/Game Semester 6(3)/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/Github (Master)/GameSemester6/Game Semester 6(3)/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>D:/RepositoryGame/GameSemester6/Game Semester 6(3)/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/Github (Master)/GameSemester6/Game Semester 6(3)/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>D:/RepositoryGame/GameSemester6/Game Semester 6(3)/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/Github (Master)/GameSemester6/Game Semester 6(3)/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/RepositoryGame/GameSemester6/Game Semester 6(3)/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>D:/Github (Master)/GameSemester6/Game Semester 6(3)/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>D:/RepositoryGame/GameSemester6/Game Semester 6(3)/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -369,13 +372,13 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>D:/Github (Master)/GameSemester6/Game Semester 6(3)/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>D:/RepositoryGame/GameSemester6/Game Semester 6(3)/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>D:/Github (Master)/GameSemester6/Game Semester 6(3)/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>D:/RepositoryGame/GameSemester6/Game Semester 6(3)/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>D:/Github (Master)/GameSemester6/Game Semester 6(3)/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>D:/RepositoryGame/GameSemester6/Game Semester 6(3)/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>
