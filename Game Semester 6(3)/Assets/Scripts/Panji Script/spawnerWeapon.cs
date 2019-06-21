@@ -7,8 +7,8 @@ public class spawnerWeapon : MonoBehaviour
     private Spawner sp;
     public Transform mySpawnPoint;
     public float rotate;
-
-    public EquipWeapon eqw;
+    //public bool Equipable = true;
+    
 
     void Start()
     {
@@ -51,12 +51,11 @@ public class spawnerWeapon : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Player" || col.gameObject.tag == "Player2")
-        {
-            
-            Debug.Log("You Pick Up " + gameObject);
-            StartCoroutine(pickupWeapon(col.gameObject));
-        }
+            if (col.gameObject.tag == "Player" || col.gameObject.tag == "Player2")
+            {
+                Debug.Log("You Pick Up " + gameObject);
+                StartCoroutine(pickupWeapon(col.gameObject));
+            }
     }
 
     IEnumerator pickupWeapon(GameObject weap)

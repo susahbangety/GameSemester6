@@ -26,6 +26,7 @@ public class CharacterAttributes : MonoBehaviour {
     public float SetMaxPowerBar;
     public Text[] HealthBar;
     public Image[] PowerBar;
+    public ParticleSystem[] GlowBar;
 
     [Header("Respawn")]
     public float[] RespawnLength;
@@ -160,6 +161,10 @@ public class CharacterAttributes : MonoBehaviour {
         if (CurrPowerBar[i] >= MaxPowerBar[i])
         {
             CurrPowerBar[i] = MaxPowerBar[i];
+            GlowBar[i].Play();
+        }
+        else {
+            GlowBar[i].Stop();
         }
     }
 

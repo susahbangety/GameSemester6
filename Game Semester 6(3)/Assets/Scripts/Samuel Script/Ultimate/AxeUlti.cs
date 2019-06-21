@@ -6,6 +6,7 @@ public class AxeUlti : MonoBehaviour
 {
 
     public GameObject[] Player;
+    public bool a;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,26 +16,28 @@ public class AxeUlti : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player1")
+        if (a)
         {
-            Player[0].GetComponent<Animator>().SetTrigger("KnockbackUltiAxe");
-        }
-        if (other.gameObject.tag == "Player2")
-        {
-            Player[1].GetComponent<Animator>().SetTrigger("KnockbackUltiAxe");
-        }
-        if (other.gameObject.tag == "Player3")
-        {
-            Player[2].GetComponent<Animator>().SetTrigger("KnockbackUltiAxe");
-        }
-        if (other.gameObject.tag == "Player4")
-        {
-            Player[3].GetComponent<Animator>().SetTrigger("KnockbackUltiAxe");
+            if (other.gameObject.tag == "Player1")
+            {
+                Player[0].GetComponent<Animator>().SetTrigger("KnockbackUltiAxe");
+            }
+            if (other.gameObject.tag == "Player2")
+            {
+                Player[1].GetComponent<Animator>().SetTrigger("KnockbackUltiAxe");
+            }
+            if (other.gameObject.tag == "Player3")
+            {
+                Player[2].GetComponent<Animator>().SetTrigger("KnockbackUltiAxe");
+            }
+            if (other.gameObject.tag == "Player4")
+            {
+                Player[3].GetComponent<Animator>().SetTrigger("KnockbackUltiAxe");
+            }
         }
     }
 }

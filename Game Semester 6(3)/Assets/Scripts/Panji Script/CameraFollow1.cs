@@ -72,7 +72,7 @@ public class CameraFollow1 : MonoBehaviour
     {
         Bounds bounds = EncapsulateTargets();
         
-        return bounds.size.x /*> bounds.size.z ? bounds.size.x : bounds.size.z*/;
+        return bounds.size.x > bounds.size.z ? bounds.size.x : bounds.size.z;
     }
 
     private Vector3 GetCenterPoint()
@@ -85,7 +85,7 @@ public class CameraFollow1 : MonoBehaviour
         Bounds bounds = EncapsulateTargets();
 
         Vector3 center = bounds.center;
-        //center.y = 0f;
+        center.y = 0f;
         return center;
     }
 

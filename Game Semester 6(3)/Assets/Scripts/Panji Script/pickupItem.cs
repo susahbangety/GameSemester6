@@ -54,10 +54,13 @@ public class pickupItem : MonoBehaviour
         //    transform.Rotate(Vector3.right * Time.deltaTime * rotateSpeed);
         //    throwWeapon();
         //}
-        //if (gameObject.name == "SpearEquip" && eqw.weaponActive == false)
-        //{
-        //    gameObject.transform.rotation = Quaternion.Euler(pm.transform.rotation.x, 0, 0);
-        //}
+        if (/*gameObject.name == "SpearEquip" &&*/ gameObject.transform.parent == null)
+        {
+            //gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+            Vector3 direction = player.transform.position - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            transform.rotation = rotation;
+        }
         //if (gameObject.name == "KnifeEquip" && eqw.weaponActive == false)
         //{
         //    transform.rotation = areaDrop.transform.rotation;

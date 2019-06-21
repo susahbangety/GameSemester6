@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     public float RollSpeed;
     public float RollTime;
     public float RollDelayTime;
+    public Image TandaRoll;
     
     public float MovementSpeed;
     public float SpeedMultiplier;
@@ -44,15 +46,19 @@ public class PlayerMovement : MonoBehaviour
     public float StunTime;
     public GameObject stunnedEffect;
 
+
+
     // Use this for initialization
     void Start()
     {
+        TandaRoll.enabled = false;
         SpeedMultiplier = 1.0f;
         PlayerNumber = PlayerNumber - 1;
         IM = GameObject.FindGameObjectWithTag("InputManager").GetComponent<InputManager>();
         charControl = GetComponent<CharacterController>();
         Roll = false;
         RollReady = true;
+        stunnedEffect.SetActive(false);
     }
 
     // Update is called once per frame
@@ -156,15 +162,18 @@ public class PlayerMovement : MonoBehaviour
 
         isStun = true;
         this.enabled = false;
+        stunnedEffect.SetActive(true);
         gameObject.GetComponent<Animator>().SetBool("Running", false);
 
         StartCoroutine(WaitForStunToEnd());
     }
 
     IEnumerator RollDelay() {
+        TandaRoll.enabled = true;
         RollReady = false;
         yield return new WaitForSeconds(RollDelayTime);
         RollReady = true;
+        TandaRoll.enabled = false;
     }
 
     private IEnumerator WaitForStunToEnd()
@@ -172,6 +181,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(StunTime);
         isStun = false;
         this.enabled = true;
+        stunnedEffect.SetActive(false);
         gameObject.GetComponent<Animator>().SetBool("Running", true);
     }
 }
