@@ -28,13 +28,13 @@ public class PlayerMovement : MonoBehaviour
     public float RollTime;
     public float RollDelayTime;
     public Image TandaRoll;
-    
+    public AudioSource RollSound;
+
+    [Header("Attribute")]
     public float MovementSpeed;
     public float SpeedMultiplier;
-
     public Vector3 PlayerPos;
     public Vector3 InputJoystick;
-
     public float Angle;
     public float TurnSpeed;
     public Quaternion TargetRotation;
@@ -45,8 +45,6 @@ public class PlayerMovement : MonoBehaviour
     public bool isStun;
     public float StunTime;
     public GameObject stunnedEffect;
-
-
 
     // Use this for initialization
     void Start()
@@ -97,10 +95,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 verticalVelocity = jumpForce;
                 gameObject.GetComponent<Animator>().SetTrigger("Jump");
+  
             }
             if (Input.GetKeyDown(IM.LeftBumper[ControlNumber]) && Roll == false && RollReady == true)
             {
                 gameObject.GetComponent<Animator>().SetTrigger("Roll");
+                RollSound.Play();
                 StartRoll = true;
                 RollTime = 0;
                 StartCoroutine(RollDelay());

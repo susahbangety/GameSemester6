@@ -6,6 +6,8 @@ public class CharacterPowerup : MonoBehaviour
 {
     public int PlayerKeberapa;
     public CharacterAttributes ca;
+    public AudioSource HealSound;
+    public AudioSource DoubleDamageSound;
 
     //public ParticleSystem healingEffect;
 
@@ -20,10 +22,12 @@ public class CharacterPowerup : MonoBehaviour
             if (coll.gameObject.tag == "DoubleDamageItem")
             {
                 ca.powerUpDamage[PlayerKeberapa - 1] = true;
+                DoubleDamageSound.Play();
             }
             if (coll.gameObject.tag == "Healing")
             {
                 //healingEffect.Play();
+                HealSound.Play();
                 ca.CurrHealth[PlayerKeberapa - 1] += ca.CurrHealth[PlayerKeberapa - 1] * 30 / 100;
                 if (ca.CurrHealth[PlayerKeberapa - 1] >= ca.MaxHealth[PlayerKeberapa - 1])
                 {
@@ -37,10 +41,12 @@ public class CharacterPowerup : MonoBehaviour
         {
             if (coll.gameObject.tag == "DoubleDamageItem")
             {
+                DoubleDamageSound.Play();
                 ca.powerUpDamage[PlayerKeberapa - 1] = true;
             }
             if (coll.gameObject.tag == "Healing")
             {
+                HealSound.Play();
                 ca.CurrHealth[PlayerKeberapa - 1] += ca.CurrHealth[PlayerKeberapa - 1] * 30 / 100;
                 if (ca.CurrHealth[PlayerKeberapa - 1] >= ca.MaxHealth[PlayerKeberapa - 1])
                 {
@@ -53,10 +59,12 @@ public class CharacterPowerup : MonoBehaviour
         {
             if (coll.gameObject.tag == "DoubleDamageItem")
             {
+                DoubleDamageSound.Play();
                 ca.powerUpDamage[PlayerKeberapa - 1] = true;
             }
             if (coll.gameObject.tag == "Healing")
             {
+                HealSound.Play();
                 ca.CurrHealth[PlayerKeberapa - 1] += ca.CurrHealth[PlayerKeberapa - 1] * 30 / 100;
                 if (ca.CurrHealth[PlayerKeberapa - 1] >= ca.MaxHealth[PlayerKeberapa - 1])
                 {
@@ -69,10 +77,12 @@ public class CharacterPowerup : MonoBehaviour
         {
             if (coll.gameObject.tag == "DoubleDamageItem")
             {
+                DoubleDamageSound.Play();
                 ca.powerUpDamage[PlayerKeberapa - 1] = true;
             }
             if (coll.gameObject.tag == "Healing")
             {
+                HealSound.Play();
                 ca.CurrHealth[PlayerKeberapa - 1] += ca.CurrHealth[PlayerKeberapa - 1] * 30 / 100;
                 if (ca.CurrHealth[PlayerKeberapa - 1] >= ca.MaxHealth[PlayerKeberapa - 1])
                 {

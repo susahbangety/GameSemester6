@@ -63,7 +63,7 @@ public class cameraFollow : MonoBehaviour
     {
         float NewZoom = Mathf.Lerp(minZoom, maxZoom, GetGreatestDistance() / zoomLimit);
         myCam.fieldOfView = Mathf.Lerp(myCam.fieldOfView, NewZoom, Time.deltaTime);
-        Debug.Log(GetGreatestDistance());
+        //Debug.Log(GetGreatestDistance());
     }
 
     float GetGreatestDistance()

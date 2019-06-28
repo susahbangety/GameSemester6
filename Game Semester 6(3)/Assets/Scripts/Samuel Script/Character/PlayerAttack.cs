@@ -15,23 +15,30 @@ public class PlayerAttack : MonoBehaviour
     [Header("AXE")]
     public GameObject AxeEquip;
     public ParticleSystem AxeEffect;
+    public AudioSource AxeSound;
 
     [Header("SWORD")]
     public GameObject SwordEquip;
     public ParticleSystem SwordEffect;
+    public AudioSource SwordSound;
 
     [Header("SPEAR")]
     public GameObject SpearEquip;
     public ParticleSystem SpearEffect;
+    public AudioSource SpearSound;
 
     [Header("HAMMER")]
     public GameObject HammerEquip;
     public ParticleSystem HammerEffect;
+    public AudioSource HammerSound;
 
     [Header("KNIFE")]
     public GameObject KnifeEquip;
     public ParticleSystem KnifeEffect;
+    public AudioSource KnifeSound;
 
+
+    [Header("Other")]
     public CharacterAttributes ca;
 
     public bool AttackState;
@@ -275,6 +282,7 @@ public class PlayerAttack : MonoBehaviour
                 AttackState = true;
                 AttackTime = setAttackTime;
                 anim.SetTrigger("AttackAxe");
+                AxeSound.Play();
             }
         }
         if (AttackState == false && HaveWeaponKnife == true)
@@ -284,6 +292,7 @@ public class PlayerAttack : MonoBehaviour
                 AttackState = true;
                 AttackTime = setAttackTime;
                 anim.SetTrigger("AttackKnife");
+                KnifeSound.Play();
             }
         }
         if (AttackState == false && HaveWeaponSword == true)
@@ -293,6 +302,7 @@ public class PlayerAttack : MonoBehaviour
                 AttackState = true;
                 AttackTime = setAttackTime;
                 anim.SetTrigger("AttackSword");
+                SwordSound.Play();
             }
         }
         if (AttackState == false && HaveWeaponSpear == true)
@@ -302,6 +312,7 @@ public class PlayerAttack : MonoBehaviour
                 AttackState = true;
                 AttackTime = setAttackTime;
                 anim.SetTrigger("AttackSpear");
+                SpearSound.Play();
             }
         }
         if (AttackState == false && HaveWeaponHammer == true)
@@ -311,6 +322,7 @@ public class PlayerAttack : MonoBehaviour
                 AttackState = true;
                 AttackTime = setAttackTime;
                 anim.SetTrigger("AttackHammer");
+                HammerSound.Play();
             }
         }
     }

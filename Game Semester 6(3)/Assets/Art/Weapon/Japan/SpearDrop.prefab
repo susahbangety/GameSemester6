@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5535388625629035751}
   m_Layer: 0
   m_Name: SpearDrop
-  m_TagString: Spear
+  m_TagString: SpearDrop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySpawnPoint: {fileID: 0}
   rotate: 100
-  eqw: {fileID: 0}
+  Player1: {fileID: 0}
+  Player2: {fileID: 0}
+  Equip1: {fileID: 0}
+  Equip2: {fileID: 0}
+  Patk1: {fileID: 0}
+  Patk2: {fileID: 0}
 --- !u!54 &1799086423448116732
 Rigidbody:
   m_ObjectHideFlags: 0

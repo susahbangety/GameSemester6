@@ -37,6 +37,7 @@ public class EquipWeapon : MonoBehaviour
     public PlayerAttack patt;
     private pickupItem pickUp;
 
+    public AudioSource PickUpSound;
 
     //public GameObject katana;
     //public GameObject katanaHand;
@@ -65,56 +66,64 @@ public class EquipWeapon : MonoBehaviour
 
     public void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "Axe" && weaponActive == false)
+        if (/*collider.gameObject.tag == "WeaponDrop" && */weaponActive == false && patt.HaveWeapon == false)
         {
-            Debug.Log("You Use " + collider.gameObject.name);
-            //Destroy(collider.gameObject);
-            //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
-            //Axe.GetComponent<ParticleSystem>().Stop();
-            weaponActive = true;
-            patt.HaveWeapon = true;
-            patt.HaveWeaponAxe = true;
-            Axe.SetActive(true);
-        }
-        else if (collider.gameObject.tag == "Sword" && weaponActive == false)
-        {
-            Debug.Log("You Use " + collider.gameObject.name);
-            //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
-            //Destroy(collider.gameObject);
-            weaponActive = true;
-            patt.HaveWeapon = true;
-            patt.HaveWeaponSword = true;
-            Sword.SetActive(true);
-        }
-        else if (collider.gameObject.tag == "Spear" && weaponActive == false)
-        {
-            Debug.Log("You Use " + collider.gameObject.name);
-            //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
-            //Destroy(collider.gameObject);
-            weaponActive = true;
-            patt.HaveWeapon = true;
-            patt.HaveWeaponSpear = true;
-            Spear.SetActive(true);
-        }
-        else if (collider.gameObject.tag == "Knife" && weaponActive == false)
-        {
-            Debug.Log("You Use " + collider.gameObject.name);
-            //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
-            //Destroy(collider.gameObject);
-            weaponActive = true;
-            patt.HaveWeapon = true;
-            patt.HaveWeaponKnife = true;
-            Knife.SetActive(true);
-        }
-        else if (collider.gameObject.tag == "Hammer" && weaponActive == false)
-        {
-            Debug.Log("You Use " + collider.gameObject.name);
-            //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
-            //Destroy(collider.gameObject);
-            weaponActive = true;
-            patt.HaveWeapon = true;
-            patt.HaveWeaponHammer = true;
-            Hammer.SetActive(true);
+            if (collider.gameObject.tag == "AxeDrop")
+            {
+                Debug.Log("You Use " + collider.gameObject.name);
+                //Destroy(collider.gameObject);
+                //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
+                //Axe.GetComponent<ParticleSystem>().Stop();
+                weaponActive = true;
+                patt.HaveWeapon = true;
+                patt.HaveWeaponAxe = true;
+                Axe.SetActive(true);
+                PickUpSound.Play();
+            }
+            else if (collider.gameObject.tag == "SwordDrop")
+            {
+                Debug.Log("You Use " + collider.gameObject.name);
+                //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
+                //Destroy(collider.gameObject);
+                weaponActive = true;
+                patt.HaveWeapon = true;
+                patt.HaveWeaponSword = true;
+                Sword.SetActive(true);
+                PickUpSound.Play();
+            }
+            else if (collider.gameObject.tag == "SpearDrop")
+            {
+                Debug.Log("You Use " + collider.gameObject.name);
+                //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
+                //Destroy(collider.gameObject);
+                weaponActive = true;
+                patt.HaveWeapon = true;
+                patt.HaveWeaponSpear = true;
+                Spear.SetActive(true);
+                PickUpSound.Play();
+            }
+            else if (collider.gameObject.tag == "KnifeDrop")
+            {
+                Debug.Log("You Use " + collider.gameObject.name);
+                //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
+                //Destroy(collider.gameObject);
+                weaponActive = true;
+                patt.HaveWeapon = true;
+                patt.HaveWeaponKnife = true;
+                Knife.SetActive(true);
+                PickUpSound.Play();
+            }
+            else if (collider.gameObject.tag == "HammerDrop")
+            {
+                Debug.Log("You Use " + collider.gameObject.name);
+                //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
+                //Destroy(collider.gameObject);
+                weaponActive = true;
+                patt.HaveWeapon = true;
+                patt.HaveWeaponHammer = true;
+                Hammer.SetActive(true);
+                PickUpSound.Play();
+            }
         }
     }
 }

@@ -20,6 +20,7 @@ public class pickupItem : MonoBehaviour
     public PlayerAttack patt;
     private Animation _anim;
     public CharacterAttributes CA;
+    private BoxCollider ColliderWeapon;
 
     //public dropWeapon drop;
 
@@ -29,9 +30,11 @@ public class pickupItem : MonoBehaviour
         //eqw = GameObject.FindGameObjectWithTag("Player").GetComponent<EquipWeapon>();
         //drop = GameObject.Find("DropArea").GetComponent<dropWeapon>();
         //StartCoroutine(pickupWeapon());
-        
+        ColliderWeapon = GetComponent<BoxCollider>();
         rgb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animation>();
+        ColliderWeapon.enabled = false;
+  
     }
 
     void Update()
@@ -60,6 +63,7 @@ public class pickupItem : MonoBehaviour
             Vector3 direction = player.transform.position - transform.position;
             Quaternion rotation = Quaternion.LookRotation(direction);
             transform.rotation = rotation;
+            ColliderWeapon.enabled = true;
         }
         //if (gameObject.name == "KnifeEquip" && eqw.weaponActive == false)
         //{
@@ -79,6 +83,7 @@ public class pickupItem : MonoBehaviour
             rgb.AddForce(eqw.dropArea.forward * 100);
             StartCoroutine(weaponThrow());
             eqw.weaponActive = false;
+
         }
         if (patt.isThrowingKnife == true)
         {
@@ -126,6 +131,7 @@ public class pickupItem : MonoBehaviour
                 //eqw.weaponActive = false;
                 patt.HaveWeapon = false;
                 patt.HaveWeaponAxe = false;
+                ColliderWeapon.enabled = false;
                 //_anim.enabled = false;
             }
             if (gameObject.name == "SwordEquip")
@@ -139,6 +145,7 @@ public class pickupItem : MonoBehaviour
                 //eqw.weaponActive = false;
                 patt.HaveWeapon = false;
                 patt.HaveWeaponSword = false;
+                ColliderWeapon.enabled = false;
             }
             if (gameObject.name == "SpearEquip")
             {
@@ -152,6 +159,7 @@ public class pickupItem : MonoBehaviour
                 //eqw.weaponActive = false;
                 patt.HaveWeapon = false;
                 patt.HaveWeaponSpear = false;
+                ColliderWeapon.enabled = false;
             }
             if (gameObject.name == "KnifeEquip")
             {
@@ -165,6 +173,7 @@ public class pickupItem : MonoBehaviour
                 //eqw.weaponActive = false;
                 patt.HaveWeapon = false;
                 patt.HaveWeaponKnife = false;
+                ColliderWeapon.enabled = false;
             }
             if (gameObject.name == "HammerEquip")
             {
@@ -178,6 +187,7 @@ public class pickupItem : MonoBehaviour
                 //eqw.weaponActive = false;
                 patt.HaveWeapon = false;
                 patt.HaveWeaponHammer = false;
+                ColliderWeapon.enabled = false;
             }
         }
         else if (gameObject.tag == "WeaponPlayer2")
@@ -212,6 +222,7 @@ public class pickupItem : MonoBehaviour
                 patt.HaveWeaponSpear = false;
                 patt.HaveWeaponSword = false;
                 patt.HaveWeaponHammer = false;
+
             }
             if (gameObject.name == "SpearEquip")
             {
@@ -228,6 +239,7 @@ public class pickupItem : MonoBehaviour
                 patt.HaveWeaponSpear = false;
                 patt.HaveWeaponSword = false;
                 patt.HaveWeaponHammer = false;
+
             }
             if (gameObject.name == "KnifeEquip")
             {

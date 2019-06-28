@@ -100,6 +100,7 @@
     <Compile Include="Assets\Scripts\Samuel Script\Ultimate\AxeUlti.cs" />
     <Compile Include="Assets\Scripts\Samuel Script\Ultimate\HammerUlti.cs" />
     <Compile Include="Assets\Scripts\Samuel Script\Ultimate\KnifeUlti.cs" />
+    <Compile Include="Assets\Scripts\Samuel Script\Ultimate\SpearUlti.cs" />
     <Compile Include="Assets\Scripts\Samuel Script\Weapon\RaycastWeapon.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1866525533167099182}
   m_Layer: 0
   m_Name: AxeDrop
-  m_TagString: Axe
+  m_TagString: AxeDrop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySpawnPoint: {fileID: 0}
   rotate: 100
-  eqw: {fileID: 0}
+  Player1: {fileID: 0}
+  Player2: {fileID: 0}
+  Equip1: {fileID: 0}
+  Equip2: {fileID: 0}
+  Patk1: {fileID: 0}
+  Patk2: {fileID: 0}
 --- !u!54 &7737841765526372331
 Rigidbody:
   m_ObjectHideFlags: 0

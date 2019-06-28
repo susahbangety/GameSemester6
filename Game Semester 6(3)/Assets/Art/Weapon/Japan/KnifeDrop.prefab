@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5542450596752351915}
   m_Layer: 0
   m_Name: KnifeDrop
-  m_TagString: Knife
+  m_TagString: KnifeDrop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,4 +126,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySpawnPoint: {fileID: 0}
   rotate: 100
-  eqw: {fileID: 0}
+  Player1: {fileID: 0}
+  Player2: {fileID: 0}
+  Equip1: {fileID: 0}
+  Equip2: {fileID: 0}
+  Patk1: {fileID: 0}
+  Patk2: {fileID: 0}
