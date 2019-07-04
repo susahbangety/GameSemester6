@@ -9,12 +9,14 @@ public class CharacterPowerup : MonoBehaviour
     public AudioSource HealSound;
     public AudioSource DoubleDamageSound;
 
-    //public ParticleSystem healingEffect;
+    public GameObject DoubleDamageImage;
+    public ParticleSystem healingEffect;
 
     // Start is called before the first frame update
     void Start()
     {
-        //healingEffect.Stop();
+        DoubleDamageImage.SetActive(false);
+        healingEffect.Stop();
     }
     
     public void OnTriggerEnter(Collider coll) {
@@ -22,12 +24,15 @@ public class CharacterPowerup : MonoBehaviour
             if (coll.gameObject.tag == "DoubleDamageItem")
             {
                 ca.powerUpDamage[0] = true;
+                DoubleDamageImage.SetActive(true);
                 DoubleDamageSound.Play();
+                StartCoroutine(stopDoubleDamage());
             }
             if (coll.gameObject.tag == "Healing")
             {
-                //healingEffect.Play();
+                healingEffect.Play();
                 HealSound.Play();
+                StartCoroutine(stopHealingEffect());
                 ca.CurrHealth[0] += ca.CurrHealth[0] * 30 / 100;
                 if (ca.CurrHealth[0] >= ca.MaxHealth[0])
                 {
@@ -92,10 +97,17 @@ public class CharacterPowerup : MonoBehaviour
         }
     }
 
-    //IEnumerator stopHealingEffect()
-    //{
-    //    yield return new WaitForSeconds(.4f);
+    IEnumerator stopHealingEffect()
+    {
+        yield return new WaitForSeconds(1f);
 
-    //    healingEffect.Stop();
-    //}
+        healingEffect.Stop();
+    }
+
+    IEnumerator stopDoubleDamage()
+    {
+        yield return new WaitForSeconds(10f);
+
+        DoubleDamageImage.SetActive(false);
+    }
 }

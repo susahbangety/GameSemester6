@@ -8,11 +8,19 @@ public class Timer : MonoBehaviour
 {
     public int startTimer;
     public Text timerText;
+    public GameObject ClockImage;
+    public GameObject SuddenDeathClockImage;
+    public GameObject SuddenDeathImage;
+    public GameObject TimeOutText;
 
     public DartSpawn dart;
+    public SpikeSpawn spike;
     // Start is called before the first frame update
     void Start()
     {
+        SuddenDeathImage.SetActive(false);
+        SuddenDeathClockImage.SetActive(false);
+        TimeOutText.SetActive(false);
         countdownTimer();
         //dart = GameObject.Find("Dart").GetComponent<DartSpawn>();
     }
@@ -23,6 +31,13 @@ public class Timer : MonoBehaviour
         if (startTimer < 240)
         {
             dart.enabled = true;
+            spike.enabled = true;
+        }
+        if (startTimer == 58)
+        {
+            SuddenDeathImage.SetActive(true);
+
+            StartCoroutine(HideText());
         }
     }
 
@@ -31,23 +46,30 @@ public class Timer : MonoBehaviour
         if (startTimer >= 60)
         {
             TimeSpan spanTime = TimeSpan.FromSeconds(startTimer);
-            timerText.text = spanTime.Minutes + " : " + spanTime.Seconds;
+            timerText.text = spanTime.Minutes + ":" + spanTime.Seconds;
             startTimer--;
             Invoke("countdownTimer", 1.0f);
         }
         else if (startTimer < 60 && startTimer > 0)
         {
             TimeSpan spanTime = TimeSpan.FromSeconds(startTimer);
+            timerText.color = Color.red;
+            SuddenDeathClockImage.SetActive(true);
+            ClockImage.SetActive(false);
             timerText.text = " " + spanTime.Seconds;
             startTimer--;
             Invoke("countdownTimer", 1.0f);
         }
         else
         {
-            timerText.text = "Time Out!";
-            timerText.rectTransform.anchorMin = new Vector2(0.5f, 0.65f);
-            timerText.rectTransform.anchorMax = new Vector2(0.5f, 0.65f);
-            timerText.rectTransform.pivot = new Vector2(0.5f, 0.5f);
+            TimeOutText.SetActive(true);
         }
+    }
+
+    IEnumerator HideText()
+    {
+        yield return new WaitForSeconds(2f);
+
+        SuddenDeathImage.SetActive(false);
     }
 }

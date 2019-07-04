@@ -9,7 +9,6 @@ public class DartSpawn : MonoBehaviour
     public Rigidbody rgb;
     public int timeToSpawn;
 
-
     // Start is called before the first frame update
     void Start()
     {

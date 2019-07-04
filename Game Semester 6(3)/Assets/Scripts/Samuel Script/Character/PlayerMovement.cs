@@ -168,6 +168,13 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(WaitForStunToEnd());
     }
 
+    public void PlayerSlow()
+    {
+        MovementSpeed = 0.03f;
+
+        StartCoroutine(BackFromSlow());
+    }
+
     IEnumerator RollDelay() {
         TandaRoll.enabled = true;
         RollReady = false;
@@ -183,5 +190,12 @@ public class PlayerMovement : MonoBehaviour
         this.enabled = true;
         stunnedEffect.SetActive(false);
         gameObject.GetComponent<Animator>().SetBool("Running", true);
+    }
+
+    IEnumerator BackFromSlow()
+    {
+        yield return new WaitForSeconds(2f);
+
+        MovementSpeed = 0.05f;
     }
 }

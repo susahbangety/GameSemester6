@@ -6,7 +6,15 @@ public class spawnerWeapon : MonoBehaviour
 {
     private Spawner sp;
     public Transform mySpawnPoint;
-    public float rotate;
+    //public float rotate;
+
+    public float degreesPerSecond;
+    public float amplitude;
+    public float frequency;
+
+    // Position Storage Variables
+    Vector3 posOffset = new Vector3();
+    Vector3 tempPos = new Vector3();
 
     public GameObject Player1;
     public GameObject Player2;
@@ -18,9 +26,16 @@ public class spawnerWeapon : MonoBehaviour
     public PlayerAttack Patk2;
     //public bool Equipable = true;
 
+    //public ParticleSystem WeaponSpawnEffect;
+
 
     void Start()
     {
+        //WeaponSpawnEffect.Stop();
+
+        // Store the starting position & rotation of the object
+        posOffset = transform.position;
+
         Player1 = GameObject.FindGameObjectWithTag("Player");
         Equip1 = Player1.GetComponent<EquipWeapon>();
         Patk1 = Player1.GetComponent<PlayerAttack>();
@@ -42,7 +57,7 @@ public class spawnerWeapon : MonoBehaviour
         if (gameObject.tag == "KnifeDrop")
         {
             transform.rotation = Quaternion.Euler(-90, transform.rotation.y, transform.rotation.z);
-            transform.position = new Vector3(transform.position.x, 1.7f, transform.position.z);
+            transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
         }
         if (gameObject.tag == "SpearDrop")
         {
@@ -57,22 +72,31 @@ public class spawnerWeapon : MonoBehaviour
     void Update()
     {
 
-        if (gameObject.tag == "HammerDrop" || gameObject.tag == "KnifeDrop")
-        {
-            gameObject.transform.Rotate(Vector3.forward * Time.deltaTime * rotate);
-        }
-        else
-        {
-            gameObject.transform.Rotate(Vector3.up * Time.deltaTime * rotate);
-        }
+        //if (gameObject.tag == "HammerDrop" || gameObject.tag == "KnifeDrop")
+        //{
+        //    gameObject.transform.Rotate(Vector3.forward * Time.deltaTime * rotate);
+        //}
+        //else
+        //{
+        //    gameObject.transform.Rotate(Vector3.up * Time.deltaTime * rotate);
+        //}
+
+        // Spin object around Y-Axis
+        transform.Rotate(new Vector3(0f, Time.deltaTime * degreesPerSecond, 0f), Space.World);
+
+        // Float up/down with a Sin()
+        tempPos = posOffset;
+        tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * frequency) * amplitude;
+
+        transform.position = tempPos;
     }
 
     public void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Player" /*&& Equip1.weaponActive == false && Patk1.HaveWeapon == false */ && Player1.GetComponent<EquipWeapon>().weaponActive == false)
+        if (col.gameObject.tag == "Player")
         {
 
-            StartCoroutine(pickupWeapon(/*col.gameObject*/));
+            StartCoroutine(pickupWeapon(col.gameObject));
             Debug.Log("You Pick Up " + gameObject);
         }
         //else if (col.gameObject.tag == "Player2" /*&& Equip2.weaponActive == false && Patk2.HaveWeapon == false)
@@ -82,7 +106,7 @@ public class spawnerWeapon : MonoBehaviour
         //}
     }
 
-    IEnumerator pickupWeapon(/*GameObject weap*/)
+    IEnumerator pickupWeapon(GameObject weap)
     {
         yield return new WaitForSeconds(0);
 
@@ -91,6 +115,7 @@ public class spawnerWeapon : MonoBehaviour
             if (sp.spawnPos[i] == mySpawnPoint)
             {
                 sp.possibleSpawns.Add(sp.spawnPos[i]);
+                //WeaponSpawnEffect.Play();
             }
         }
         Destroy(gameObject);

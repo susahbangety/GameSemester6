@@ -28,6 +28,7 @@ public class CharacterAttributes : MonoBehaviour {
     public Text[] HealthBar;
     public Image[] PowerBar;
     public ParticleSystem[] GlowBar;
+    public HealthShake[] HealthShakeEffect;
 
     [Header("Respawn")]
     public float[] RespawnLength;
@@ -152,6 +153,7 @@ public class CharacterAttributes : MonoBehaviour {
         if (IsDamaged[i] == false)
         {
             CurrHealth[i] -= amountDamage[j];
+            HealthShakeEffect[i].enabled = true;
             StartCoroutine(DelayDamage(i));
             Debug.Log("damage " + amountDamage[j]);
             HealthBar[i].text = "" + CurrHealth[i];

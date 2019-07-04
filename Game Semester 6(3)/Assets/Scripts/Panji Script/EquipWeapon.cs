@@ -53,6 +53,7 @@ public class EquipWeapon : MonoBehaviour
     {
         //Instantiate(katana, new Vector3(0,0,0),Quaternion.Euler(0,0,0),katanaHand.transform);
         //particle = GetComponent<ParticleSystem>();
+        ca = GameObject.Find("GameManager").GetComponent<CharacterAttributes>();
         rgbWeapon = GetComponent<Rigidbody>();
         weaponActive = false;
         Axe.SetActive(false);
@@ -75,7 +76,7 @@ public class EquipWeapon : MonoBehaviour
     {
         if (PlayerKeberapa == 1)
         {
-            if (/*collider.gameObject.tag == "WeaponDrop" && */weaponActive == false && patt.HaveWeapon == false)
+            if (weaponActive == false && patt.HaveWeapon == false)
             {
                 if (collider.gameObject.tag == "AxeDrop")
                 {

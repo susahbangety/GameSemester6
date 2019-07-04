@@ -18,7 +18,6 @@ public class Spawner : MonoBehaviour
         //Instantiate(Weapon[randomInt], spawnPos[randomInt].position, spawnPos[randomInt].rotation);
         //spawnRandom();
 
-
         for (int i = 0; i < spawnPos.Length; i++)
         {
            

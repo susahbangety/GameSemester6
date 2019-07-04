@@ -81,6 +81,21 @@ ModelImporter:
     4300024: Cylinder.002
     4300026: Cylinder.001
     4300028: Cylinder
+    6400000: Cylinder
+    6400002: Cylinder.001
+    6400004: Cylinder.002
+    6400006: Cylinder.003
+    6400008: Cylinder.004
+    6400010: Cylinder.005
+    6400012: Cylinder.006
+    6400014: Cylinder.007
+    6400016: Cylinder.008
+    6400018: Cylinder.009
+    6400020: Cylinder.010
+    6400022: Cylinder.011
+    6400024: Cylinder.012
+    6400026: Cylinder.013
+    6400028: Cylinder.014
   externalObjects: {}
   materials:
     importMaterials: 1
