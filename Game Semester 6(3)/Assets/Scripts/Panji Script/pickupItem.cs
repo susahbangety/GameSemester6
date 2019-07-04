@@ -101,7 +101,7 @@ public class pickupItem : MonoBehaviour
     {
         if (eqw.weaponActive == true && patt.AttackState == false)
         {
-            if /*(Input.GetKeyDown(KeyCode.G))*/ (Input.GetKeyDown(im.TriangleButton[ControlNumber]))
+            if /*(Input.GetKeyDown(KeyCode.G))*/ (Input.GetKeyDown(im.YButton[ControlNumber]))
             {
                 if (gameObject.name == "KnifeEquip")
                 {

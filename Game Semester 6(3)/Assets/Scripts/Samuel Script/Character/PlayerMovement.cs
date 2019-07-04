@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
         if (charControl.isGrounded)
         {
             verticalVelocity = -gravity * Time.deltaTime;
-            if (Input.GetKeyDown(IM.CircleButton[ControlNumber]))
+            if (Input.GetKeyDown(IM.AButton[ControlNumber]))
             {
                 verticalVelocity = jumpForce;
                 gameObject.GetComponent<Animator>().SetTrigger("Jump");

@@ -12,13 +12,14 @@ public class CharacterAttributes : MonoBehaviour {
     public float[] CurrPowerBar;
     public float[] MaxPowerBar;
 
-    public bool[] IsDamaged;
     public float[] InvicibilityLength;
     public float[] InvicibilityCounter;
     public float[] FlashCounter;
     public float[] FlashLength;
+    public bool[] IsDamaged;
 
-    public float[] amount;
+    public float[] amountPowerBar;
+    public float[] amountDamage;
     public SkinnedMeshRenderer[] PlayerRenderer;
 
     [Header("UI")]
@@ -50,6 +51,7 @@ public class CharacterAttributes : MonoBehaviour {
 
     public float amountOverTime;
 
+
     public float powerUpTime;
     public bool[] powerUpDamage;
 
@@ -61,11 +63,12 @@ public class CharacterAttributes : MonoBehaviour {
         MaxHealth = new float[Player.Length];
         CurrPowerBar = new float[Player.Length];
         MaxPowerBar = new float[Player.Length];
-        IsDamaged = new bool[Player.Length];
         isRespawning = new bool[Player.Length];
+        IsDamaged = new bool[Player.Length];
         RespawnLength = new float[Player.Length];
         IsUltiReady = new bool[Player.Length];
-        amount = new float[Player.Length];
+        amountPowerBar = new float[Player.Length];
+        amountDamage = new float[Player.Length];
 
         for (int i = 0; i < Player.Length; i++)
         {
@@ -76,8 +79,10 @@ public class CharacterAttributes : MonoBehaviour {
             PowerBar[i].fillAmount = CurrPowerBar[i] / MaxPowerBar[i];
             HealthBar[i].text = "" + CurrHealth[i];
             playerCrown[i].enabled = false;
-            amount[i] = 10;
+            amountPowerBar[i] = 10;
             powerUpDamage[i] = false;
+            amountDamage[i] = 5;
+            IsDamaged[i] = false;
         }
     }
 
@@ -93,9 +98,7 @@ public class CharacterAttributes : MonoBehaviour {
 
         for (int i = 0; i < Player.Length; i++) {
             PowerBarOverTime(i);
-            if (IsDamaged[i] == true) {
-                CalculateHealth(i);
-            }
+
             if (CurrPowerBar[i] == SetMaxPowerBar) {
                 IsUltiReady[i] = true;
             }
@@ -136,7 +139,7 @@ public class CharacterAttributes : MonoBehaviour {
     }
 
     public void AttackSuccess(int i) {
-        CurrPowerBar[i] += amount[i];
+        CurrPowerBar[i] += amountPowerBar[i];
         PowerBar[i].fillAmount = CurrPowerBar[i] / MaxPowerBar[i];
         isHit[i] = false;
         if (CurrPowerBar[i] >= MaxPowerBar[i])
@@ -145,13 +148,21 @@ public class CharacterAttributes : MonoBehaviour {
         }
     }
 
-    void CalculateHealth(int i) {
-        CurrHealth[i] -= amount[i];
-        HealthBar[i].text = "" + CurrHealth[i];
-        IsDamaged[i] = false;
-        if (CurrHealth[i] <= 0) {
-            Respawning(i);
-            InvicibilityCounter[i] = InvicibilityLength[i];
+    public void CalculateHealth(int i, int j) {
+        if (IsDamaged[i] == false)
+        {
+            CurrHealth[i] -= amountDamage[j];
+            StartCoroutine(DelayDamage(i));
+            Debug.Log("damage " + amountDamage[j]);
+            HealthBar[i].text = "" + CurrHealth[i];
+            if (CurrHealth[i] <= 0)
+            {
+                Respawning(i);
+                InvicibilityCounter[i] = InvicibilityLength[i];
+            }
+        }
+        else {
+            return;
         }
     }
 
@@ -241,9 +252,15 @@ public class CharacterAttributes : MonoBehaviour {
     }
 
     public IEnumerator DoubleDamage(int i) {
-        amount[i] *= 2;     
+        amountDamage[i] *= 2;     
         yield return new WaitForSeconds(powerUpTime);
-        amount[i] /= 2;
+        amountDamage[i] /= 2;
         powerUpDamage[i] = false;
+    }
+
+    public IEnumerator DelayDamage(int i) {
+        IsDamaged[i] = true;
+        yield return new WaitForSeconds(0.5f);
+        IsDamaged[i] = false;
     }
 }

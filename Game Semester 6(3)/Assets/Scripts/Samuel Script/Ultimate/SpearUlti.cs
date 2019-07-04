@@ -29,25 +29,25 @@ public class SpearUlti : MonoBehaviour
             {
                 Destroy(gameObject);
                 Player[0].GetComponent<Animator>().SetTrigger("KnockbackUltiSpear");
-                ca.IsDamaged[0] = true;
+
             }
             if (other.gameObject.tag == "Player2")
             {
                 Destroy(gameObject);
                 Player[1].GetComponent<Animator>().SetTrigger("KnockbackUltiSpear");
-                ca.IsDamaged[1] = true;
+
             }
             if (other.gameObject.tag == "Player3")
             {
                 Destroy(gameObject);
                 Player[2].GetComponent<Animator>().SetTrigger("KnockbackUltiSpear");
-                ca.IsDamaged[2] = true;
+ 
             }
             if (other.gameObject.tag == "Player4")
             {
                 Destroy(gameObject);
                 Player[3].GetComponent<Animator>().SetTrigger("KnockbackUltiSpear");
-                ca.IsDamaged[3] = true;
+
             }
         }
     }

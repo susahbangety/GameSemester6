@@ -7,35 +7,35 @@ public class InputManager : MonoBehaviour {
     public string[] HorizontalAxis = new string[4];
     public string[] VerticalAxis = new string[4];
 
+    public KeyCode[] AButton = new KeyCode[4];
+    public KeyCode[] BButton = new KeyCode[4];
     public KeyCode[] XButton = new KeyCode[4];
-    public KeyCode[] CircleButton = new KeyCode[4];
-    public KeyCode[] SquareButton = new KeyCode[4];
-    public KeyCode[] TriangleButton = new KeyCode[4];
+    public KeyCode[] YButton = new KeyCode[4];
     public KeyCode[] StartButton = new KeyCode[4];
     public KeyCode[] LeftBumper = new KeyCode[4];
 
 
     // Use this for initialization
     void Start () {
-        XButton[0] = KeyCode.Joystick1Button0;
-        XButton[1] = KeyCode.Joystick2Button0;
-        XButton[2] = KeyCode.Joystick3Button0;
-        XButton[3] = KeyCode.Joystick4Button0;
+        AButton[0] = KeyCode.Joystick1Button0;
+        AButton[1] = KeyCode.Joystick2Button0;
+        AButton[2] = KeyCode.Joystick3Button0;
+        AButton[3] = KeyCode.Joystick4Button0;
 
-        CircleButton[0] = KeyCode.Joystick1Button1;
-        CircleButton[1] = KeyCode.Joystick2Button1;
-        CircleButton[2] = KeyCode.Joystick3Button1;
-        CircleButton[3] = KeyCode.Joystick4Button1;
+        BButton[0] = KeyCode.Joystick1Button1;
+        BButton[1] = KeyCode.Joystick2Button1;
+        BButton[2] = KeyCode.Joystick3Button1;
+        BButton[3] = KeyCode.Joystick4Button1;
 
-        SquareButton[0] = KeyCode.Joystick1Button2;
-        SquareButton[1] = KeyCode.Joystick2Button2;
-        SquareButton[2] = KeyCode.Joystick3Button2;
-        SquareButton[3] = KeyCode.Joystick4Button2;
+        XButton[0] = KeyCode.Joystick1Button2;
+        XButton[1] = KeyCode.Joystick2Button2;
+        XButton[2] = KeyCode.Joystick3Button2;
+        XButton[3] = KeyCode.Joystick4Button2;
 
-        TriangleButton[0] = KeyCode.Joystick1Button3;
-        TriangleButton[1] = KeyCode.Joystick2Button3;
-        TriangleButton[2] = KeyCode.Joystick3Button3;
-        TriangleButton[3] = KeyCode.Joystick4Button3;
+        YButton[0] = KeyCode.Joystick1Button3;
+        YButton[1] = KeyCode.Joystick2Button3;
+        YButton[2] = KeyCode.Joystick3Button3;
+        YButton[3] = KeyCode.Joystick4Button3;
 
         LeftBumper[0] = KeyCode.Joystick1Button4;
         LeftBumper[1] = KeyCode.Joystick2Button4;

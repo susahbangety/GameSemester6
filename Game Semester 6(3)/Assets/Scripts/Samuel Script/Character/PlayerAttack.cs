@@ -77,7 +77,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
     void UltimateAttack() {
-        if (ca.IsUltiReady[0] == true && Input.GetKeyDown(IM.SquareButton[0]))
+        if (ca.IsUltiReady[0] == true && Input.GetKeyDown(IM.BButton[ControlNumber]))
         {
             VerifyAttack(0);
             if (HaveWeapon == false)
@@ -117,7 +117,7 @@ public class PlayerAttack : MonoBehaviour
                 AttackTime = 2;
             }
         }
-        if (ca.IsUltiReady[1] == true && Input.GetKeyDown(IM.SquareButton[1]))
+        if (ca.IsUltiReady[1] == true && Input.GetKeyDown(IM.BButton[ControlNumber]))
         {
             VerifyAttack(1);
             if (HaveWeapon == false)
@@ -157,7 +157,7 @@ public class PlayerAttack : MonoBehaviour
                 AttackTime = 2;
             }
         }
-        if (ca.IsUltiReady[2] == true && Input.GetKeyDown(IM.SquareButton[2]))
+        if (ca.IsUltiReady[2] == true && Input.GetKeyDown(IM.BButton[ControlNumber]))
         {
             VerifyAttack(2);
             if (HaveWeapon == false)
@@ -197,7 +197,7 @@ public class PlayerAttack : MonoBehaviour
                 AttackTime = 2;
             }
         }
-        if (ca.IsUltiReady[3] == true && Input.GetKeyDown(IM.SquareButton[3]))
+        if (ca.IsUltiReady[3] == true && Input.GetKeyDown(IM.BButton[ControlNumber]))
         {
             VerifyAttack(3);
             if (HaveWeapon == false)
@@ -273,6 +273,7 @@ public class PlayerAttack : MonoBehaviour
     void AttackInput() {
         if (AttackState == false && HaveWeapon == false) {
             if (Input.GetKeyDown(IM.XButton[ControlNumber])) {
+                anim.SetTrigger("AttackPunch");
                 AttackState = true;
                 AttackTime = setAttackTime;
             }
@@ -332,7 +333,6 @@ public class PlayerAttack : MonoBehaviour
             if (HaveWeapon == false)
             {
                 AttackTime -= Time.deltaTime;
-                anim.SetBool("AttackPunch", true);
             }
             if (HaveWeaponAxe == true)
             {
@@ -360,7 +360,6 @@ public class PlayerAttack : MonoBehaviour
             {
                 AttackTime = 0;
                 AttackState = false;
-                anim.SetBool("AttackPunch", false);
             }
             if (HaveWeaponAxe == true)
             {
