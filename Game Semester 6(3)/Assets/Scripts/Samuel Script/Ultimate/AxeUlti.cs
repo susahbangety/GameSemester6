@@ -7,6 +7,8 @@ public class AxeUlti : MonoBehaviour
 
     public GameObject[] Player;
     public bool a;
+    public int PlayerKeberapa;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,12 +24,9 @@ public class AxeUlti : MonoBehaviour
     {
         if (a)
         {
-            if (other.gameObject.tag == "Player1")
-            {
-                Player[0].GetComponent<Animator>().SetTrigger("KnockbackUltiAxe");
-            }
             if (other.gameObject.tag == "Player2")
             {
+
                 Player[1].GetComponent<Animator>().SetTrigger("KnockbackUltiAxe");
             }
             if (other.gameObject.tag == "Player3")
@@ -39,5 +38,6 @@ public class AxeUlti : MonoBehaviour
                 Player[3].GetComponent<Animator>().SetTrigger("KnockbackUltiAxe");
             }
         }
+       
     }
 }

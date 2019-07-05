@@ -155,12 +155,13 @@ public class CharacterAttributes : MonoBehaviour {
             CurrHealth[i] -= amountDamage[j];
             HealthShakeEffect[i].enabled = true;
             StartCoroutine(DelayDamage(i));
-            Debug.Log("damage " + amountDamage[j]);
+            StartCoroutine(HealthShakeAgain(i));
             HealthBar[i].text = "" + CurrHealth[i];
             if (CurrHealth[i] <= 0)
             {
                 Respawning(i);
                 InvicibilityCounter[i] = InvicibilityLength[i];
+                HealthShakeEffect[i].enabled = false;
             }
         }
         else {
@@ -264,5 +265,13 @@ public class CharacterAttributes : MonoBehaviour {
         IsDamaged[i] = true;
         yield return new WaitForSeconds(0.5f);
         IsDamaged[i] = false;
+    }
+
+    IEnumerator HealthShakeAgain(int i)
+    {
+        yield return new WaitForSeconds(0f);
+
+        HealthShakeEffect[i].shakeDuration = 0.5f;
+        //HealthShakeEffect[i].enabled = false;
     }
 }

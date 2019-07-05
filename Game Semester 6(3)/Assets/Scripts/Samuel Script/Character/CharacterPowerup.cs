@@ -15,7 +15,7 @@ public class CharacterPowerup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DoubleDamageImage.SetActive(false);
+        //DoubleDamageImage.SetActive(false);
         healingEffect.Stop();
     }
     
@@ -24,7 +24,7 @@ public class CharacterPowerup : MonoBehaviour
             if (coll.gameObject.tag == "DoubleDamageItem")
             {
                 ca.powerUpDamage[0] = true;
-                DoubleDamageImage.SetActive(true);
+                //DoubleDamageImage.SetActive(true);
                 DoubleDamageSound.Play();
                 StartCoroutine(stopDoubleDamage());
             }

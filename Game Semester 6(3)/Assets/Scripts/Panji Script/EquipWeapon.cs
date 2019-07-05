@@ -53,7 +53,6 @@ public class EquipWeapon : MonoBehaviour
     {
         //Instantiate(katana, new Vector3(0,0,0),Quaternion.Euler(0,0,0),katanaHand.transform);
         //particle = GetComponent<ParticleSystem>();
-        ca = GameObject.Find("GameManager").GetComponent<CharacterAttributes>();
         rgbWeapon = GetComponent<Rigidbody>();
         weaponActive = false;
         Axe.SetActive(false);

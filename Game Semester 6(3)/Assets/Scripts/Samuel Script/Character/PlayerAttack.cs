@@ -79,7 +79,7 @@ public class PlayerAttack : MonoBehaviour
     void UltimateAttack() {
         if (ca.IsUltiReady[0] == true && Input.GetKeyDown(IM.BButton[ControlNumber]))
         {
-            VerifyAttack(0);
+            VerifyUlti(0);
             if (HaveWeapon == false)
             {
                 UltiFist(0);
@@ -119,7 +119,7 @@ public class PlayerAttack : MonoBehaviour
         }
         if (ca.IsUltiReady[1] == true && Input.GetKeyDown(IM.BButton[ControlNumber]))
         {
-            VerifyAttack(1);
+            VerifyUlti(1);
             if (HaveWeapon == false)
             {
                 UltiFist(1);
@@ -159,7 +159,7 @@ public class PlayerAttack : MonoBehaviour
         }
         if (ca.IsUltiReady[2] == true && Input.GetKeyDown(IM.BButton[ControlNumber]))
         {
-            VerifyAttack(2);
+            VerifyUlti(2);
             if (HaveWeapon == false)
             {
                 UltiFist(2);
@@ -199,7 +199,7 @@ public class PlayerAttack : MonoBehaviour
         }
         if (ca.IsUltiReady[3] == true && Input.GetKeyDown(IM.BButton[ControlNumber]))
         {
-            VerifyAttack(3);
+            VerifyUlti(3);
             if (HaveWeapon == false)
             {
                 UltiFist(3);
@@ -239,7 +239,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    void VerifyAttack(int i)
+    void VerifyUlti(int i)
     {
         ca.CurrPowerBar[i] = 0;
         ca.IsUltiReady[i] = false;
