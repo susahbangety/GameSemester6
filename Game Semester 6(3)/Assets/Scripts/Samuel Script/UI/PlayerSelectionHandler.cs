@@ -105,7 +105,7 @@ public class PlayerSelectionHandler : MonoBehaviour
 
     void CheckInput()
     {
-        if (index == 0 && Input.GetKeyDown(IM.StartButton[ControlNumber]))
+        if (index == 0 && Input.GetKeyDown(IM.AButton[ControlNumber]))
         {
             Debug.Log("Berhasil memilih 2 player");
             BanyakPlayer = 2;
@@ -113,7 +113,7 @@ public class PlayerSelectionHandler : MonoBehaviour
             Checklist[index].enabled = true;
             NextSelected.enabled = true;
         }
-        if (index == 1 && Input.GetKeyDown(IM.StartButton[ControlNumber]))
+        if (index == 1 && Input.GetKeyDown(IM.AButton[ControlNumber]))
         {
             Debug.Log("Berhasil memilih 3 player");
             BanyakPlayer = 3;
@@ -121,7 +121,7 @@ public class PlayerSelectionHandler : MonoBehaviour
             Checklist[index].enabled = true;
             NextSelected.enabled = true;
         }
-        if (index == 2 && Input.GetKeyDown(IM.StartButton[ControlNumber]))
+        if (index == 2 && Input.GetKeyDown(IM.AButton[ControlNumber]))
         {
             Debug.Log("Berhasil memilih 4 player");
             BanyakPlayer = 4;
@@ -132,14 +132,14 @@ public class PlayerSelectionHandler : MonoBehaviour
     }
 
     void VerifyPlayer() {
-        if (Input.GetKeyDown(IM.StartButton[ControlNumber]) && BanyakPlayer == 2) {
+        if (Input.GetKeyDown(IM.AButton[ControlNumber]) && BanyakPlayer == 2) {
             SceneManager.LoadScene("MapSelection");
         }
-        else if (Input.GetKeyDown(IM.StartButton[ControlNumber]) && BanyakPlayer == 3)
+        else if (Input.GetKeyDown(IM.AButton[ControlNumber]) && BanyakPlayer == 3)
         {
             SceneManager.LoadScene("MapSelection");
         }
-        else if (Input.GetKeyDown(IM.StartButton[ControlNumber]) && BanyakPlayer == 4)
+        else if (Input.GetKeyDown(IM.AButton[ControlNumber]) && BanyakPlayer == 4)
         {
             SceneManager.LoadScene("MapSelection");
         }

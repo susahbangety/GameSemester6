@@ -22,7 +22,7 @@ public class HammerUlti : MonoBehaviour
 
     public void OnTriggerEnter(Collider other) {
         if (flag) {
-            if (other.gameObject.tag == "Player1")
+            if (other.gameObject.tag == "Player")
             {
                 Player[0].PlayerStun();
             }

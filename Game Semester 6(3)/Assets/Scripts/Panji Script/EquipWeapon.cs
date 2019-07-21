@@ -43,9 +43,6 @@ public class EquipWeapon : MonoBehaviour
 
     public AudioSource PickUpSound;
 
-
-
-
     //public GameObject katana;
     //public GameObject katanaHand;
 

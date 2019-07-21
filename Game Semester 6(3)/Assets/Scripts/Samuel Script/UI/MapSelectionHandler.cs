@@ -92,25 +92,25 @@ public class MapSelectionHandler : MonoBehaviour
 
     void CheckInput()
     {
-        if (index == 0 && Input.GetKeyDown(IM.StartButton[ControlNumber]))
+        if (index == 0 && Input.GetKeyDown(IM.AButton[ControlNumber]))
         {
             IsSelected = true;
             StartSelected.enabled = true;
             pilihanMap = 1;
         }
-        if (index == 1 && Input.GetKeyDown(IM.StartButton[ControlNumber]))
+        if (index == 1 && Input.GetKeyDown(IM.AButton[ControlNumber]))
         {
             IsSelected = true;
             StartSelected.enabled = true;
             pilihanMap = 2;
         }
-        if (index == 2 && Input.GetKeyDown(IM.StartButton[ControlNumber]))
+        if (index == 2 && Input.GetKeyDown(IM.AButton[ControlNumber]))
         {
             IsSelected = true;
             StartSelected.enabled = true;
             pilihanMap = 3;
         }
-        if (index == 3 && Input.GetKeyDown(IM.StartButton[ControlNumber]))
+        if (index == 3 && Input.GetKeyDown(IM.AButton[ControlNumber]))
         {
             IsSelected = true;
             StartSelected.enabled = true;
@@ -120,19 +120,19 @@ public class MapSelectionHandler : MonoBehaviour
 
     void VerifyScene()
     {
-        if (Input.GetKeyDown(IM.StartButton[ControlNumber]) && pilihanMap == 1)
+        if (Input.GetKeyDown(IM.AButton[ControlNumber]) && pilihanMap == 1)
         {
             SceneManager.LoadScene("InGame");
         }
-        else if (Input.GetKeyDown(IM.StartButton[ControlNumber]) && pilihanMap == 2)
+        else if (Input.GetKeyDown(IM.AButton[ControlNumber]) && pilihanMap == 2)
         {
             SceneManager.LoadScene("InGame");
         }
-        else if (Input.GetKeyDown(IM.StartButton[ControlNumber]) && pilihanMap == 3)
+        else if (Input.GetKeyDown(IM.AButton[ControlNumber]) && pilihanMap == 3)
         {
             SceneManager.LoadScene("InGame");
         }
-        else if (Input.GetKeyDown(IM.StartButton[ControlNumber]) && pilihanMap == 4)
+        else if (Input.GetKeyDown(IM.AButton[ControlNumber]) && pilihanMap == 4)
         {
             SceneManager.LoadScene("InGame");
         }

@@ -6,56 +6,58 @@ using UnityEngine.UI;
 public class CharacterAttributes : MonoBehaviour {
 
     public GameObject[] Player;
+    public SkinnedMeshRenderer[] PlayerRenderer;
 
+    [Header("Darah dan PowerBar")]
     public float[] CurrHealth;
     public float[] MaxHealth;
     public float[] CurrPowerBar;
     public float[] MaxPowerBar;
 
+    [Header("Invicibility")]
     public float[] InvicibilityLength;
     public float[] InvicibilityCounter;
     public float[] FlashCounter;
     public float[] FlashLength;
-    public bool[] IsDamaged;
 
+    [Header("Besaran Damage dan PowerBar")]
     public float[] amountPowerBar;
     public float[] amountDamage;
-    public SkinnedMeshRenderer[] PlayerRenderer;
+    public float[] TotalDamage;
 
     [Header("UI")]
     public float SetMaxHP;
     public float SetMaxPowerBar;
     public Text[] HealthBar;
     public Image[] PowerBar;
+    public Image[] DoubleDamageIcon;
     public ParticleSystem[] GlowBar;
     public HealthShake[] HealthShakeEffect;
+    public Text[] SkorText;
+    public int[] skorPlayer;
+    public int[] tempSkorPlayer;
+    public Image[] playerCrown;
 
     [Header("Respawn")]
     public float[] RespawnLength;
     public bool[] isRespawning;
-    public GameObject[] RespawnPoint;
+    public Transform[] RespawnPoint;
+    //public GameObject RespawnEffect;
 
+    [Header("Kumpulan boolean")]
     public bool[] IsUltiReady;
     public bool[] isHit;
-
-
-    public Text[] SkorText;
-    public int[] skorPlayer;
-    public int[] tempSkorPlayer;
-
-    public Image[] playerCrown;
-
-    public bool[] penandaLastHitPlayer1;
-    public bool[] penandaLastHitPlayer2;
-    public bool[] penandaLastHitPlayer3;
-    public bool[] penandaLastHitPlayer4;
-
+    public bool[] IsDamaged;
+    
+    [Header("Besaran powerbar yang bertambah setiap detik")]
     public float amountOverTime;
 
-
+    [Header("Waktu lifetime powerup")]
     public float powerUpTime;
     public bool[] powerUpDamage;
+    public float[] DamageMultiplier;
 
+    [Header("Untuk menghitung jumlah mati setiap player")]
     public int[] playerDeath;
 
     // Use this for initialization
@@ -66,10 +68,13 @@ public class CharacterAttributes : MonoBehaviour {
         MaxPowerBar = new float[Player.Length];
         isRespawning = new bool[Player.Length];
         IsDamaged = new bool[Player.Length];
-        RespawnLength = new float[Player.Length];
+        //RespawnLength = new float[Player.Length];
         IsUltiReady = new bool[Player.Length];
         amountPowerBar = new float[Player.Length];
         amountDamage = new float[Player.Length];
+        DamageMultiplier = new float[Player.Length];
+        TotalDamage = new float[Player.Length];
+   
 
         for (int i = 0; i < Player.Length; i++)
         {
@@ -84,19 +89,13 @@ public class CharacterAttributes : MonoBehaviour {
             powerUpDamage[i] = false;
             amountDamage[i] = 5;
             IsDamaged[i] = false;
+            DamageMultiplier[i] = 1;
+            DoubleDamageIcon[i].enabled = false;
         }
     }
 
     // Update is called once per frame
     void Update() {
-
-        //if (Input.GetKeyDown(KeyCode.U)) {
-        //    SortScore();
-        //}
-        //if (Input.GetKeyDown(KeyCode.T)) {
-        //    findHighestScore();
-        //}
-
         for (int i = 0; i < Player.Length; i++) {
             PowerBarOverTime(i);
 
@@ -107,15 +106,8 @@ public class CharacterAttributes : MonoBehaviour {
                 AttackSuccess(i);
             }
 
-            if (penandaLastHitPlayer2[i] == true) {
-                ScoreCounter(i);
-            }
-            if (penandaLastHitPlayer1[i] == true)
-            {
-                ScoreCounter(i);
-            }
-
             if (powerUpDamage[i] == true) {
+                DoubleDamageIcon[i].enabled = true;
                 StartCoroutine(DoubleDamage(i));
             }
 
@@ -140,19 +132,26 @@ public class CharacterAttributes : MonoBehaviour {
     }
 
     public void AttackSuccess(int i) {
-        CurrPowerBar[i] += amountPowerBar[i];
-        PowerBar[i].fillAmount = CurrPowerBar[i] / MaxPowerBar[i];
-        isHit[i] = false;
-        if (CurrPowerBar[i] >= MaxPowerBar[i])
-        {
-            CurrPowerBar[i] = MaxPowerBar[i];
+        if (Player[i].GetComponent<PlayerAttack>().lagiUlti[i] == false) {
+            CurrPowerBar[i] += amountPowerBar[i];
+            PowerBar[i].fillAmount = CurrPowerBar[i] / MaxPowerBar[i];
+            isHit[i] = false;
+            if (CurrPowerBar[i] >= MaxPowerBar[i])
+            {
+                CurrPowerBar[i] = MaxPowerBar[i];
+            }
         }
     }
 
     public void CalculateHealth(int i, int j) {
         if (IsDamaged[i] == false)
         {
-            CurrHealth[i] -= amountDamage[j];
+            TotalDamage[j] = amountDamage[j] * DamageMultiplier[j];
+            if (CurrHealth[i] <= TotalDamage[j])
+            {
+                ScoreCounter(j);
+            }
+            CurrHealth[i] -= TotalDamage[j];
             HealthShakeEffect[i].enabled = true;
             StartCoroutine(DelayDamage(i));
             StartCoroutine(HealthShakeAgain(i));
@@ -186,8 +185,6 @@ public class CharacterAttributes : MonoBehaviour {
     {
         skorPlayer[i]++;
         SkorText[i].text = " " + skorPlayer[i];
-        penandaLastHitPlayer1[i] = false;
-        penandaLastHitPlayer2[i] = false;
         SortScore();
         findHighestScore();
     }
@@ -242,8 +239,10 @@ public class CharacterAttributes : MonoBehaviour {
     public IEnumerator RespawningCo(int i)
     {
         isRespawning[i] = true;
+        HealthBar[i].text = "0";
         Player[i].SetActive(false);
         Player[i].transform.position = RespawnPoint[i].transform.position;
+        //Instantiate(RespawnEffect, RespawnPoint[i].transform.position, RespawnPoint[i].transform.rotation);
         yield return new WaitForSeconds(RespawnLength[i]);
         playerDeath[i]++;
         isRespawning[i] = false;
@@ -252,13 +251,28 @@ public class CharacterAttributes : MonoBehaviour {
         CurrPowerBar[i] = 0;
         HealthBar[i].text = "" + CurrHealth[i];
         PowerBar[i].fillAmount = CurrPowerBar[i] / MaxPowerBar[i];
+        Player[i].GetComponent<EquipWeapon>().weaponActive = false;
+        Player[i].GetComponent<EquipWeapon>().Axe.SetActive(false);
+        Player[i].GetComponent<EquipWeapon>().Sword.SetActive(false);
+        Player[i].GetComponent<EquipWeapon>().Spear.SetActive(false);
+        Player[i].GetComponent<EquipWeapon>().Hammer.SetActive(false);
+        Player[i].GetComponent<EquipWeapon>().Knife.SetActive(false);
+        Player[i].GetComponent<PlayerAttack>().HaveWeapon = false;
+        Player[i].GetComponent<PlayerAttack>().HaveWeaponAxe = false;
+        Player[i].GetComponent<PlayerAttack>().HaveWeaponSword = false;
+        Player[i].GetComponent<PlayerAttack>().HaveWeaponSpear = false;
+        Player[i].GetComponent<PlayerAttack>().HaveWeaponHammer = false;
+        Player[i].GetComponent<PlayerAttack>().HaveWeaponKnife = false;
     }
 
     public IEnumerator DoubleDamage(int i) {
-        amountDamage[i] *= 2;     
-        yield return new WaitForSeconds(powerUpTime);
-        amountDamage[i] /= 2;
+        DamageMultiplier[i] += 1;
         powerUpDamage[i] = false;
+        //DoubleDamageIcon[i].GetComponent<BlinkImage>().timerAlpha += Time.deltaTime;
+        yield return new WaitForSeconds(powerUpTime);
+        DoubleDamageIcon[i].enabled = false;
+        DamageMultiplier[i] -= 1;
+
     }
 
     public IEnumerator DelayDamage(int i) {

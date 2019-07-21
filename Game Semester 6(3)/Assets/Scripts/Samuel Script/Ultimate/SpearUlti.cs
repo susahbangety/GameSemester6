@@ -7,7 +7,6 @@ public class SpearUlti : MonoBehaviour
     public GameObject[] Player;
     public bool a;
     public CharacterAttributes ca;
-    public float SpearUltiDamage;
     // Start is called before the first frame update
 
     void Start()
@@ -25,11 +24,10 @@ public class SpearUlti : MonoBehaviour
     {
         if (a)
         {
-            if (other.gameObject.tag == "Player1")
+            if (other.gameObject.tag == "Player")
             {
                 Destroy(gameObject);
                 Player[0].GetComponent<Animator>().SetTrigger("KnockbackUltiSpear");
-
             }
             if (other.gameObject.tag == "Player2")
             {

@@ -87,19 +87,19 @@ public class MainMenuHandler : MonoBehaviour
 
     void CheckInput()
     {
-        if (index == 0 && Input.GetKeyDown(IM.XButton[ControlNumber]))
+        if (index == 0 && Input.GetKeyDown(IM.AButton[ControlNumber]))
         {
-            SceneManager.LoadScene("PlayerSelection");
+            SceneManager.LoadScene("InGame");
         }
-        if (index == 1 && Input.GetKeyDown(IM.XButton[ControlNumber]))
+        if (index == 1 && Input.GetKeyDown(IM.AButton[ControlNumber]))
         { 
             SceneManager.LoadScene("Credit");
         }
-        if (index == 2 && Input.GetKeyDown(IM.XButton[ControlNumber]))
+        if (index == 2 && Input.GetKeyDown(IM.AButton[ControlNumber]))
         {
             SceneManager.LoadScene("Option");
         }
-        if (index == 3 && Input.GetKeyDown(IM.XButton[ControlNumber]))
+        if (index == 3 && Input.GetKeyDown(IM.AButton[ControlNumber]))
         {
             Application.Quit();
         }

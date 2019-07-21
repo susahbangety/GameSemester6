@@ -25,6 +25,12 @@ public class BlinkImage : MonoBehaviour
         rezcolor = this.GetComponent<SpriteRenderer>().color; // The current value of the color of the text.
     }
 
+    //private void Update()
+    //{
+    //    timerAlpha += Time.deltaTime;
+    //    Debug.Log(timerAlpha);
+    //}
+
     private void FixedUpdate()
     {
         if (timertr == false) // Increase the minimum value of the alpha channel, to the maximum.

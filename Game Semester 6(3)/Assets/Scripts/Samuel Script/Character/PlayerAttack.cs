@@ -9,6 +9,9 @@ public class PlayerAttack : MonoBehaviour
     public InputManager IM;
     public int ControlNumber;
     public int PlayerKeberapa;
+    public GameObject[] Player;
+    public CharacterDamaged cd;
+    public CharacterController cc;
 
     [Header("WEAPONS")]
 
@@ -40,6 +43,7 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Other")]
     public CharacterAttributes ca;
+    public PlayerMovement PM;
 
     public bool AttackState;
     private Animator anim;
@@ -56,6 +60,9 @@ public class PlayerAttack : MonoBehaviour
 
     public bool isThrowing = false;
     public bool isThrowingKnife = false;
+    public bool[] lagiUlti;
+
+
     
     // Start is called before the first frame update
     void Start()
@@ -71,170 +78,180 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AttackInput();
-        CalculateAttack();
-        UltimateAttack();
+        if (cd.lagiKenaHit[PlayerKeberapa - 1] == false && PM.isStun == false && PM.isIdle == true /*&& /*cc.isGrounded == true*/) {
+            AttackInput();
+            CalculateAttack();
+            UltimateAttack();
+        }
     }
 
     void UltimateAttack() {
-        if (ca.IsUltiReady[0] == true && Input.GetKeyDown(IM.BButton[ControlNumber]))
-        {
-            VerifyUlti(0);
-            if (HaveWeapon == false)
+        if (PlayerKeberapa == 1) {
+            if (ca.IsUltiReady[0] == true && Input.GetKeyDown(IM.BButton[ControlNumber]))
             {
-                UltiFist(0);
-                AttackState = true;
-                AttackTime = 2;
-            }
-            else if (HaveWeaponAxe == true)
-            {
-                UltiAxe(0);
-                AttackState = true;
-                AttackTime = 2;
-            }
-            else if (HaveWeaponHammer == true)
-            {
-                UltiHammer(0);
-                AttackState = true;
-                AttackTime = 2;
-            }
-            else if (HaveWeaponKnife == true)
-            {
-                UltiKnife(0);
-                AttackState = true;
-                AttackTime = 2;
-            }
-            else if (HaveWeaponSpear == true)
-            {
-                UltiSpear(0);
-                AttackState = true;
-                AttackTime = 2;
-            }
-            else if (HaveWeaponSword == true)
-            {
-                UltiSword(0);
-                AttackState = true;
-                AttackTime = 2;
-            }
-        }
-        if (ca.IsUltiReady[1] == true && Input.GetKeyDown(IM.BButton[ControlNumber]))
-        {
-            VerifyUlti(1);
-            if (HaveWeapon == false)
-            {
-                UltiFist(1);
-                AttackState = true;
-                AttackTime = 2;
-            }
-            else if (HaveWeaponAxe == true)
-            {
-                UltiAxe(1);
-                AttackState = true;
-                AttackTime = 2;
-            }
-            else if (HaveWeaponHammer == true)
-            {
-                UltiHammer(1);
-                AttackState = true;
-                AttackTime = 2;
-            }
-            else if (HaveWeaponKnife == true)
-            {
-                UltiKnife(1);
-                AttackState = true;
-                AttackTime = 2;
-            }
-            else if (HaveWeaponSpear == true)
-            {
-                UltiSpear(1);
-                AttackState = true;
-                AttackTime = 2;
-            }
-            else if (HaveWeaponSword == true)
-            {
-                UltiSword(1);
-                AttackState = true;
-                AttackTime = 2;
+                VerifyUlti(0);
+                if (HaveWeapon == false)
+                {
+                    UltiFist(0);
+                    AttackState = true;
+                    AttackTime = 2;
+                }
+                else if (HaveWeaponAxe == true)
+                {
+                    UltiAxe(0);
+                    AttackState = true;
+                    AttackTime = 2;
+                }
+                else if (HaveWeaponHammer == true)
+                {
+                    UltiHammer(0);
+                    AttackState = true;
+                    AttackTime = 2;
+                }
+                else if (HaveWeaponKnife == true)
+                {
+                    UltiKnife(0);
+                    AttackState = true;
+                    AttackTime = 2;
+                }
+                else if (HaveWeaponSpear == true)
+                {
+                    UltiSpear(0);
+                    AttackState = true;
+                    AttackTime = 2;
+                }
+                else if (HaveWeaponSword == true)
+                {
+                    UltiSword(0);
+                    AttackState = true;
+                    AttackTime = 2;
+                }
             }
         }
-        if (ca.IsUltiReady[2] == true && Input.GetKeyDown(IM.BButton[ControlNumber]))
-        {
-            VerifyUlti(2);
-            if (HaveWeapon == false)
+        if (PlayerKeberapa == 2) {
+            if (ca.IsUltiReady[1] == true && Input.GetKeyDown(IM.BButton[ControlNumber]))
             {
-                UltiFist(2);
-                AttackState = true;
-                AttackTime = 2;
-            }
-            else if (HaveWeaponAxe == true)
-            {
-                UltiAxe(2);
-                AttackState = true;
-                AttackTime = 2;
-            }
-            else if (HaveWeaponHammer == true)
-            {
-                UltiHammer(2);
-                AttackState = true;
-                AttackTime = 2;
-            }
-            else if (HaveWeaponKnife == true)
-            {
-                UltiKnife(2);
-                AttackState = true;
-                AttackTime = 2;
-            }
-            else if (HaveWeaponSpear == true)
-            {
-                UltiSpear(2);
-                AttackState = true;
-                AttackTime = 2;
-            }
-            else if (HaveWeaponSword == true)
-            {
-                UltiSword(2);
-                AttackState = true;
-                AttackTime = 2;
+                VerifyUlti(1);
+                if (HaveWeapon == false)
+                {
+                    UltiFist(1);
+                    AttackState = true;
+                    AttackTime = 2;
+                }
+                else if (HaveWeaponAxe == true)
+                {
+                    UltiAxe(1);
+                    AttackState = true;
+                    AttackTime = 2;
+                }
+                else if (HaveWeaponHammer == true)
+                {
+                    UltiHammer(1);
+                    AttackState = true;
+                    AttackTime = 2;
+                }
+                else if (HaveWeaponKnife == true)
+                {
+                    UltiKnife(1);
+                    AttackState = true;
+                    AttackTime = 2;
+                }
+                else if (HaveWeaponSpear == true)
+                {
+                    UltiSpear(1);
+                    AttackState = true;
+                    AttackTime = 2;
+                }
+                else if (HaveWeaponSword == true)
+                {
+                    UltiSword(1);
+                    AttackState = true;
+                    AttackTime = 2;
+                }
             }
         }
-        if (ca.IsUltiReady[3] == true && Input.GetKeyDown(IM.BButton[ControlNumber]))
-        {
-            VerifyUlti(3);
-            if (HaveWeapon == false)
+        if (PlayerKeberapa == 3) {
+            if (ca.IsUltiReady[2] == true && Input.GetKeyDown(IM.BButton[ControlNumber]))
             {
-                UltiFist(3);
-                AttackTime = 2;
-                AttackState = true;
+                VerifyUlti(2);
+                if (HaveWeapon == false)
+                {
+                    UltiFist(2);
+                    AttackState = true;
+                    AttackTime = 2;
+                }
+                else if (HaveWeaponAxe == true)
+                {
+                    UltiAxe(2);
+                    AttackState = true;
+                    AttackTime = 2;
+                }
+                else if (HaveWeaponHammer == true)
+                {
+                    UltiHammer(2);
+                    AttackState = true;
+                    AttackTime = 2;
+                }
+                else if (HaveWeaponKnife == true)
+                {
+                    UltiKnife(2);
+                    AttackState = true;
+                    AttackTime = 2;
+                }
+                else if (HaveWeaponSpear == true)
+                {
+                    UltiSpear(2);
+                    AttackState = true;
+                    AttackTime = 2;
+                }
+                else if (HaveWeaponSword == true)
+                {
+                    UltiSword(2);
+                    AttackState = true;
+                    AttackTime = 2;
+                }
             }
-            if (HaveWeaponAxe == true)
+        }
+        if (PlayerKeberapa == 4) {
+            if (ca.IsUltiReady[3] == true && Input.GetKeyDown(IM.BButton[ControlNumber]))
             {
-                UltiAxe(3);
-                AttackTime = 2;
-                AttackState = true;
-            }
-            else if (HaveWeaponHammer == true)
-            {
-                UltiHammer(3);
-                AttackTime = 2;
-                AttackState = true;
-            }
-            else if (HaveWeaponKnife == true)
-            {
-                UltiKnife(3);
-                AttackTime = 2;
-                AttackState = true;
-            }
-            else if (HaveWeaponSpear == true)
-            {
-                UltiSpear(3);
-                AttackTime = 2;
-                AttackState = true;
-            }
-            else if (HaveWeaponSword == true)
-            {
-                UltiSword(3);
-                AttackState = true;
-                AttackTime = 2;
+                VerifyUlti(3);
+                if (HaveWeapon == false)
+                {
+                    UltiFist(3);
+                    AttackTime = 2;
+                    AttackState = true;
+                }
+                else if (HaveWeaponAxe == true)
+                {
+                    UltiAxe(3);
+                    AttackTime = 2;
+                    AttackState = true;
+                }
+                else if (HaveWeaponHammer == true)
+                {
+                    UltiHammer(3);
+                    AttackTime = 2;
+                    AttackState = true;
+                }
+                else if (HaveWeaponKnife == true)
+                {
+                    UltiKnife(3);
+                    AttackTime = 2;
+                    AttackState = true;
+                }
+                else if (HaveWeaponSpear == true)
+                {
+                    UltiSpear(3);
+                    AttackTime = 2;
+                    AttackState = true;
+                }
+                else if (HaveWeaponSword == true)
+                {
+                    UltiSword(3);
+                    AttackState = true;
+                    AttackTime = 2;
+                }
             }
         }
     }
@@ -248,26 +265,32 @@ public class PlayerAttack : MonoBehaviour
 
     void UltiFist(int i) {
         anim.SetTrigger("UltiFist");
+        StartCoroutine(UltiDamageFist(i));
     }
 
     void UltiAxe(int i) {
         anim.SetTrigger("UltiAxe");
+        StartCoroutine(UltiDamageAxe(i));   
     }
 
     void UltiHammer(int i) {
         anim.SetTrigger("UltiHammer");
+        StartCoroutine(UltiDamageHammer(i));
     }
 
     void UltiSword(int i) {
         anim.SetTrigger("UltiSword");
+        StartCoroutine(UltiDamageSword(i));
     }
 
     void UltiSpear(int i) {
         anim.SetTrigger("UltiSpear");
+        StartCoroutine(UltiDamageSpear(i));
     }
 
     void UltiKnife(int i) {
         anim.SetTrigger("UltiKnife");
+        StartCoroutine(UltiDamageKnife(i));
     }
 
     void AttackInput() {
@@ -327,6 +350,63 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     }
+
+    public IEnumerator UltiDamageFist(int i) {
+        lagiUlti[i] = true;
+        yield return new WaitForSeconds(2.8f);
+        lagiUlti[i] = false;
+    }
+    public IEnumerator UltiDamageHammer(int i) {
+        ca.amountDamage[i] -= 20;
+        Player[i].GetComponent<CharacterDamaged>().enabled = false;
+        lagiUlti[i] = true;
+        yield return new WaitForSeconds(5);
+        ca.amountDamage[i] += 20;
+        Player[i].GetComponent<CharacterDamaged>().enabled = true;
+        lagiUlti[i] = false;
+    }
+
+    public IEnumerator UltiDamageAxe(int i)
+    {
+        ca.amountDamage[i] -= 10;
+        Player[i].GetComponent<CharacterDamaged>().enabled = false;
+        lagiUlti[i] = true;
+        yield return new WaitForSeconds(5.3f);
+        ca.amountDamage[i] += 10;
+        Player[i].GetComponent<CharacterDamaged>().enabled = true;
+        lagiUlti[i] = false;
+    }
+
+    public IEnumerator UltiDamageSword(int i) {
+        ca.amountDamage[i] -= 5;
+        Player[i].GetComponent<CharacterDamaged>().enabled = false;
+        lagiUlti[i] = true;
+        yield return new WaitForSeconds(3.8f);
+        ca.amountDamage[i] += 5;
+        Player[i].GetComponent<CharacterDamaged>().enabled = true;
+        lagiUlti[i] = false;
+    }
+    public IEnumerator UltiDamageKnife(int i) {
+        ca.amountDamage[i] += 5;
+        Player[i].GetComponent<CharacterDamaged>().enabled = false;
+        lagiUlti[i] = true;
+        yield return new WaitForSeconds(2.7f);
+        ca.amountDamage[i] -= 5;
+        Player[i].GetComponent<CharacterDamaged>().enabled = true;
+        lagiUlti[i] = false;
+    }
+
+    public IEnumerator UltiDamageSpear(int i)
+    {
+        ca.amountDamage[i] += 80;
+        Player[i].GetComponent<CharacterDamaged>().enabled = false;
+        lagiUlti[i] = true;
+        yield return new WaitForSeconds(4f);
+        ca.amountDamage[i] -= 80;
+        Player[i].GetComponent<CharacterDamaged>().enabled = true;
+        lagiUlti[i] = false;
+    }
+
 
     void CalculateAttack() {
         if (AttackTime > 0) {

@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("INPUT MANAGER")]
     public int ControlNumber;
     public InputManager IM;
+    public PlayerAttack pa;
 
     [Header("ISI PLAYERNUMBER --> 1/2/3/4")]
     public int PlayerNumber;
@@ -40,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     public Quaternion TargetRotation;
     
     public GameObject footStep;
+    public bool isIdle;
 
     [Header("STUNNED")]
     public bool isStun;
@@ -57,32 +59,37 @@ public class PlayerMovement : MonoBehaviour
         Roll = false;
         RollReady = true;
         stunnedEffect.SetActive(false);
+        isIdle = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerWalkJump();
-        if (Mathf.Abs(InputJoystick.x) < 0.1 && Mathf.Abs(InputJoystick.z) < 0.1 && Roll == false)
-        {
-            gameObject.GetComponent<Animator>().SetBool("Running", false);
-            return;
-        }
-        if (Roll == true)
-        {
-            Rolling();
-        }
-        if (Roll == false)
-        {
-            if (charControl.isGrounded)
+        if (pa.lagiUlti[ControlNumber] == false) {
+            playerWalkJump();
+            if (Mathf.Abs(InputJoystick.x) < 0.1 && Mathf.Abs(InputJoystick.z) < 0.1 && Roll == false)
             {
-                GameObject NewFootStep = Instantiate(footStep, transform.position, footStep.transform.rotation);
+                gameObject.GetComponent<Animator>().SetBool("Running", false);
+                isIdle = true;
+                return;
             }
-            gameObject.GetComponent<Animator>().SetBool("Running", true);
-            Rotate();
-            CalculateDirection();
-            CheckPlayerPosition();
-            PlayerMove();
+            if (Roll == true)
+            {
+                Rolling();
+            }
+            if (Roll == false)
+            {
+                if (charControl.isGrounded)
+                {
+                    GameObject NewFootStep = Instantiate(footStep, transform.position, footStep.transform.rotation);
+                }
+                gameObject.GetComponent<Animator>().SetBool("Running", true);
+                Rotate();
+                CalculateDirection();
+                CheckPlayerPosition();
+                PlayerMove();
+                isIdle = false;
+            }
         }
     }
 
@@ -93,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
             verticalVelocity = -gravity * Time.deltaTime;
             if (Input.GetKeyDown(IM.AButton[ControlNumber]))
             {
+
                 verticalVelocity = jumpForce;
                 gameObject.GetComponent<Animator>().SetTrigger("Jump");
   
@@ -153,6 +161,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = PlayerPos + LeftJoystickInputDirection;
     }
 
+
     public void PlayerStun()
     {
         if (isStun)
@@ -164,13 +173,13 @@ public class PlayerMovement : MonoBehaviour
         this.enabled = false;
         stunnedEffect.SetActive(true);
         gameObject.GetComponent<Animator>().SetBool("Running", false);
-
+        //gameObject.GetComponent<PlayerAttack>().AttackState = false;
         StartCoroutine(WaitForStunToEnd());
     }
 
     public void PlayerSlow()
     {
-        MovementSpeed = 0.03f;
+        MovementSpeed /= 2;
 
         StartCoroutine(BackFromSlow());
     }
@@ -189,13 +198,14 @@ public class PlayerMovement : MonoBehaviour
         isStun = false;
         this.enabled = true;
         stunnedEffect.SetActive(false);
+        //gameObject.GetComponent<PlayerAttack>().AttackState = true;
         gameObject.GetComponent<Animator>().SetBool("Running", true);
     }
 
     IEnumerator BackFromSlow()
-    {
+    { 
         yield return new WaitForSeconds(2f);
 
-        MovementSpeed = 0.05f;
+        MovementSpeed *= 2;
     }
 }

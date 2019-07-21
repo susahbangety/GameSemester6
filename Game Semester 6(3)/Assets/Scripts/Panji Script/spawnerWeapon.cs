@@ -25,9 +25,7 @@ public class spawnerWeapon : MonoBehaviour
     public PlayerAttack Patk1;
     public PlayerAttack Patk2;
     //public bool Equipable = true;
-
     //public ParticleSystem WeaponSpawnEffect;
-
 
     void Start()
     {
@@ -93,7 +91,7 @@ public class spawnerWeapon : MonoBehaviour
 
     public void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player"|| col.gameObject.tag == "Player2")
         {
 
             StartCoroutine(pickupWeapon(col.gameObject));

@@ -20,7 +20,7 @@ public class pickupItem : MonoBehaviour
     public PlayerAttack patt;
     private Animation _anim;
     public CharacterAttributes CA;
-    private BoxCollider ColliderWeapon;
+    public BoxCollider ColliderWeapon;
 
     //public dropWeapon drop;
 
@@ -33,7 +33,6 @@ public class pickupItem : MonoBehaviour
         ColliderWeapon = GetComponent<BoxCollider>();
         rgb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animation>();
-        ColliderWeapon.enabled = false;
   
     }
 
@@ -63,7 +62,6 @@ public class pickupItem : MonoBehaviour
             Vector3 direction = player.transform.position - transform.position;
             Quaternion rotation = Quaternion.LookRotation(direction);
             transform.rotation = rotation;
-            ColliderWeapon.enabled = true;
         }
         //if (gameObject.name == "KnifeEquip" && eqw.weaponActive == false)
         //{
@@ -81,9 +79,10 @@ public class pickupItem : MonoBehaviour
             patt.isThrowing = false;
             gameObject.transform.parent = null;
             rgb.AddForce(eqw.dropArea.forward * 100);
-            StartCoroutine(weaponThrow());
+            //StartCoroutine(weaponThrow());
             eqw.weaponActive = false;
-
+            patt.HaveWeapon = false;
+            StartCoroutine(weaponThrow());
         }
         if (patt.isThrowingKnife == true)
         {
@@ -91,17 +90,18 @@ public class pickupItem : MonoBehaviour
             patt.isThrowingKnife = false;
             gameObject.transform.parent = null;
             rgb.AddForce(eqw.dropArea.forward * 100);
-            StartCoroutine(weaponThrow());
+            //StartCoroutine(weaponThrow());
             eqw.weaponActive = false;
+            patt.HaveWeapon = false;
+            StartCoroutine(weaponThrow());
         }
-
     }
 
     public void throwWeapon()
     {
-        if (eqw.weaponActive == true && patt.AttackState == false)
+        if (eqw.weaponActive == true && patt.AttackState == false && patt.HaveWeapon == true && Input.GetKeyDown(im.YButton[ControlNumber]))
         {
-            if /*(Input.GetKeyDown(KeyCode.G))*/ (Input.GetKeyDown(im.YButton[ControlNumber]))
+            if(Input.GetKeyDown(im.YButton[ControlNumber]))
             {
                 if (gameObject.name == "KnifeEquip")
                 {
@@ -117,7 +117,9 @@ public class pickupItem : MonoBehaviour
 
     IEnumerator weaponThrow()
     {
+        ColliderWeapon.enabled = true;
         yield return new WaitForSeconds(2);
+        ColliderWeapon.enabled = false;
         if (gameObject.tag == "WeaponPlayer1")
         {
             if (gameObject.name == "AxeEquip")
@@ -129,9 +131,8 @@ public class pickupItem : MonoBehaviour
                 gameObject.transform.position = gameObject.transform.parent.transform.position;
                 gameObject.SetActive(false);
                 //eqw.weaponActive = false;
-                patt.HaveWeapon = false;
+                //patt.HaveWeapon = false;
                 patt.HaveWeaponAxe = false;
-                ColliderWeapon.enabled = false;
                 //_anim.enabled = false;
             }
             if (gameObject.name == "SwordEquip")
@@ -143,9 +144,8 @@ public class pickupItem : MonoBehaviour
                 gameObject.transform.position = gameObject.transform.parent.transform.position;
                 gameObject.SetActive(false);
                 //eqw.weaponActive = false;
-                patt.HaveWeapon = false;
+                //patt.HaveWeapon = false;
                 patt.HaveWeaponSword = false;
-                ColliderWeapon.enabled = false;
             }
             if (gameObject.name == "SpearEquip")
             {
@@ -157,9 +157,8 @@ public class pickupItem : MonoBehaviour
                 gameObject.transform.localScale = new Vector3(1, 1, 1);
                 gameObject.SetActive(false);
                 //eqw.weaponActive = false;
-                patt.HaveWeapon = false;
+                //patt.HaveWeapon = false;
                 patt.HaveWeaponSpear = false;
-                ColliderWeapon.enabled = false;
             }
             if (gameObject.name == "KnifeEquip")
             {
@@ -171,9 +170,8 @@ public class pickupItem : MonoBehaviour
                 gameObject.transform.localScale = new Vector3(1, 1, 1);
                 gameObject.SetActive(false);
                 //eqw.weaponActive = false;
-                patt.HaveWeapon = false;
+                //patt.HaveWeapon = false;
                 patt.HaveWeaponKnife = false;
-                ColliderWeapon.enabled = false;
             }
             if (gameObject.name == "HammerEquip")
             {
@@ -185,43 +183,33 @@ public class pickupItem : MonoBehaviour
                 gameObject.transform.localScale = new Vector3(1, 1, 1);
                 gameObject.SetActive(false);
                 //eqw.weaponActive = false;
-                patt.HaveWeapon = false;
+                //patt.HaveWeapon = false;
                 patt.HaveWeaponHammer = false;
-                ColliderWeapon.enabled = false;
             }
         }
         else if (gameObject.tag == "WeaponPlayer2")
         {
             if (gameObject.name == "AxeEquip")
             {
-                //eqw.currWeapon = null;
                 gameObject.transform.parent = GameObject.Find("HandAxe2").transform;
                 rgb.velocity = new Vector3(0, 0, 0);
                 gameObject.transform.eulerAngles = gameObject.transform.parent.transform.eulerAngles;
                 gameObject.transform.position = gameObject.transform.parent.transform.position;
                 gameObject.SetActive(false);
-                patt.HaveWeapon = false;
+                //eqw.weaponActive = false;
+                //patt.HaveWeapon = false;
                 patt.HaveWeaponAxe = false;
-                patt.HaveWeaponKnife = false;
-                patt.HaveWeaponSpear = false;
-                patt.HaveWeaponSword = false;
-                patt.HaveWeaponHammer = false;
-                //_anim.enabled = false;
             }
             if (gameObject.name == "SwordEquip")
             {
-                //eqw.currWeapon = null;
                 gameObject.transform.parent = GameObject.Find("HandSword2").transform;
                 rgb.velocity = new Vector3(0, 0, 0);
                 gameObject.transform.eulerAngles = gameObject.transform.parent.transform.eulerAngles;
                 gameObject.transform.position = gameObject.transform.parent.transform.position;
                 gameObject.SetActive(false);
-                patt.HaveWeapon = false;
-                patt.HaveWeaponAxe = false;
-                patt.HaveWeaponKnife = false;
-                patt.HaveWeaponSpear = false;
+                //eqw.weaponActive = false;
+                //patt.HaveWeapon = false;
                 patt.HaveWeaponSword = false;
-                patt.HaveWeaponHammer = false;
 
             }
             if (gameObject.name == "SpearEquip")
@@ -231,46 +219,31 @@ public class pickupItem : MonoBehaviour
                 rgb.velocity = new Vector3(0, 0, 0);
                 gameObject.transform.eulerAngles = gameObject.transform.parent.transform.eulerAngles;
                 gameObject.transform.position = gameObject.transform.parent.transform.position;
-                gameObject.transform.localScale = new Vector3(1, 1, 1);
                 gameObject.SetActive(false);
-                patt.HaveWeapon = false;
-                patt.HaveWeaponAxe = false;
-                patt.HaveWeaponKnife = false;
+                //eqw.weaponActive = false;
+                //patt.HaveWeapon = false;
                 patt.HaveWeaponSpear = false;
-                patt.HaveWeaponSword = false;
-                patt.HaveWeaponHammer = false;
-
             }
             if (gameObject.name == "KnifeEquip")
             {
-                //eqw.currWeapon = null;
                 gameObject.transform.parent = GameObject.Find("HandKnife2").transform;
                 rgb.velocity = new Vector3(0, 0, 0);
                 gameObject.transform.eulerAngles = gameObject.transform.parent.transform.eulerAngles;
                 gameObject.transform.position = gameObject.transform.parent.transform.position;
-                gameObject.transform.localScale = new Vector3(1, 1, 1);
                 gameObject.SetActive(false);
-                patt.HaveWeapon = false;
-                patt.HaveWeaponAxe = false;
+                //eqw.weaponActive = false;
+                //patt.HaveWeapon = false;
                 patt.HaveWeaponKnife = false;
-                patt.HaveWeaponSpear = false;
-                patt.HaveWeaponSword = false;
-                patt.HaveWeaponHammer = false;
             }
             if (gameObject.name == "HammerEquip")
             {
-                //eqw.currWeapon = null;
                 gameObject.transform.parent = GameObject.Find("HandHammer2").transform;
                 rgb.velocity = new Vector3(0, 0, 0);
                 gameObject.transform.eulerAngles = gameObject.transform.parent.transform.eulerAngles;
                 gameObject.transform.position = gameObject.transform.parent.transform.position;
-                gameObject.transform.localScale = new Vector3(1, 1, 1);
                 gameObject.SetActive(false);
-                patt.HaveWeapon = false;
-                patt.HaveWeaponAxe = false;
-                patt.HaveWeaponKnife = false;
-                patt.HaveWeaponSpear = false;
-                patt.HaveWeaponSword = false;
+                //eqw.weaponActive = false;
+                //patt.HaveWeapon = false;
                 patt.HaveWeaponHammer = false;
             }
         }

@@ -11,9 +11,11 @@ public class ScoreboardController : MonoBehaviour
     public Image[] GoldCrown;
     public Image[] SilverCrown;
     public Image[] BronzeCrown;
+    public GameObject PressButtonText;
     public CharacterAttributes ca;
     public Timer timeout;
     public Canvas canvasScoreboard;
+    public PlayerMovement pm;
 
     // Start is called before the first frame update
     void Start()
@@ -30,18 +32,22 @@ public class ScoreboardController : MonoBehaviour
             BronzeCrown[i].enabled = false;
         }
         canvasScoreboard.enabled = false;
+        PressButtonText.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (timeout.startTimer == 0) {
-            SortLeaderBoard();
-            canvasScoreboard.enabled = true;
-            for (int i = 0; i < 4; i++) {
-                TampilkanSkor(i);
-                TampilkanDeath(i);
-            }
+            StartCoroutine(DelayScoreBoard());
+            //SortLeaderBoard();
+            //canvasScoreboard.enabled = true;
+            //Time.timeScale = 0f;
+            //for (int i = 0; i < 4; i++) {
+            //    TampilkanSkor(i);
+            //    TampilkanDeath(i);
+            //}
         }
     }
 
@@ -72,5 +78,21 @@ public class ScoreboardController : MonoBehaviour
                 BronzeCrown[i].enabled = true;
             }
         }
+    }
+
+    IEnumerator DelayScoreBoard()
+    {
+        yield return new WaitForSeconds(5f);
+        SortLeaderBoard();
+        canvasScoreboard.enabled = true;
+        Time.timeScale = 0f;
+        pm.MovementSpeed = 0;
+        ca.amountOverTime = 0f;
+        for (int i = 0; i < 4; i++)
+        {
+            TampilkanSkor(i);
+            TampilkanDeath(i);
+        }
+        PressButtonText.SetActive(true);
     }
 }
