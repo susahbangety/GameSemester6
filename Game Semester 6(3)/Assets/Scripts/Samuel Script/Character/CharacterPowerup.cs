@@ -11,7 +11,6 @@ public class CharacterPowerup : MonoBehaviour
 
     //public GameObject 
 
-    //public GameObject DoubleDamageImage;
     public ParticleSystem healingEffect1;
     public ParticleSystem healingEffect2;
     private float AMOUNTNAMBAHDARAH = 20;
@@ -19,19 +18,16 @@ public class CharacterPowerup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //DoubleDamageImage.SetActive(false);
         healingEffect1.Stop();
         healingEffect2.Stop();
     }
     
     public void OnTriggerEnter(Collider coll) {
-        if (PlayerKeberapa == 1 && ca.InvicibilityCounter[0] == 0) {
+        if (PlayerKeberapa == 1 && ca.InvicibleState[0] == false) {
             if (coll.gameObject.tag == "DoubleDamageItem")
             {
                 ca.powerUpDamage[0] = true;
-                //DoubleDamageImage.SetActive(true);
                 DoubleDamageSound.Play();
-                //StartCoroutine(stopDoubleDamage());
             }
             if (coll.gameObject.tag == "Healing")
             {
@@ -54,7 +50,7 @@ public class CharacterPowerup : MonoBehaviour
                 ca.HealthBar[0].text = "" + ca.CurrHealth[0];
             }
         }
-        if (PlayerKeberapa == 2 && ca.InvicibilityCounter[1] == 0)
+        if (PlayerKeberapa == 2 && ca.InvicibleState[1] == false)
         {
             if (coll.gameObject.tag == "DoubleDamageItem")
             {
@@ -82,7 +78,7 @@ public class CharacterPowerup : MonoBehaviour
                 ca.HealthBar[1].text = "" + ca.CurrHealth[1];
             }
         }
-        if (PlayerKeberapa == 3 && ca.InvicibilityCounter[2] == 0)
+        if (PlayerKeberapa == 3 && ca.InvicibleState[2] == false)
         {
             if (coll.gameObject.tag == "DoubleDamageItem")
             {
@@ -100,7 +96,7 @@ public class CharacterPowerup : MonoBehaviour
                 ca.HealthBar[2].text = "" + ca.CurrHealth[2];
             }
         }
-        if (PlayerKeberapa == 4 && ca.InvicibilityCounter[3] == 0)
+        if (PlayerKeberapa == 4 && ca.InvicibleState[3] == false)
         {
             if (coll.gameObject.tag == "DoubleDamageItem")
             {
@@ -132,11 +128,4 @@ public class CharacterPowerup : MonoBehaviour
             healingEffect2.Stop();
         }
     }
-
-    //IEnumerator stopDoubleDamage()
-    //{
-    //    yield return new WaitForSeconds(10f);
-
-    //    DoubleDamageImage.SetActive(false);
-    //}
 }

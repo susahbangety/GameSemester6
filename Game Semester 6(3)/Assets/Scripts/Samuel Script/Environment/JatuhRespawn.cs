@@ -23,22 +23,24 @@ public class JatuhRespawn : MonoBehaviour
     {
         if (other.gameObject.tag == "Player") {
             ca.Respawning(0);
-            ca.InvicibilityCounter[0] = ca.InvicibilityLength[0];
+            ca.Player[0].transform.position = ca.RespawnPoint[0].transform.position;
+            ca.ScoreMinus(0);
         }
         if (other.gameObject.tag == "Player2")
         {
             ca.Respawning(1);
-            ca.InvicibilityCounter[1] = ca.InvicibilityLength[1];
+            ca.Player[1].transform.position = ca.RespawnPoint[1].transform.position;
+            ca.ScoreMinus(1);
         }
         if (other.gameObject.tag == "Player3")
         {
             ca.Respawning(2);
-            ca.InvicibilityCounter[2] = ca.InvicibilityLength[2];
+            ca.ScoreMinus(2);
         }
         if (other.gameObject.tag == "Player4")
         {
             ca.Respawning(3);
-            ca.InvicibilityCounter[3] = ca.InvicibilityLength[3];
+            ca.ScoreMinus(3);
         }
     }
 }

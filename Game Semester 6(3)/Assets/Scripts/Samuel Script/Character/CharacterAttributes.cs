@@ -16,9 +16,7 @@ public class CharacterAttributes : MonoBehaviour {
 
     [Header("Invicibility")]
     public float[] InvicibilityLength;
-    public float[] InvicibilityCounter;
-    public float[] FlashCounter;
-    public float[] FlashLength;
+    public bool[] InvicibleState;
 
     [Header("Besaran Damage dan PowerBar")]
     public float[] amountPowerBar;
@@ -68,13 +66,12 @@ public class CharacterAttributes : MonoBehaviour {
         MaxPowerBar = new float[Player.Length];
         isRespawning = new bool[Player.Length];
         IsDamaged = new bool[Player.Length];
-        //RespawnLength = new float[Player.Length];
+        InvicibleState = new bool[Player.Length];
         IsUltiReady = new bool[Player.Length];
         amountPowerBar = new float[Player.Length];
         amountDamage = new float[Player.Length];
         DamageMultiplier = new float[Player.Length];
         TotalDamage = new float[Player.Length];
-   
 
         for (int i = 0; i < Player.Length; i++)
         {
@@ -91,13 +88,17 @@ public class CharacterAttributes : MonoBehaviour {
             IsDamaged[i] = false;
             DamageMultiplier[i] = 1;
             DoubleDamageIcon[i].enabled = false;
+            InvicibleState[i] = false;
         }
     }
 
     // Update is called once per frame
     void Update() {
         for (int i = 0; i < Player.Length; i++) {
-            PowerBarOverTime(i);
+
+            if (isRespawning[i] == false) {
+                PowerBarOverTime(i);
+            }
 
             if (CurrPowerBar[i] == SetMaxPowerBar) {
                 IsUltiReady[i] = true;
@@ -109,24 +110,6 @@ public class CharacterAttributes : MonoBehaviour {
             if (powerUpDamage[i] == true) {
                 DoubleDamageIcon[i].enabled = true;
                 StartCoroutine(DoubleDamage(i));
-            }
-
-            if (InvicibilityCounter[i] > 0)
-            {
-                InvicibilityCounter[i] -= Time.deltaTime;
-                FlashCounter[i] -= Time.deltaTime;
-                Player[i].GetComponent<CharacterDamaged>().enabled = false;
-                if (FlashCounter[i] <= 0)
-                {
-                    PlayerRenderer[i].enabled = !PlayerRenderer[i].enabled;
-                    FlashCounter[i] = FlashLength[i];
-                }
-                if (InvicibilityCounter[i] < 0)
-                {
-                    InvicibilityCounter[i] = 0;
-                    PlayerRenderer[i].enabled = true;
-                    Player[i].GetComponent<CharacterDamaged>().enabled = true;
-                }
             }
         }
     }
@@ -153,13 +136,12 @@ public class CharacterAttributes : MonoBehaviour {
             }
             CurrHealth[i] -= TotalDamage[j];
             HealthShakeEffect[i].enabled = true;
-            StartCoroutine(DelayDamage(i));
             StartCoroutine(HealthShakeAgain(i));
             HealthBar[i].text = "" + CurrHealth[i];
             if (CurrHealth[i] <= 0)
             {
+                Player[i].GetComponent<Animator>().SetTrigger("KnockbackUltiAxe");
                 Respawning(i);
-                InvicibilityCounter[i] = InvicibilityLength[i];
                 HealthShakeEffect[i].enabled = false;
             }
         }
@@ -188,6 +170,14 @@ public class CharacterAttributes : MonoBehaviour {
         SortScore();
         findHighestScore();
     }
+
+    public void ScoreMinus(int i) {
+        skorPlayer[i]--;
+        SkorText[i].text = " " + skorPlayer[i];
+        SortScore();
+        findHighestScore();
+    }
+
 
     public void Respawning(int i)
     {
@@ -236,21 +226,29 @@ public class CharacterAttributes : MonoBehaviour {
         }
     }
 
+    public IEnumerator InvicibleTime(int i) {
+        InvicibleState[i] = true;
+        yield return new WaitForSeconds(InvicibilityLength[i]);
+        InvicibleState[i] = false;
+    }
+
     public IEnumerator RespawningCo(int i)
     {
+        Player[i].GetComponent<Animator>().SetBool("Death", true);
         isRespawning[i] = true;
         HealthBar[i].text = "0";
-        Player[i].SetActive(false);
-        Player[i].transform.position = RespawnPoint[i].transform.position;
+        //Player[i].SetActive(false);
+        CurrPowerBar[i] = 0;
+        PowerBar[i].fillAmount = CurrPowerBar[i] / MaxPowerBar[i];
+        GlowBar[i].Stop();
         //Instantiate(RespawnEffect, RespawnPoint[i].transform.position, RespawnPoint[i].transform.rotation);
         yield return new WaitForSeconds(RespawnLength[i]);
+        Player[i].GetComponent<Animator>().SetBool("Death", false);
         playerDeath[i]++;
         isRespawning[i] = false;
         Player[i].SetActive(true);
         CurrHealth[i] = MaxHealth[i];
-        CurrPowerBar[i] = 0;
         HealthBar[i].text = "" + CurrHealth[i];
-        PowerBar[i].fillAmount = CurrPowerBar[i] / MaxPowerBar[i];
         Player[i].GetComponent<EquipWeapon>().weaponActive = false;
         Player[i].GetComponent<EquipWeapon>().Axe.SetActive(false);
         Player[i].GetComponent<EquipWeapon>().Sword.SetActive(false);
@@ -263,6 +261,9 @@ public class CharacterAttributes : MonoBehaviour {
         Player[i].GetComponent<PlayerAttack>().HaveWeaponSpear = false;
         Player[i].GetComponent<PlayerAttack>().HaveWeaponHammer = false;
         Player[i].GetComponent<PlayerAttack>().HaveWeaponKnife = false;
+        Player[i].GetComponent<PlayerMovement>().RollReady = true;
+        Player[i].GetComponent<PlayerMovement>().TandaRoll.enabled = false;
+        StartCoroutine(InvicibleTime(i));
     }
 
     public IEnumerator DoubleDamage(int i) {
@@ -272,19 +273,11 @@ public class CharacterAttributes : MonoBehaviour {
         yield return new WaitForSeconds(powerUpTime);
         DoubleDamageIcon[i].enabled = false;
         DamageMultiplier[i] -= 1;
-
-    }
-
-    public IEnumerator DelayDamage(int i) {
-        IsDamaged[i] = true;
-        yield return new WaitForSeconds(0.5f);
-        IsDamaged[i] = false;
     }
 
     IEnumerator HealthShakeAgain(int i)
     {
         yield return new WaitForSeconds(0f);
-
         HealthShakeEffect[i].shakeDuration = 0.5f;
         //HealthShakeEffect[i].enabled = false;
     }

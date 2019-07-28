@@ -9,9 +9,6 @@ public class PlayerAttack : MonoBehaviour
     public InputManager IM;
     public int ControlNumber;
     public int PlayerKeberapa;
-    public GameObject[] Player;
-    public CharacterDamaged cd;
-    public CharacterController cc;
 
     [Header("WEAPONS")]
 
@@ -60,6 +57,7 @@ public class PlayerAttack : MonoBehaviour
 
     public bool isThrowing = false;
     public bool isThrowingKnife = false;
+    public bool isUltiSpear = false;
     public bool[] lagiUlti;
 
 
@@ -78,7 +76,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cd.lagiKenaHit[PlayerKeberapa - 1] == false && PM.isStun == false && PM.isIdle == true /*&& /*cc.isGrounded == true*/) {
+        if (PM.isStun == false) {
             AttackInput();
             CalculateAttack();
             UltimateAttack();
@@ -93,38 +91,26 @@ public class PlayerAttack : MonoBehaviour
                 if (HaveWeapon == false)
                 {
                     UltiFist(0);
-                    AttackState = true;
-                    AttackTime = 2;
                 }
                 else if (HaveWeaponAxe == true)
                 {
                     UltiAxe(0);
-                    AttackState = true;
-                    AttackTime = 2;
                 }
                 else if (HaveWeaponHammer == true)
                 {
                     UltiHammer(0);
-                    AttackState = true;
-                    AttackTime = 2;
                 }
                 else if (HaveWeaponKnife == true)
                 {
                     UltiKnife(0);
-                    AttackState = true;
-                    AttackTime = 2;
                 }
                 else if (HaveWeaponSpear == true)
                 {
                     UltiSpear(0);
-                    AttackState = true;
-                    AttackTime = 2;
                 }
                 else if (HaveWeaponSword == true)
                 {
                     UltiSword(0);
-                    AttackState = true;
-                    AttackTime = 2;
                 }
             }
         }
@@ -135,38 +121,26 @@ public class PlayerAttack : MonoBehaviour
                 if (HaveWeapon == false)
                 {
                     UltiFist(1);
-                    AttackState = true;
-                    AttackTime = 2;
                 }
                 else if (HaveWeaponAxe == true)
                 {
                     UltiAxe(1);
-                    AttackState = true;
-                    AttackTime = 2;
                 }
                 else if (HaveWeaponHammer == true)
                 {
                     UltiHammer(1);
-                    AttackState = true;
-                    AttackTime = 2;
                 }
                 else if (HaveWeaponKnife == true)
                 {
                     UltiKnife(1);
-                    AttackState = true;
-                    AttackTime = 2;
                 }
                 else if (HaveWeaponSpear == true)
                 {
                     UltiSpear(1);
-                    AttackState = true;
-                    AttackTime = 2;
                 }
                 else if (HaveWeaponSword == true)
                 {
                     UltiSword(1);
-                    AttackState = true;
-                    AttackTime = 2;
                 }
             }
         }
@@ -177,38 +151,26 @@ public class PlayerAttack : MonoBehaviour
                 if (HaveWeapon == false)
                 {
                     UltiFist(2);
-                    AttackState = true;
-                    AttackTime = 2;
                 }
                 else if (HaveWeaponAxe == true)
                 {
                     UltiAxe(2);
-                    AttackState = true;
-                    AttackTime = 2;
                 }
                 else if (HaveWeaponHammer == true)
                 {
                     UltiHammer(2);
-                    AttackState = true;
-                    AttackTime = 2;
                 }
                 else if (HaveWeaponKnife == true)
                 {
                     UltiKnife(2);
-                    AttackState = true;
-                    AttackTime = 2;
                 }
                 else if (HaveWeaponSpear == true)
                 {
                     UltiSpear(2);
-                    AttackState = true;
-                    AttackTime = 2;
                 }
                 else if (HaveWeaponSword == true)
                 {
                     UltiSword(2);
-                    AttackState = true;
-                    AttackTime = 2;
                 }
             }
         }
@@ -219,38 +181,26 @@ public class PlayerAttack : MonoBehaviour
                 if (HaveWeapon == false)
                 {
                     UltiFist(3);
-                    AttackTime = 2;
-                    AttackState = true;
                 }
                 else if (HaveWeaponAxe == true)
                 {
                     UltiAxe(3);
-                    AttackTime = 2;
-                    AttackState = true;
                 }
                 else if (HaveWeaponHammer == true)
                 {
                     UltiHammer(3);
-                    AttackTime = 2;
-                    AttackState = true;
                 }
                 else if (HaveWeaponKnife == true)
                 {
                     UltiKnife(3);
-                    AttackTime = 2;
-                    AttackState = true;
                 }
                 else if (HaveWeaponSpear == true)
                 {
                     UltiSpear(3);
-                    AttackTime = 2;
-                    AttackState = true;
                 }
                 else if (HaveWeaponSword == true)
                 {
                     UltiSword(3);
-                    AttackState = true;
-                    AttackTime = 2;
                 }
             }
         }
@@ -353,58 +303,59 @@ public class PlayerAttack : MonoBehaviour
 
     public IEnumerator UltiDamageFist(int i) {
         lagiUlti[i] = true;
+        ca.InvicibleState[i] = true;
         yield return new WaitForSeconds(2.8f);
         lagiUlti[i] = false;
+        ca.InvicibleState[i] = false;
     }
     public IEnumerator UltiDamageHammer(int i) {
         ca.amountDamage[i] -= 20;
-        Player[i].GetComponent<CharacterDamaged>().enabled = false;
         lagiUlti[i] = true;
+        ca.InvicibleState[i] = true;
         yield return new WaitForSeconds(5);
+        ca.InvicibleState[i] = false;
         ca.amountDamage[i] += 20;
-        Player[i].GetComponent<CharacterDamaged>().enabled = true;
         lagiUlti[i] = false;
     }
 
     public IEnumerator UltiDamageAxe(int i)
     {
         ca.amountDamage[i] -= 10;
-        Player[i].GetComponent<CharacterDamaged>().enabled = false;
         lagiUlti[i] = true;
+        ca.InvicibleState[i] = true;
         yield return new WaitForSeconds(5.3f);
         ca.amountDamage[i] += 10;
-        Player[i].GetComponent<CharacterDamaged>().enabled = true;
         lagiUlti[i] = false;
     }
 
     public IEnumerator UltiDamageSword(int i) {
         ca.amountDamage[i] -= 5;
-        Player[i].GetComponent<CharacterDamaged>().enabled = false;
         lagiUlti[i] = true;
+        ca.InvicibleState[i] = true;
         yield return new WaitForSeconds(3.8f);
         ca.amountDamage[i] += 5;
-        Player[i].GetComponent<CharacterDamaged>().enabled = true;
         lagiUlti[i] = false;
+        ca.InvicibleState[i] = false;
     }
     public IEnumerator UltiDamageKnife(int i) {
         ca.amountDamage[i] += 5;
-        Player[i].GetComponent<CharacterDamaged>().enabled = false;
         lagiUlti[i] = true;
+        ca.InvicibleState[i] = true;
         yield return new WaitForSeconds(2.7f);
         ca.amountDamage[i] -= 5;
-        Player[i].GetComponent<CharacterDamaged>().enabled = true;
         lagiUlti[i] = false;
+        ca.InvicibleState[i] = false;
     }
 
     public IEnumerator UltiDamageSpear(int i)
     {
         ca.amountDamage[i] += 80;
-        Player[i].GetComponent<CharacterDamaged>().enabled = false;
         lagiUlti[i] = true;
+        ca.InvicibleState[i] = true;
         yield return new WaitForSeconds(4f);
         ca.amountDamage[i] -= 80;
-        Player[i].GetComponent<CharacterDamaged>().enabled = true;
         lagiUlti[i] = false;
+        ca.InvicibleState[i] = false;
     }
 
 

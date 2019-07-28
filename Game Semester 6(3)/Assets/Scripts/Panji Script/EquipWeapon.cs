@@ -70,11 +70,11 @@ public class EquipWeapon : MonoBehaviour
 
     public void OnTriggerEnter(Collider collider)
     {
-        if (PlayerKeberapa == 1)
+        if (PlayerKeberapa == 1 && ca.InvicibleState[0] == false)
         {
             if (weaponActive == false && patt.HaveWeapon == false)
             {
-                if (collider.gameObject.tag == "AxeDrop")
+                if (collider.gameObject.tag == "AxeDrop" && patt.HaveWeaponAxe == false)
                 {
                     Debug.Log("You Use " + collider.gameObject.name);
                     //Destroy(collider.gameObject);
@@ -89,7 +89,7 @@ public class EquipWeapon : MonoBehaviour
                     ca.amountDamage[0] = Axe.GetComponent<WeaponDamage>().DamageSenjata;
 
                 }
-                else if (collider.gameObject.tag == "SwordDrop")
+                else if (collider.gameObject.tag == "SwordDrop" && patt.HaveWeaponSword == false)
                 {
                     Debug.Log("You Use " + collider.gameObject.name);
                     //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
@@ -101,7 +101,7 @@ public class EquipWeapon : MonoBehaviour
                     PickUpSound.Play();
                     ca.amountDamage[0] = Sword.GetComponent<WeaponDamage>().DamageSenjata;
                 }
-                else if (collider.gameObject.tag == "SpearDrop")
+                else if (collider.gameObject.tag == "SpearDrop" && patt.HaveWeaponSpear == false)
                 {
                     Debug.Log("You Use " + collider.gameObject.name);
                     //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
@@ -113,7 +113,7 @@ public class EquipWeapon : MonoBehaviour
                     PickUpSound.Play();
                     ca.amountDamage[0] = Spear.GetComponent<WeaponDamage>().DamageSenjata;
                 }
-                else if (collider.gameObject.tag == "KnifeDrop")
+                else if (collider.gameObject.tag == "KnifeDrop" && patt.HaveWeaponKnife == false)
                 {
                     Debug.Log("You Use " + collider.gameObject.name);
                     //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
@@ -125,7 +125,7 @@ public class EquipWeapon : MonoBehaviour
                     PickUpSound.Play();
                     ca.amountDamage[0] = Knife.GetComponent<WeaponDamage>().DamageSenjata;
                 }
-                else if (collider.gameObject.tag == "HammerDrop")
+                else if (collider.gameObject.tag == "HammerDrop" && patt.HaveWeaponHammer == false)
                 {
                     Debug.Log("You Use " + collider.gameObject.name);
                     //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
@@ -142,16 +142,13 @@ public class EquipWeapon : MonoBehaviour
                 }
             }
         }
-        else if (PlayerKeberapa == 2)
+        else if (PlayerKeberapa == 2 && ca.InvicibleState[1] == false)
         {
-            if (/*collider.gameObject.tag == "WeaponDrop" && */weaponActive == false && patt.HaveWeapon == false)
+            if (weaponActive == false && patt.HaveWeapon == false)
             {
-                if (collider.gameObject.tag == "AxeDrop")
+                if (collider.gameObject.tag == "AxeDrop" && patt.HaveWeaponAxe == false)
                 {
                     Debug.Log("You Use " + collider.gameObject.name);
-                    //Destroy(collider.gameObject);
-                    //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
-                    //Axe.GetComponent<ParticleSystem>().Stop();
                     weaponActive = true;
                     patt.HaveWeapon = true;
                     patt.HaveWeaponAxe = true;
@@ -161,11 +158,9 @@ public class EquipWeapon : MonoBehaviour
                     ca.amountDamage[1] = Axe.GetComponent<WeaponDamage>().DamageSenjata;
 
                 }
-                else if (collider.gameObject.tag == "SwordDrop")
+                else if (collider.gameObject.tag == "SwordDrop" && patt.HaveWeaponSword == false)
                 {
                     Debug.Log("You Use " + collider.gameObject.name);
-                    //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
-                    //Destroy(collider.gameObject);
                     weaponActive = true;
                     patt.HaveWeapon = true;
                     patt.HaveWeaponSword = true;
@@ -173,11 +168,9 @@ public class EquipWeapon : MonoBehaviour
                     PickUpSound.Play();
                     ca.amountDamage[1] = Sword.GetComponent<WeaponDamage>().DamageSenjata;
                 }
-                else if (collider.gameObject.tag == "SpearDrop")
+                else if (collider.gameObject.tag == "SpearDrop" && patt.HaveWeaponSpear == false)
                 {
                     Debug.Log("You Use " + collider.gameObject.name);
-                    //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
-                    //Destroy(collider.gameObject);
                     weaponActive = true;
                     patt.HaveWeapon = true;
                     patt.HaveWeaponSpear = true;
@@ -185,11 +178,9 @@ public class EquipWeapon : MonoBehaviour
                     PickUpSound.Play();
                     ca.amountDamage[1] = Spear.GetComponent<WeaponDamage>().DamageSenjata;
                 }
-                else if (collider.gameObject.tag == "KnifeDrop")
+                else if (collider.gameObject.tag == "KnifeDrop" && patt.HaveWeaponKnife == false)
                 {
                     Debug.Log("You Use " + collider.gameObject.name);
-                    //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
-                    //Destroy(collider.gameObject);
                     weaponActive = true;
                     patt.HaveWeapon = true;
                     patt.HaveWeaponKnife = true;
@@ -197,11 +188,9 @@ public class EquipWeapon : MonoBehaviour
                     PickUpSound.Play();
                     ca.amountDamage[1] = Knife.GetComponent<WeaponDamage>().DamageSenjata;
                 }
-                else if (collider.gameObject.tag == "HammerDrop")
+                else if (collider.gameObject.tag == "HammerDrop" && patt.HaveWeaponHammer == false)
                 {
                     Debug.Log("You Use " + collider.gameObject.name);
-                    //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
-                    //Destroy(collider.gameObject);
                     weaponActive = true;
                     patt.HaveWeapon = true;
                     patt.HaveWeaponHammer = true;
@@ -215,16 +204,13 @@ public class EquipWeapon : MonoBehaviour
                 }
             }
         }
-        else if (PlayerKeberapa == 3)
+        else if (PlayerKeberapa == 3 && ca.InvicibleState[2] == false)
         {
-            if (/*collider.gameObject.tag == "WeaponDrop" && */weaponActive == false && patt.HaveWeapon == false)
+            if (weaponActive == false && patt.HaveWeapon == false)
             {
                 if (collider.gameObject.tag == "AxeDrop")
                 {
                     Debug.Log("You Use " + collider.gameObject.name);
-                    //Destroy(collider.gameObject);
-                    //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
-                    //Axe.GetComponent<ParticleSystem>().Stop();
                     weaponActive = true;
                     patt.HaveWeapon = true;
                     patt.HaveWeaponAxe = true;
@@ -237,8 +223,6 @@ public class EquipWeapon : MonoBehaviour
                 else if (collider.gameObject.tag == "SwordDrop")
                 {
                     Debug.Log("You Use " + collider.gameObject.name);
-                    //rgbWeapon.constraints = RigidbodyConstraints.FreezePositionY;
-                    //Destroy(collider.gameObject);
                     weaponActive = true;
                     patt.HaveWeapon = true;
                     patt.HaveWeaponSword = true;
@@ -288,7 +272,7 @@ public class EquipWeapon : MonoBehaviour
                 }
             }
         }
-        else if (PlayerKeberapa == 4) {
+        else if (PlayerKeberapa == 4 && ca.InvicibleState[3] == false) {
             if (/*collider.gameObject.tag == "WeaponDrop" && */weaponActive == false && patt.HaveWeapon == false)
             {
                 if (collider.gameObject.tag == "AxeDrop")

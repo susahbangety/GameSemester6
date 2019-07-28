@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("ISI PLAYERNUMBER --> 1/2/3/4")]
     public int PlayerNumber;
-    public CharacterAttributes CharacterAttributes;
+    public CharacterAttributes ca;
 
     [Header("WALK & JUMP")]
     private CharacterController charControl;
@@ -41,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
     public Quaternion TargetRotation;
     
     public GameObject footStep;
-    public bool isIdle;
 
     [Header("STUNNED")]
     public bool isStun;
@@ -59,18 +58,16 @@ public class PlayerMovement : MonoBehaviour
         Roll = false;
         RollReady = true;
         stunnedEffect.SetActive(false);
-        isIdle = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (pa.lagiUlti[ControlNumber] == false) {
+        if (pa.lagiUlti[ControlNumber] == false && ca.isRespawning[ControlNumber] == false && ca.InvicibleState[ControlNumber] == false) {
             playerWalkJump();
             if (Mathf.Abs(InputJoystick.x) < 0.1 && Mathf.Abs(InputJoystick.z) < 0.1 && Roll == false)
             {
                 gameObject.GetComponent<Animator>().SetBool("Running", false);
-                isIdle = true;
                 return;
             }
             if (Roll == true)
@@ -88,7 +85,6 @@ public class PlayerMovement : MonoBehaviour
                 CalculateDirection();
                 CheckPlayerPosition();
                 PlayerMove();
-                isIdle = false;
             }
         }
     }
@@ -100,7 +96,6 @@ public class PlayerMovement : MonoBehaviour
             verticalVelocity = -gravity * Time.deltaTime;
             if (Input.GetKeyDown(IM.AButton[ControlNumber]))
             {
-
                 verticalVelocity = jumpForce;
                 gameObject.GetComponent<Animator>().SetTrigger("Jump");
   
