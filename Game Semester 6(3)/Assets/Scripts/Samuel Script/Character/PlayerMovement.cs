@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pa.lagiUlti[ControlNumber] == false && ca.isRespawning[ControlNumber] == false && ca.InvicibleState[ControlNumber] == false) {
+        if (pa.lagiUlti[ControlNumber] == false && ca.isRespawning[ControlNumber] == false && ca.InvicibleState[ControlNumber] == false && isStun == false) {
             playerWalkJump();
             if (Mathf.Abs(InputJoystick.x) < 0.1 && Mathf.Abs(InputJoystick.z) < 0.1 && Roll == false)
             {

@@ -232,6 +232,12 @@ public class CharacterAttributes : MonoBehaviour {
         InvicibleState[i] = false;
     }
 
+    public IEnumerator InvicibleTimeLagiMati(int i) {
+        InvicibleState[i] = true;
+        yield return new WaitForSeconds(RespawnLength[i]);
+        InvicibleState[i] = false;
+    }
+
     public IEnumerator RespawningCo(int i)
     {
         Player[i].GetComponent<Animator>().SetBool("Death", true);
@@ -241,14 +247,6 @@ public class CharacterAttributes : MonoBehaviour {
         CurrPowerBar[i] = 0;
         PowerBar[i].fillAmount = CurrPowerBar[i] / MaxPowerBar[i];
         GlowBar[i].Stop();
-        //Instantiate(RespawnEffect, RespawnPoint[i].transform.position, RespawnPoint[i].transform.rotation);
-        yield return new WaitForSeconds(RespawnLength[i]);
-        Player[i].GetComponent<Animator>().SetBool("Death", false);
-        playerDeath[i]++;
-        isRespawning[i] = false;
-        Player[i].SetActive(true);
-        CurrHealth[i] = MaxHealth[i];
-        HealthBar[i].text = "" + CurrHealth[i];
         Player[i].GetComponent<EquipWeapon>().weaponActive = false;
         Player[i].GetComponent<EquipWeapon>().Axe.SetActive(false);
         Player[i].GetComponent<EquipWeapon>().Sword.SetActive(false);
@@ -261,6 +259,15 @@ public class CharacterAttributes : MonoBehaviour {
         Player[i].GetComponent<PlayerAttack>().HaveWeaponSpear = false;
         Player[i].GetComponent<PlayerAttack>().HaveWeaponHammer = false;
         Player[i].GetComponent<PlayerAttack>().HaveWeaponKnife = false;
+        StartCoroutine(InvicibleTimeLagiMati(i));
+        //Instantiate(RespawnEffect, RespawnPoint[i].transform.position, RespawnPoint[i].transform.rotation);
+        yield return new WaitForSeconds(RespawnLength[i]);
+        Player[i].GetComponent<Animator>().SetBool("Death", false);
+        playerDeath[i]++;
+        isRespawning[i] = false;
+        Player[i].SetActive(true);
+        CurrHealth[i] = MaxHealth[i];
+        HealthBar[i].text = "" + CurrHealth[i];
         Player[i].GetComponent<PlayerMovement>().RollReady = true;
         Player[i].GetComponent<PlayerMovement>().TandaRoll.enabled = false;
         StartCoroutine(InvicibleTime(i));
